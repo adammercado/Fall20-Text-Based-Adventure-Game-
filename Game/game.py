@@ -1,23 +1,90 @@
 import sys
 from TextParser.textParser import TextParser
 
+"""
+Methods:
+	startGame()
+	getInput()
+
+	-- PLACEHOLDER METHODS UNTIL IMPLEMENTATION --
+	playerLook()
+	playerMove()
+	playerUse()
+	playerTake()
+	playerPlace()
+	playerGame()
+"""
+
 class Game:
 	parser = TextParser()
-	userInput = ""
 
+	# Tokenize input and pass into class method
 	def startGame(self):
 		while 1:
 			args = input("Enter an action: ").lower().split()
 			self.getInput(args)
 
+	# Receive tokenized input as list and pass to parser to determine command
 	def getInput(self, args):
-		args = self.parser.parse(args)
+		parsedText = self.parser.parse(args)
 
-		if len(args) == 0:
+		if len(parsedText) == 0:
 			print("Not a valid action.")
-		elif args[0] == "quit":
+
+		elif parsedText[0] == "quit":
 			print("Exiting gameplay")
 			sys.exit()
+
+		elif parsedText[0] == "look":
+			direction = ""
+ 
+			if len(parsedText) == 2:
+				direction = parsedText[1]
+
+			self.playerLook(direction)
+
+		elif parsedText[0] == "move":
+			direction = ""
+ 
+			if len(parsedText) == 2:
+				direction = parsedText[1]
+
+			self.playerMove(direction)
+
+		elif parsedText[0] == "use":
+			self.playerUse("item")
+
+		elif parsedText[0] == "take":
+			self.playerTake("item")
+
+		elif parsedText[0] == "place":
+			self.playerPlace("item")
+
+		elif parsedText[0] == "game":
+			self.playerGame()
+
+# PLACEHOLDER METHODS 
+	
+	def playerLook(self, direction):
+		if len(direction) == 0:
+			print("Command: Look")
 		else:
-			for word in args:
-				print(word)
+			print("Command: Look " + direction)		
+
+	def playerMove(self, direction):
+		if len(direction) == 0:
+			print("Command: Move")
+		else:
+			print("Command: Move " + direction)	
+
+	def playerUse(self, item):
+		print("Command: Use <" + item + ">")
+
+	def playerTake(self, item):
+		print("Command: Take <" + item + ">")
+
+	def playerPlace(self, item):
+		print("Command: Place <" + item + ">")
+
+	def playerGame(self):
+		print("Command: Game Status")
