@@ -1,3 +1,4 @@
+import sys
 from TextParser.textParser import TextParser
 
 class Game:
@@ -10,12 +11,13 @@ class Game:
 			self.getInput(args)
 
 	def getInput(self, args):
-		action = self.parser.parse(args)
-	
-		if action == "quit":
-			print("Exiting gameplay")
-			exit()
-		else:
-			print(action)
-			print()
+		args = self.parser.parse(args)
 
+		if len(args) == 0:
+			print("Not a valid action.")
+		elif args[0] == "quit":
+			print("Exiting gameplay")
+			sys.exit()
+		else:
+			for word in args:
+				print(word)

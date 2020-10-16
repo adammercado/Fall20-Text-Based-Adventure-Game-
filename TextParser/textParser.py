@@ -12,34 +12,30 @@ class TextParser:
 
 		self.place_actions = ["place", "put", "drop"]
 
-		self.game_actions = ["savegame", "loadgame", "inventory", "help", "quit"]
+		self.game_actions = ["savegame", "loadgame", "inventory", "help"]
+
+		self.look_prepositions = ["on", "in", "into", "above", "below", "through"]
+
+		self.use_prepositions = ["with", "together"]
 
 	def parse(self, args):
-		res = ""
-		count = 0
+		actions = 0
 		directionFlag = False
-		invalidAction1 = "Not a valid action, please try again."
-		invalidAction2 = "Please enter only one action word."
 
 		for word in args:
-			if word in self.look_actions or word in self.move_actions or word in self.use_actions or word in self.pick_up_actions or word in self.place_actions or word in self.game_actions or word in self.move_directions:
-				if count < 1 and word not in self.move_directions:
-					res += word
-					count += 1
+			if word == "quit" and len(args) == 1:
+				return args
+			elif word in self.look_actions or word in self.move_actions or word in self.use_actions or word in self.pick_up_actions or word in self.place_actions or word in self.game_actions:
+				actions += 1
 
-					if word in self.move_actions or word in self.look_actions:
-						directionFlag = True
-
-				elif word in self.move_directions:
-					if directionFlag and count <= 1:
-						res += " " + word
-					else:
-						return invalidAction1
-
-				elif count >= 1:
-					return invalidAction2
-
+				if actions > 1:
+					args.clear()
+				elif word in self.move_actions or word in self.look_actions:
+					directionFlag = True
+			elif word in self.move_directions:
+				if actions == 0 or directionFlag == False:
+					args.clear()
 			else:
-				return invalidAction1	
+				args.clear()	
 
-		return res
+		return args
