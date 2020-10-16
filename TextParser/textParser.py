@@ -12,30 +12,34 @@ class TextParser:
 
 		self.place_actions = ["place", "put", "drop"]
 
-		self.game_actions = ["savegame", "loadgame", "inventory", "help"]
+		self.game_actions = ["savegame", "loadgame", "inventory", "help", "quit"]
 
-	def parse(self):
-		args = input("Enter an action: ").lower().split()
+	def parse(self, args):
 		res = ""
+		count = 0
+		directionFlag = False
+		invalidAction1 = "Not a valid action, please try again."
+		invalidAction2 = "Please enter only one action word."
 
 		for word in args:
-			res += word
+			if word in self.look_actions or word in self.move_actions or word in self.use_actions or word in self.pick_up_actions or word in self.place_actions or word in self.game_actions or word in self.move_directions:
+				if count < 1 and word not in self.move_directions:
+					res += word
+					count += 1
 
-			if word == "quit":
-				return res
-			elif word in self.look_actions:
-				res += " is a look action."
-			elif word in self.move_actions:
-				res += " is a move action."
-			elif word in self.use_actions:
-				res += " is a use action."
-			elif word in self.pick_up_actions:
-				res += " is a pick up action."
-			elif word in self.place_actions:
-				res += " is a place action."
-			elif word in self.game_actions:
-				res += " is a game action."
-			else:	
-				res += " is not a valid action."
+					if word in self.move_actions or word in self.look_actions:
+						directionFlag = True
+
+				elif word in self.move_directions:
+					if directionFlag and count <= 1:
+						res += " " + word
+					else:
+						return invalidAction1
+
+				elif count >= 1:
+					return invalidAction2
+
+			else:
+				return invalidAction1	
 
 		return res
