@@ -1,0 +1,8 @@
+{
+    "name": "Test Save Load",
+    "location": "Janitor's Closet",
+    "inventory": [
+        "key",
+        "wallet"
+    ]
+}
