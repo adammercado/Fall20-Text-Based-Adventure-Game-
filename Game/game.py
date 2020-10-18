@@ -1,5 +1,6 @@
 import sys
 import json
+from pathlib import Path
 from TextParser.textParser import TextParser
 
 
@@ -42,22 +43,29 @@ class Game:
 		self.playGame()
 
 	def loadGame(self):
-		with open("./Saves/gameSave.txt") as infile:
-			data = json.load(infile)
+		saveFile = Path("./Saves/gameSave.txt")
 	
-			self.playerName = data["name"]
-			self.location = data["location"]
-			self.inventory = data["inventory"]
+		if saveFile.is_file():
+			with open("./Saves/gameSave.txt") as infile:
+				data = json.load(infile)
+	
+				self.playerName = data["name"]
+				self.location = data["location"]
+				self.inventory = data["inventory"]
 
-			print("TEST - Player Name is " + self.playerName)
-			print("TEST - Location is " + self.location)	
+				print("TEST - Player Name is " + self.playerName)
+				print("TEST - Location is " + self.location)	
 
-			for item in self.inventory:
-				print("TEST - Item in inventory is " + item)	
+				for item in self.inventory:
+					print("TEST - Item in inventory is " + item)	
 		
-			print()
+				print()
 
-		self.playGame()
+			self.playGame()
+		else:
+			print("No save file found. Creating a new game...")
+			self.startGame()
+
 
 	# Tokenize input and pass into class method
 	def playGame(self):
