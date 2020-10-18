@@ -1,12 +1,19 @@
 import sys
+import json
+from pathlib import Path
 from TextParser.textParser import TextParser
+
 
 """
 Methods:
 	startGame()
+	loadGame()
 	getInput()
 
-	-- PLACEHOLDER METHODS UNTIL IMPLEMENTATION --
+	-- TEMPORARY ATTRIBUTES TO BE REPLACED/CHANGED--
+	playerName
+
+	-- TEMPORARY METHODS TO BE REPLACED/CHANGED --
 	playerLook()
 	playerMove()
 	playerUse()
@@ -17,9 +24,51 @@ Methods:
 
 class Game:
 	parser = TextParser()
+	playerName = ""
+	location = "Janitor's Closet"
+	inventory = ["key", "wallet"]
+
+	def startGame(self):
+		self.playerName = input("Enter a name: ")
+		
+		data = {
+			"name": self.playerName,
+			"location": self.location,
+			"inventory": self.inventory
+		}
+
+		with open("./Saves/gameSave.txt", "w") as outfile:
+			json.dump(data, outfile, indent=4)
+
+		self.playGame()
+
+	def loadGame(self):
+		saveFile = Path("./Saves/gameSave.txt")
+	
+		if saveFile.is_file():
+			with open("./Saves/gameSave.txt") as infile:
+				data = json.load(infile)
+	
+				self.playerName = data["name"]
+				self.location = data["location"]
+				self.inventory = data["inventory"]
+
+				print("TEST - Player Name is " + self.playerName)
+				print("TEST - Location is " + self.location)	
+
+				for item in self.inventory:
+					print("TEST - Item in inventory is " + item)	
+		
+				print()
+
+			self.playGame()
+		else:
+			print("No save file found. Creating a new game...")
+			self.startGame()
+
 
 	# Tokenize input and pass into class method
-	def startGame(self):
+	def playGame(self):
 		while 1:
 			args = input("Enter an action: ").lower().split()
 			self.getInput(args)
