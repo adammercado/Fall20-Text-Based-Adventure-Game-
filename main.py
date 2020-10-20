@@ -25,7 +25,6 @@ def quit():
 
 #The playNewGame() initializes a new game from the beginning
 def playNewGame():
-    #temporary
     print()
     print("a new game is initialized...")
     game = Game()
@@ -33,7 +32,6 @@ def playNewGame():
 
 #The loadCurrentGame() opens a file to the players current level
 def loadCurrentGame():
-    #temporary
     print()
     print("the game is loaded...")
     game = Game()
