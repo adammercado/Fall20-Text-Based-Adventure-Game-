@@ -16,15 +16,3 @@ class Room:
 			self.longDesc = data["longDesc"]
 			self.shortDesc = data["shortDesc"]
 			self.priorVisit = bool(data["priorVisit"] == "true")
-
-	# Testing
-	def printRoom(self):
-		print(self.name)
-		print()
-		print(self.longDesc)
-		print()
-		print(self.shortDesc)
-		print()
-		print(self.priorVisit)
-		print()
-	

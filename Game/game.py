@@ -48,12 +48,14 @@ class Game:
 			room.printRoom()
 	
 		self.playerName = input("Enter a name: ")
-
 		
+		jsonRoomsList = json.dumps([obj.__dict__ for obj in self.rooms], indent = 4)
+
 		data = {
 			"name": self.playerName,
 			"location": self.location,
-			"inventory": self.inventory
+			"inventory": self.inventory,
+			"rooms": jsonRoomsList 
 		}
 
 		with open("./Saves/gameSave.json", "w") as outfile:
@@ -71,6 +73,7 @@ class Game:
 				self.playerName = data["name"]
 				self.location = data["location"]
 				self.inventory = data["inventory"]
+				self.rooms = data["rooms"]
 
 				print("TEST - Player Name is " + self.playerName)
 				print("TEST - Location is " + self.location)	
@@ -78,6 +81,8 @@ class Game:
 				for item in self.inventory:
 					print("TEST - Item in inventory is " + item)	
 		
+				# Need to convert JSON string back into Room objects	
+				print(self.rooms)	
 				print()
 
 			self.playGame()
