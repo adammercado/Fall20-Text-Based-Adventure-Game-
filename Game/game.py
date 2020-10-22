@@ -3,7 +3,7 @@ import json
 import os
 from pathlib import Path
 from TextParser.textParser import TextParser
-
+from Room.room import Room
 
 """
 Methods:
@@ -35,11 +35,18 @@ class Game:
 	
 		for fileName in os.listdir(directory):
 			if fileName.endswith(".json"):
-				print(os.path.join(directory, fileName))
+				roomPath = directory + "/" + fileName
+				# print(roomPath)
+				curRoom = Room(roomPath)
+				self.rooms.append(curRoom)
+				
 			else:
 				continue
-	
 
+		# Test initialization of rooms
+		for room in self.rooms:
+			room.printRoom()
+	
 		self.playerName = input("Enter a name: ")
 
 		

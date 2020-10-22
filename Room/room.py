@@ -6,15 +6,16 @@ class Room:
 	shortDesc = ""
 	priorVisit = False
 
-	def createRoom(self, fileName):
-		if fileName.is_file():
-			with open(fileName) as infile:
-				data = json.load(infile)
+	def __init__(self, fileName):
+		print(fileName)
 
-				self.name = data["name"]
-				self.longDesc = data["longDesc"]
-				self.shortDesc = data["shortDesc"]
-				self.priorVisit = data["priorVisit"]
+		with open(fileName) as infile:
+			data = json.load(infile)
+
+			self.name = data["name"]
+			self.longDesc = data["longDesc"]
+			self.shortDesc = data["shortDesc"]
+			self.priorVisit = bool(data["priorVisit"] == "true")
 
 	# Testing
 	def printRoom(self):
@@ -24,6 +25,6 @@ class Room:
 		print()
 		print(self.shortDesc)
 		print()
-		print(priorVisit)
+		print(self.priorVisit)
 		print()
 	
