@@ -37,16 +37,16 @@ class Game:
 			"inventory": self.inventory
 		}
 
-		with open("./Saves/gameSave.txt", "w") as outfile:
+		with open("./Saves/gameSave.json", "w") as outfile:
 			json.dump(data, outfile, indent=4)
 
 		self.playGame()
 
 	def loadGame(self):
-		saveFile = Path("./Saves/gameSave.txt")
+		saveFile = Path("./Saves/gameSave.json")
 	
 		if saveFile.is_file():
-			with open("./Saves/gameSave.txt") as infile:
+			with open("./Saves/gameSave.json") as infile:
 				data = json.load(infile)
 	
 				self.playerName = data["name"]
