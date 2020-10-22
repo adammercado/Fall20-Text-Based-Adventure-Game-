@@ -1,5 +1,6 @@
 import sys
 import json
+import os
 from pathlib import Path
 from TextParser.textParser import TextParser
 
@@ -27,9 +28,20 @@ class Game:
 	playerName = ""
 	location = "Janitor's Closet"
 	inventory = ["key", "wallet"]
+	rooms = []
 
 	def startGame(self):
+		directory = "./GameData/RoomTypes"
+	
+		for fileName in os.listdir(directory):
+			if fileName.endswith(".json"):
+				print(os.path.join(directory, fileName))
+			else:
+				continue
+	
+
 		self.playerName = input("Enter a name: ")
+
 		
 		data = {
 			"name": self.playerName,
