@@ -32,12 +32,12 @@ class Game:
 
 	def startGame(self):
 		directory = "./GameData/RoomTypes"
-	
+
+		# Iterate through each .json file in directory of room types, pass into constructor using file name
 		for fileName in os.listdir(directory):
 			if fileName.endswith(".json"):
 				roomPath = directory + "/" + fileName
-				# print(roomPath)
-				curRoom = Room(roomPath)
+				curRoom = Room.fromFileName(roomPath)
 				self.rooms.append(curRoom)
 				
 			else:
@@ -45,11 +45,17 @@ class Game:
 
 		# Test initialization of rooms
 		for room in self.rooms:
-			room.printRoom()
+			print()
+			print("*** INITIALIZING ROOM AND PRINTING DATA ***")
+			print("*** THIS SHOULD DISPLAY LONG DESCRIPTION ***")
+			print()
+			room.getData()
+			print()
 	
 		self.playerName = input("Enter a name: ")
-		
-		jsonRoomsList = json.dumps([obj.__dict__ for obj in self.rooms], indent = 4)
+	
+		# Convert object into JSON list of strings because cannot store object in JSON format	
+		jsonRoomsList = json.dumps([obj.__dict__ for obj in self.rooms])
 
 		data = {
 			"name": self.playerName,
@@ -73,7 +79,8 @@ class Game:
 				self.playerName = data["name"]
 				self.location = data["location"]
 				self.inventory = data["inventory"]
-				self.rooms = data["rooms"]
+				# Convert JSON array into list of strings
+				temp = json.loads(data["rooms"])
 
 				print("TEST - Player Name is " + self.playerName)
 				print("TEST - Location is " + self.location)	
@@ -81,8 +88,19 @@ class Game:
 				for item in self.inventory:
 					print("TEST - Item in inventory is " + item)	
 		
-				# Need to convert JSON string back into Room objects	
-				print(self.rooms)	
+				print()
+				print("*** LOADING ROOM DATA ***")
+				print("*** THIS SHOULD DISPLAY SHORT DESCRIPTION ***")
+				print()
+
+				for room in temp:	
+					# Re-create Room objects using list of strings using default constructor 
+					curRoom = Room(room['name'], room['longDesc'], room['shortDesc'], room['priorVisit'])
+					self.rooms.append(curRoom)
+		
+					# Print room data to test proper loading of rooms
+					curRoom.getLoadData()
+
 				print()
 
 			self.playGame()
