@@ -40,6 +40,7 @@ class Game:
                 roomPath = directory + "/" + fileName
                 curRoom = Room.fromFileName(roomPath)
                 self.rooms.append(curRoom)
+                print("test")
 
             else:
                 continue
