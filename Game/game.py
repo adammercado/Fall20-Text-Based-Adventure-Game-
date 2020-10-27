@@ -2,138 +2,141 @@ import sys
 import json
 from pathlib import Path
 from TextParser.textParser import TextParser
+from Item.Item import Item
 
 
 """
 Methods:
-	startGame()
-	loadGame()
-	getInput()
+    startGame()
+    loadGame()
+    getInput()
 
-	-- TEMPORARY ATTRIBUTES TO BE REPLACED/CHANGED--
-	playerName
+    -- TEMPORARY ATTRIBUTES TO BE REPLACED/CHANGED--
+    playerName
 
-	-- TEMPORARY METHODS TO BE REPLACED/CHANGED --
-	playerLook()
-	playerMove()
-	playerUse()
-	playerTake()
-	playerPlace()
-	playerGame()
+    -- TEMPORARY METHODS TO BE REPLACED/CHANGED --
+    playerLook()
+    playerMove()
+    playerUse()
+    playerTake()
+    playerPlace()
+    playerGame()
 """
 
+
 class Game:
-	parser = TextParser()
-	playerName = ""
-	location = "Janitor's Closet"
-	inventory = ["key", "wallet"]
 
-	def startGame(self):
-		self.playerName = input("Enter a name: ")
-		
-		data = {
-			"name": self.playerName,
-			"location": self.location,
-			"inventory": self.inventory
-		}
+    parser = TextParser()
+    playerName = ""
+    location = "Janitor's Closet"
+    inventory = ["key", "wallet"]
 
-		with open("./Saves/gameSave.txt", "w") as outfile:
-			json.dump(data, outfile, indent=4)
+    def startGame(self):
+        self.playerName = input("Enter a name: ")
 
-		self.playGame()
+        data = {
+            "name": self.playerName,
+            "location": self.location,
+            "inventory": self.inventory
+        }
 
-	def loadGame(self):
-		saveFile = Path("./Saves/gameSave.txt")
-	
-		if saveFile.is_file():
-			with open("./Saves/gameSave.txt") as infile:
-				data = json.load(infile)
-	
-				self.playerName = data["name"]
-				self.location = data["location"]
-				self.inventory = data["inventory"]
+        with open("./Saves/gameSave.txt", "w") as outfile:
+            json.dump(data, outfile, indent=4)
 
-				print("TEST - Player Name is " + self.playerName)
-				print("TEST - Location is " + self.location)	
+        self.playGame()
 
-				for item in self.inventory:
-					print("TEST - Item in inventory is " + item)	
-		
-				print()
+    def loadGame(self):
+        saveFile = Path("./Saves/gameSave.txt")
 
-			self.playGame()
-		else:
-			print("No save file found. Creating a new game...")
-			self.startGame()
+        if saveFile.is_file():
+            with open("./Saves/gameSave.txt") as infile:
+                data = json.load(infile)
 
+                self.playerName = data["name"]
+                self.location = data["location"]
+                self.inventory = data["inventory"]
 
-	# Tokenize input and pass into class method
-	def playGame(self):
-		while 1:
-			args = input("Enter an action: ").lower().split()
-			self.getInput(args)
+                print("TEST - Player Name is " + self.playerName)
+                print("TEST - Location is " + self.location)
 
-	# Receive tokenized input as list and pass to parser to determine command
-	def getInput(self, args):
-		parsedText = self.parser.parse(args)
+                for item in self.inventory:
+                    print("TEST - Item in inventory is " + item)
 
-		if len(parsedText) == 0:
-			print("Not a valid action.")
+                print()
 
-		elif parsedText[0] == "quit":
-			print("Exiting gameplay")
-			sys.exit()
+            self.playGame()
+        else:
+            print("No save file found. Creating a new game...")
+            self.startGame()
 
-		elif parsedText[0] == "look":
-			direction = ""
- 
-			if len(parsedText) == 2:
-				direction = parsedText[1]
+    # Tokenize input and pass into class method
+    def playGame(self):
+        while 1:
+            args = input("Enter an action: ").lower().split()
+            self.getInput(args)
 
-			self.playerLook(direction)
+    # Receive tokenized input as list and pass to parser to determine command
+    def getInput(self, args):
+        parsedText = self.parser.parse(args)
 
-		elif parsedText[0] == "move":
-			direction = ""
- 
-			if len(parsedText) == 2:
-				direction = parsedText[1]
+        if len(parsedText) == 0:
+            print("Not a valid action.")
 
-			self.playerMove(direction)
+        elif parsedText[0] == "quit":
+            print("Exiting gameplay")
+            sys.exit()
 
-		elif parsedText[0] == "use":
-			self.playerUse("item")
+        elif parsedText[0] == "look":
+            direction = ""
 
-		elif parsedText[0] == "take":
-			self.playerTake("item")
+        if len(parsedText) == 2:
+            direction = parsedText[1]
 
-		elif parsedText[0] == "place":
-			self.playerPlace("item")
+            self.playerLook(direction)
 
-		elif parsedText[0] == "game":
-			self.playerGame()
+        elif parsedText[0] == "move":
+            direction = ""
 
-# PLACEHOLDER METHODS 
-	
-	def playerLook(self, direction):
-		if len(direction) == 0:
-			print("Command: Look")
-		else:
-			print("Command: Look " + direction)		
+            if len(parsedText) == 2:
+                direction = parsedText[1]
 
-	def playerMove(self, direction):
-		if len(direction) == 0:
-			print("Command: Move")
-		else:
-			print("Command: Move " + direction)	
+            self.playerMove(direction)
 
-	def playerUse(self, item):
-		print("Command: Use <" + item + ">")
+        elif parsedText[0] == "use":
+            self.playerUse("item")
+        # user inputs command received by game class to pick up an item in room
+        elif parsedText[0] == "take":
+            self.playerTake("item")
 
-	def playerTake(self, item):
-		print("Command: Take <" + item + ">")
+        elif parsedText[0] == "place":
+            self.playerPlace("item")
 
-	def playerPlace(self, item):
-		print("Command: Place <" + item + ">")
+        elif parsedText[0] == "game":
+            self.playerGame()
 
-	def playerGame(self):
-		print("Command: Game Status")
+# PLACEHOLDER METHODS
+
+    def playerLook(self, direction):
+        if len(direction) == 0:
+            print("Command: Look")
+        else:
+            print("Command: Look " + direction)
+
+    def playerMove(self, direction):
+        if len(direction) == 0:
+            print("Command: Move")
+        else:
+            print("Command: Move " + direction)
+
+    def playerUse(self, item):
+        print("Command: Use <" + item + ">")
+
+    def playerTake(self, item):
+        print("Command: Take <" + item + ">")
+
+    def playerPlace(self, item):
+        print("Command: Place <" + item + ">")
+
+    def playerGame(self):
+        print("Command: Game Status")
+
