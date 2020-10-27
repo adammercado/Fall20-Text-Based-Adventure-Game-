@@ -1,6 +1,6 @@
 {
 	"name": "Throne Room",
-	"longDesc": "A large room with a central throne, a King in royal arraignment sits. Guards line the walls on both sides. There are six doors, three to a side. Guards with crossed halberds guard each door."
-	"shortDesc": "A large room with a King and his guards. There are six doors that are being guarded."
+	"longDesc": "A large room with a central throne, a King in royal arraignment sits. Guards line the walls on both sides. There are six doors, three to a side. Guards with crossed halberds guard each door.",
+	"shortDesc": "A large room with a King and his guards. There are six doors that are being guarded.",
 	"priorVisit": "false"
 }
