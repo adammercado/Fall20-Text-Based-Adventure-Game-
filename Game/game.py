@@ -107,7 +107,7 @@ class Game:
         # user inputs command received by game class to pick up an item in room
         elif parsedText[0] == "take":
             self.playerTake("item")
-
+            print("janitors closet")
         elif parsedText[0] == "place":
             self.playerPlace("item")
 

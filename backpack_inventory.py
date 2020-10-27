@@ -1,4 +1,3 @@
-from Item import Item
 import random
 backpack_list = []
 
@@ -51,6 +50,9 @@ def drop(backpack_list):
 
 
 def main():
+    
+    i1 = Item("hammer","a well worn hammer",    
+
     backpack_list = ["tome", "walking stick", "compass"]
     display_backpack_menu(backpack_list)
     while True:
