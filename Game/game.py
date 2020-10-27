@@ -45,6 +45,7 @@ class Game:
                 continue
 
         # Test initialization of rooms
+"""
         for room in self.rooms:
             print()
             print("*** INITIALIZING ROOM AND PRINTING DATA ***")
@@ -52,8 +53,9 @@ class Game:
             print()
             room.getData()
             print()
+"""
 
-            self.playerName = input("Enter a name: ")
+        self.playerName = input("Enter a name: ")
 
         # Convert object into JSON list of strings because cannot store object in JSON format
         jsonRoomsList = json.dumps([obj.__dict__ for obj in self.rooms])
@@ -89,18 +91,13 @@ class Game:
                 for item in self.inventory:
                     print("TEST - Item in inventory is " + item)
 
-                print()
-                print("*** LOADING ROOM DATA ***")
-                print("*** THIS SHOULD DISPLAY SHORT DESCRIPTION ***")
-                print()
-
                 for room in temp:
                     # Re-create Room objects using list of strings using default constructor
                     curRoom = Room(room['name'], room['longDesc'], room['shortDesc'], room['priorVisit'])
                     self.rooms.append(curRoom)
 
                     # Print room data to test proper loading of rooms
-                    curRoom.getLoadData()
+                    # curRoom.getLoadData()
 
                 print()
 
