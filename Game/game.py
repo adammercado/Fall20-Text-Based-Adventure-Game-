@@ -64,7 +64,6 @@ class Game:
 
         with open("./Saves/gameSave.json", "w") as outfile:
             json.dump(data, outfile, indent=4)
-       
 
     def loadGame(self):
         saveFile = Path("./Saves/gameSave.json")
@@ -75,7 +74,7 @@ class Game:
 
                 self.playerName = data["name"]
                 self.location = data["location"]
-           
+
                 # Receive json list of strings representing inventory and rooms
                 tempInventoryList = json.loads(data["inventory"])
                 tempRoomList = json.loads(data["rooms"])
