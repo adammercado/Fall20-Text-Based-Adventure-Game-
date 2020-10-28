@@ -137,7 +137,7 @@ class Game:
             self.playerUse("item")
 
         elif parsedText[0] == "take":
-            self.playerTake("item")
+            self.playerTake(parsedText[1])
 
         elif parsedText[0] == "place":
             self.playerPlace("item")
