@@ -17,7 +17,6 @@ class Inventory:
     def displayInventory(self):
         for item in self.inventory:
             print(item.name)
-            print()
             print(item.description)
 
     def getInventoryList(self):

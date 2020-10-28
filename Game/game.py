@@ -74,7 +74,7 @@ class Game:
 
                 self.playerName = data["name"]
                 self.location = data["location"]
-                tempInventoryList = json.load(data["inventory"])
+                tempInventoryList = json.loads(data["inventory"])
                 # Convert JSON array into list of strings
                 tempRoomList = json.loads(data["rooms"])
 
@@ -85,7 +85,10 @@ class Game:
                     curItem = Item(item['name'], item['description'])
                     self.inventory.addItem(curItem)
 
-                for room in temp:
+                # TEST METHOD TO CHECK THAT INVENTORY LOADS PROPERLY
+                self.inventory.displayInventory()
+
+                for room in tempRoomList:
                     # Re-create Room objects using list of strings using default constructor
                     curRoom = Room(room['name'], room['longDesc'], room['shortDesc'], room['priorVisit'])
                     self.rooms.append(curRoom)
