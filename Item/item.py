@@ -1,8 +1,3 @@
-import sys
-import json
-from pathlib import Path
-from TextParser.textParser import TextParser
-
 class Item:
    """The item class is used to represent the objects
       that can be acquired during gameplay.
