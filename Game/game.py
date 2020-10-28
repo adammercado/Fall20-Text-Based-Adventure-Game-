@@ -10,6 +10,7 @@ from Item.item import Item
 """
 Methods:
     startGame()
+    saveGame()
     loadGame()
     getInput()
 
@@ -20,7 +21,7 @@ Methods:
     playerLook()
     playerMove()
     playerUse()
-    playerTake()
+    playerTake() - currently creates an object with the input name and adds it to Game's inventory with a temporary description; GAME WILL NOT HAVE AN INVENTORY LATER ON - this is just for testing
     playerPlace()
     playerGame()
 """
@@ -74,13 +75,15 @@ class Game:
 
                 self.playerName = data["name"]
                 self.location = data["location"]
+           
+                # Receive json list of strings representing inventory and rooms
                 tempInventoryList = json.loads(data["inventory"])
-                # Convert JSON array into list of strings
                 tempRoomList = json.loads(data["rooms"])
 
                 print("TEST - Player Name is " + self.playerName)
                 print("TEST - Location is " + self.location)
 
+                # Convert inventory list received from json back into item objects
                 for item in tempInventoryList:
                     curItem = Item(item['name'], item['description'])
                     self.inventory.addItem(curItem)
@@ -88,6 +91,7 @@ class Game:
                 # TEST METHOD TO CHECK THAT INVENTORY LOADS PROPERLY
                 self.inventory.displayInventory()
 
+                # Convert room list received from json back into room objects
                 for room in tempRoomList:
                     # Re-create Room objects using list of strings using default constructor
                     curRoom = Room(room['name'], room['longDesc'], room['shortDesc'], room['priorVisit'])
@@ -166,6 +170,9 @@ class Game:
     def playerUse(self, item):
         print("Command: Use <" + item + ">")
 
+    # Create an instance (aka object) of Item class using string received in user input
+    # Add to Game inventory, display inventory, then save to json
+    # GAME WILL NOT HAVE INVENTORY LATER - THIS IS FOR TESTING
     def playerTake(self, item):
         print("Command: Take " + item)
         testItem = Item(item, "test description")
