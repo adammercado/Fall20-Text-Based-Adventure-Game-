@@ -44,17 +44,6 @@ class Game:
             else:
                 continue
 
-        # Test initialization of rooms
-"""
-        for room in self.rooms:
-            print()
-            print("*** INITIALIZING ROOM AND PRINTING DATA ***")
-            print("*** THIS SHOULD DISPLAY LONG DESCRIPTION ***")
-            print()
-            room.getData()
-            print()
-"""
-
         self.playerName = input("Enter a name: ")
 
         # Convert object into JSON list of strings because cannot store object in JSON format
