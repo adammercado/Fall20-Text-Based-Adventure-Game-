@@ -1,5 +1,6 @@
 import json
 
+
 class Room:
 
     def __init__(self, name, longDesc, shortDesc, priorVisit):
@@ -25,8 +26,9 @@ class Room:
     def getData(self):
         print(self.name)
         print(self.longDesc)
-        
+
     # Test method called when loading room data from json
     def getLoadData(self):
         print(self.name)
         print(self.shortDesc)
+

@@ -31,12 +31,12 @@ class TextParser:
 
             elif word in self.look_actions or word in self.move_actions or word in self.use_actions or word in self.take_actions or word in self.place_actions or word in self.game_actions:
                 actions += 1
-                keyword = ""                
+                keyword = ""
 
                 # List containing more than one recognized action will clear and return the empty list
                 if actions > 1:
                     parsedText.clear()
-                
+
                 # Otherwise, determine action type and append to return list
                 else:
                     if word in self.move_actions or word in self.look_actions:
@@ -54,7 +54,7 @@ class TextParser:
                         keyword = "place"
                     elif word in self.game_actions:
                         keyword = "game"
-                
+
                     parsedText.append(keyword)
 
             # If a direction is received is not valid with received action, list will clear and return empty list
@@ -64,9 +64,10 @@ class TextParser:
                     parsedText.clear()
                 else:
                     parsedText.append(word)
-            
+
             # Clear list if current word is not found in vocabulary space
             else:
                 parsedText.clear()    
 
         return parsedText
+
