@@ -4,6 +4,8 @@ import os
 from pathlib import Path
 from TextParser.textParser import TextParser
 from Room.room import Room
+from Inventory.inventory import Inventory
+from Item.item import Item
 
 """
 Methods:
@@ -28,7 +30,7 @@ class Game:
     parser = TextParser()
     playerName = ""
     location = "Janitor's Closet"
-    inventory = ["key", "wallet"]
+    inventory = Inventory()
     rooms = []
 
     def startGame(self):
@@ -48,11 +50,12 @@ class Game:
 
         # Convert object into JSON list of strings because cannot store object in JSON format
         jsonRoomsList = json.dumps([obj.__dict__ for obj in self.rooms])
+        jsonInventory = json.dumps([obj.__dict__ for obj in self.inventory.getInventoryList()])
 
         data = {
             "name": self.playerName,
             "location": self.location,
-            "inventory": self.inventory,
+            "inventory": jsonInventory,
             "rooms": jsonRoomsList
         }
 
@@ -70,15 +73,16 @@ class Game:
 
                 self.playerName = data["name"]
                 self.location = data["location"]
-                self.inventory = data["inventory"]
+                tempInventoryList = json.load(data["inventory"])
                 # Convert JSON array into list of strings
-                temp = json.loads(data["rooms"])
+                tempRoomList = json.loads(data["rooms"])
 
                 print("TEST - Player Name is " + self.playerName)
                 print("TEST - Location is " + self.location)
 
-                for item in self.inventory:
-                    print("TEST - Item in inventory is " + item)
+                for item in tempInventoryList:
+                    curItem = Item(item['name'], item['description'])
+                    self.inventory.addItem(curItem)
 
                 for room in temp:
                     # Re-create Room objects using list of strings using default constructor
@@ -160,6 +164,9 @@ class Game:
 
     def playerTake(self, item):
         print("Command: Take <" + item + ">")
+        testItem = Item(item, "test description")
+        self.inventory.addItem(testItem)
+        self.inventory.displayInventory()
 
     def playerPlace(self, item):
         print("Command: Place <" + item + ">")

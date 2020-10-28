@@ -18,6 +18,9 @@ class Inventory:
         for item in self.inventory:
             print(item.name)
 
+    def getInventoryList(self):
+        return self.inventory
+
 # Add items to the backpack by appending list
     def addItem(self, itemObj):
         self.inventory.append(itemObj)
