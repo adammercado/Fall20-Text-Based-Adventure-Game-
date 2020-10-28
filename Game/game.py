@@ -47,8 +47,10 @@ class Game:
                 continue
 
         self.playerName = input("Enter a name: ")
+        self.saveGame()
+        self.playGame()
 
-        # Convert object into JSON list of strings because cannot store object in JSON format
+    def saveGame(self):
         jsonRoomsList = json.dumps([obj.__dict__ for obj in self.rooms])
         jsonInventory = json.dumps([obj.__dict__ for obj in self.inventory.getInventoryList()])
 
@@ -61,8 +63,7 @@ class Game:
 
         with open("./Saves/gameSave.json", "w") as outfile:
             json.dump(data, outfile, indent=4)
-
-        self.playGame()
+       
 
     def loadGame(self):
         saveFile = Path("./Saves/gameSave.json")
@@ -163,10 +164,11 @@ class Game:
         print("Command: Use <" + item + ">")
 
     def playerTake(self, item):
-        print("Command: Take <" + item + ">")
+        print("Command: Take " + item)
         testItem = Item(item, "test description")
         self.inventory.addItem(testItem)
         self.inventory.displayInventory()
+        self.saveGame()
 
     def playerPlace(self, item):
         print("Command: Place <" + item + ">")
