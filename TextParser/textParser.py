@@ -6,11 +6,11 @@ class TextParser:
 
         self.move_directions = ["up", "down", "left", "right", "north", "south", "east", "west"]
 
-        self.use_actions = ["use", "combine", "hit", "strike", "pull", "push", "eat", "drink", "sit", "pour", "consume", "spill"]
+        self.use_actions = ["use", "combine", "hit", "strike", "pull", "push", "eat", "drink", "sit", "pour", "consume", "spill", "pry", "whip", "shine"]
 
         self.take_actions = ["take", "grab"]
 
-        self.place_actions = ["place", "put", "drop"]
+        self.place_actions = ["place", "put", "drop", "leave"]
 
         self.game_actions = ["savegame", "loadgame", "inventory", "help"]
 
