@@ -4,10 +4,13 @@ import os
 from pathlib import Path
 from TextParser.textParser import TextParser
 from Room.room import Room
+from Inventory.inventory import Inventory
+from Item.item import Item
 
 """
 Methods:
     startGame()
+    saveGame()
     loadGame()
     getInput()
 
@@ -18,7 +21,7 @@ Methods:
     playerLook()
     playerMove()
     playerUse()
-    playerTake()
+    playerTake() - currently creates an object with the input name and adds it to Game's inventory with a temporary description; GAME WILL NOT HAVE AN INVENTORY LATER ON - this is just for testing
     playerPlace()
     playerGame()
 """
@@ -28,7 +31,7 @@ class Game:
     parser = TextParser()
     playerName = ""
     location = "Janitor's Closet"
-    inventory = ["key", "wallet"]
+    inventory = Inventory()
     rooms = []
 
     def startGame(self):
@@ -45,21 +48,22 @@ class Game:
                 continue
 
         self.playerName = input("Enter a name: ")
+        self.saveGame()
+        self.playGame()
 
-        # Convert object into JSON list of strings because cannot store object in JSON format
+    def saveGame(self):
         jsonRoomsList = json.dumps([obj.__dict__ for obj in self.rooms])
+        jsonInventory = json.dumps([obj.__dict__ for obj in self.inventory.getInventoryList()])
 
         data = {
             "name": self.playerName,
             "location": self.location,
-            "inventory": self.inventory,
+            "inventory": jsonInventory,
             "rooms": jsonRoomsList
         }
 
         with open("./Saves/gameSave.json", "w") as outfile:
             json.dump(data, outfile, indent=4)
-
-        self.playGame()
 
     def loadGame(self):
         saveFile = Path("./Saves/gameSave.json")
@@ -70,17 +74,24 @@ class Game:
 
                 self.playerName = data["name"]
                 self.location = data["location"]
-                self.inventory = data["inventory"]
-                # Convert JSON array into list of strings
-                temp = json.loads(data["rooms"])
+
+                # Receive json list of strings representing inventory and rooms
+                tempInventoryList = json.loads(data["inventory"])
+                tempRoomList = json.loads(data["rooms"])
 
                 print("TEST - Player Name is " + self.playerName)
                 print("TEST - Location is " + self.location)
 
-                for item in self.inventory:
-                    print("TEST - Item in inventory is " + item)
+                # Convert inventory list received from json back into item objects
+                for item in tempInventoryList:
+                    curItem = Item(item['name'], item['description'])
+                    self.inventory.addItem(curItem)
 
-                for room in temp:
+                # TEST METHOD TO CHECK THAT INVENTORY LOADS PROPERLY
+                self.inventory.displayInventory()
+
+                # Convert room list received from json back into room objects
+                for room in tempRoomList:
                     # Re-create Room objects using list of strings using default constructor
                     curRoom = Room(room['name'], room['longDesc'], room['shortDesc'], room['priorVisit'])
                     self.rooms.append(curRoom)
@@ -133,7 +144,7 @@ class Game:
             self.playerUse("item")
 
         elif parsedText[0] == "take":
-            self.playerTake("item")
+            self.playerTake(parsedText[1])
 
         elif parsedText[0] == "place":
             self.playerPlace("item")
@@ -158,8 +169,15 @@ class Game:
     def playerUse(self, item):
         print("Command: Use <" + item + ">")
 
+    # Create an instance (aka object) of Item class using string received in user input
+    # Add to Game inventory, display inventory, then save to json
+    # GAME WILL NOT HAVE INVENTORY LATER - THIS IS FOR TESTING
     def playerTake(self, item):
-        print("Command: Take <" + item + ">")
+        print("Command: Take " + item)
+        testItem = Item(item, "test description")
+        self.inventory.addItem(testItem)
+        self.inventory.displayInventory()
+        self.saveGame()
 
     def playerPlace(self, item):
         print("Command: Place <" + item + ">")

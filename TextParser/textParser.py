@@ -6,11 +6,11 @@ class TextParser:
 
         self.move_directions = ["up", "down", "left", "right", "north", "south", "east", "west"]
 
-        self.use_actions = ["use", "combine", "hit", "strike", "pull", "push", "eat", "drink", "sit", "pour", "consume", "spill"]
+        self.use_actions = ["use", "combine", "hit", "strike", "pull", "push", "eat", "drink", "sit", "pour", "consume", "spill", "pry", "whip", "shine"]
 
         self.take_actions = ["take", "grab"]
 
-        self.place_actions = ["place", "put", "drop"]
+        self.place_actions = ["place", "put", "drop", "leave"]
 
         self.game_actions = ["savegame", "loadgame", "inventory", "help"]
 
@@ -23,6 +23,7 @@ class TextParser:
     def parse(self, args):
         actions = 0
         directionFlag = False
+        itemFlag = False
         parsedText = []
 
         for word in args:
@@ -41,6 +42,8 @@ class TextParser:
                 else:
                     if word in self.move_actions or word in self.look_actions:
                         directionFlag = True
+                    if word in self.use_actions or self.take_actions or self.place_actions:
+                        itemFlag = True
 
                     if word in self.move_actions:
                         keyword = "move"
@@ -65,6 +68,9 @@ class TextParser:
                 else:
                     parsedText.append(word)
 
+            elif itemFlag == True and actions == 1:
+                parsedText.append(word)
+                itemFlag == False
             # Clear list if current word is not found in vocabulary space
             else:
                 parsedText.clear()    
