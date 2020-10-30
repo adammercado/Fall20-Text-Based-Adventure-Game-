@@ -79,8 +79,8 @@ class Game:
                 data = json.load(infile)
 
                 self.playerName = data["name"]
-                tempLocation = json.loads(data["location"])
                 # Receive json list of strings representing inventory and rooms
+                tempLocation = json.loads(data["location"])
                 tempInventoryList = json.loads(data["inventory"])
                 tempRoomList = json.loads(data["rooms"])
 
@@ -176,9 +176,8 @@ class Game:
                 print(room.name)
                 if room.name == newRoom:
                     self.location = room
-                    print("Getting new room data from method...")
+                    print("New location: ")
                     self.location.getLoadData()
-                    print("End room data")
                     break
 
             self.saveGame()
