@@ -30,7 +30,7 @@ Methods:
 class Game:
     parser = TextParser()
     playerName = ""
-    location = "Janitor's Closet"
+    location = None
     inventory = Inventory()
     rooms = []
 
@@ -41,7 +41,12 @@ class Game:
         for fileName in os.listdir(directory):
             if fileName.endswith(".json"):
                 roomPath = directory + "/" + fileName
+                print(roomPath)
                 curRoom = Room.fromFileName(roomPath)
+
+                if curRoom.name == "Janitor's Closet":
+                    self.location = curRoom
+
                 self.rooms.append(curRoom)
 
             else:
@@ -52,12 +57,13 @@ class Game:
         self.playGame()
 
     def saveGame(self):
+        jsonCurLocation = json.dumps(self.location.__dict__)
         jsonRoomsList = json.dumps([obj.__dict__ for obj in self.rooms])
         jsonInventory = json.dumps([obj.__dict__ for obj in self.inventory.getInventoryList()])
 
         data = {
             "name": self.playerName,
-            "location": self.location,
+            "location": jsonCurLocation,
             "inventory": jsonInventory,
             "rooms": jsonRoomsList
         }
@@ -73,14 +79,14 @@ class Game:
                 data = json.load(infile)
 
                 self.playerName = data["name"]
-                self.location = data["location"]
-
+                tempLocation = json.loads(data["location"])
                 # Receive json list of strings representing inventory and rooms
                 tempInventoryList = json.loads(data["inventory"])
                 tempRoomList = json.loads(data["rooms"])
 
                 print("TEST - Player Name is " + self.playerName)
-                print("TEST - Location is " + self.location)
+
+                self.location = Room(tempLocation['name'], tempLocation['longDesc'], tempLocation['shortDesc'], tempLocation['priorVisit'], tempLocation['nextRoom'])
 
                 # Convert inventory list received from json back into item objects
                 for item in tempInventoryList:
@@ -93,7 +99,7 @@ class Game:
                 # Convert room list received from json back into room objects
                 for room in tempRoomList:
                     # Re-create Room objects using list of strings using default constructor
-                    curRoom = Room(room['name'], room['longDesc'], room['shortDesc'], room['priorVisit'])
+                    curRoom = Room(room['name'], room['longDesc'], room['shortDesc'], room['priorVisit'], room['nextRoom'])
                     self.rooms.append(curRoom)
 
                     # Print room data to test proper loading of rooms
@@ -110,6 +116,7 @@ class Game:
     # Tokenize input and pass into class method
     def playGame(self):
         while 1:
+            print("Current location: " + self.location.name)
             args = input("Enter an action: ").lower().split()
             self.getInput(args)
 
@@ -163,6 +170,18 @@ class Game:
     def playerMove(self, direction):
         if len(direction) == 0:
             print("Command: Move")
+            newRoom = self.location.nextRoom
+
+            for i, room in enumerate(self.rooms):
+                print(room.name)
+                if room.name == newRoom:
+                    self.location = room
+                    print("Getting new room data from method...")
+                    self.location.getLoadData()
+                    print("End room data")
+                    break
+
+            self.saveGame()
         else:
             print("Command: Move " + direction)
 
