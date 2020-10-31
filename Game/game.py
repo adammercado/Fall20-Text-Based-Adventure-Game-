@@ -147,8 +147,8 @@ class Game:
             self.playerTake(parsedText[1])
 
         elif parsedText[0] == "place":
-            self.playerPlace("item")
-
+            self.playerPlace(parsedText[1])
+            
         elif parsedText[0] == "game":
             self.playerGame()
 
@@ -174,13 +174,33 @@ class Game:
     # GAME WILL NOT HAVE INVENTORY LATER - THIS IS FOR TESTING
     def playerTake(self, item):
         print("Command: Take " + item)
-        testItem = Item(item, "test description")
-        self.inventory.addItem(testItem)
+        print("You grabbed the " + item + "!")
+        
+        #if level == janitors closet
+        if item == "key":
+            item1 = Item(item, "Use to open something...")
+            self.inventory.addItem(item1)
+        if item == "hammer":
+            item2 = Item(item, "use to smash something...")
+            self.inventory.addItem(item2)       
+ 
+        #print the items in the inventory currently to verify
         self.inventory.displayInventory()
+
         self.saveGame()
 
     def playerPlace(self, item):
-        print("Command: Place <" + item + ">")
+        print("Command: Place " + item)
+        print("in playerPlace")
+        if item == "key":
+            self.inventory.removeItem("key")
+            print("The key was dropped.")
+        if item == "hammer":
+            self.inventory.removeItem("hammer")
+            print("The hammer was dropped.")
+
+        #print the items in the inventory currently to verify
+        self.inventory.displayInventory()
 
     def playerGame(self):
         print("Command: Game Status")
