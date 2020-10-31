@@ -3,11 +3,12 @@ import json
 
 class Room:
 
-    def __init__(self, name, longDesc, shortDesc, priorVisit):
+    def __init__(self, name, longDesc, shortDesc, priorVisit, nextRoom):
         self.name = name
         self.longDesc = longDesc
         self.shortDesc = shortDesc
         self.priorVisit = bool(priorVisit == "true")
+        self.nextRoom = nextRoom
 
     # Constructor using file name
     def fromFileName(fileName):
@@ -19,8 +20,9 @@ class Room:
             longDesc = data["longDesc"]
             shortDesc = data["shortDesc"]
             priorVisit = data["priorVisit"]
+            nextRoom = data["nextRoom"]
 
-        return Room(name, longDesc, shortDesc, priorVisit)
+        return Room(name, longDesc, shortDesc, priorVisit, nextRoom)
 
     # Test method called when saving room data to json
     def getData(self):

@@ -2,5 +2,6 @@
 	"name": "The Golden Beach",
 	"longDesc": "Fine grain sand, the color of gold dust fills the beach at the head of the river.  Vine covered statues are placed in a semi-circle around a central statue of a figure that has it’s arm outstretched as if it is pointing towards something, it is covered in vines from head-to-toe.  Beyond the clearing is a trail and a marker.",
 	"shortDesc": "A beach with golden sand sits at the head of the river. Vine covered statues are visible. Beyond the clearing is a trail.",
-	"priorVisit": "false"
+	"priorVisit": "false",
+	"nextRoom": "The Healing Oracle"
 }
