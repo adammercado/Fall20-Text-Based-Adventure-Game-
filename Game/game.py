@@ -53,7 +53,6 @@ class Game:
                 continue
 
         self.playerName = input("Enter a name: ")
-        self.saveGame()
         self.playGame()
 
     def saveGame(self):
@@ -156,8 +155,17 @@ class Game:
         elif parsedText[0] == "place":
             self.playerPlace(parsedText[1])
             
-        elif parsedText[0] == "game":
-            self.playerGame()
+        elif parsedText[0] == "savegame":
+            self.saveGame()
+
+        elif parsedText[0] == "loadgame":
+            self.loadGame()
+
+        elif parsedText[0] == "inventory":
+            self.inventory.displayInventory()
+
+        elif parsedText[0] == "help":
+            print("Display help menu here")
 
 # PLACEHOLDER METHODS
 
@@ -183,7 +191,6 @@ class Game:
                     self.location.getLoadData()
                     break
 
-            self.saveGame()
         else:
             print("Command: Move " + direction)
 
@@ -207,8 +214,6 @@ class Game:
  
         #print the items in the inventory currently to verify
         self.inventory.displayInventory()
-
-        self.saveGame()
 
     def playerPlace(self, item):
         print("Command: Place " + item)
