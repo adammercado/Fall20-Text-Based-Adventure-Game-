@@ -41,7 +41,6 @@ class Game:
         for fileName in os.listdir(directory):
             if fileName.endswith(".json"):
                 roomPath = directory + "/" + fileName
-                print(roomPath)
                 curRoom = Room.fromFileName(roomPath)
 
                 if curRoom.name == "Janitor's Closet":
@@ -92,19 +91,11 @@ class Game:
                     curItem = Item(item['name'], item['description'])
                     self.inventory.addItem(curItem)
 
-                # TEST METHOD TO CHECK THAT INVENTORY LOADS PROPERLY
-                self.inventory.displayInventory()
-
                 # Convert room list received from json back into room objects
                 for room in tempRoomList:
                     # Re-create Room objects using list of strings using default constructor
                     curRoom = Room(room['name'], room['longDesc'], room['shortDesc'], room['priorVisit'], room['nextRoom'])
                     self.rooms.append(curRoom)
-
-                    # Print room data to test proper loading of rooms
-                    # curRoom.getLoadData()
-
-                print()
 
             self.playGame()
         else:
@@ -116,6 +107,7 @@ class Game:
     def playGame(self):
         while 1:
             print("Current location: " + self.location.name)
+
             args = input("Enter an action: ").lower().split()
             self.getInput(args)
 
