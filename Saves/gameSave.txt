@@ -1,8 +1,0 @@
-{
-    "name": "adam",
-    "location": "Janitor's Closet",
-    "inventory": [
-        "key",
-        "wallet"
-    ]
-}
