@@ -174,7 +174,10 @@ class Game:
 
             for i, room in enumerate(self.rooms):
                 print(room.name)
-                if room.name == newRoom:
+                if room.nextRoom == None:
+                    print("You have reached the end of the game.")
+                    sys.exit()
+                elif room.name == newRoom:
                     self.location = room
                     print("New location: ")
                     self.location.getLoadData()
