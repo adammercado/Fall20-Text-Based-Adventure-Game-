@@ -3,5 +3,5 @@
 	"longDesc": "As Derek walks through the enchanted forest, he comes across a clearing set between the trees.   A dilapidated tent rests near a rocky moss covered outcropping. It appears that somebody had used this place as a base camp and left a tent behind. The tent is still standing but the rear right corner is leaning in where a tent spike has pulled out. The front tent flaps dance with the gentle breeze. The tent has seen better days. Near the tent, is a small entrance to a cave.",
 	"shortDesc": "There is an abandoned tent and a small cave entrance.",
 	"priorVisit": "false",
-	"connections": "[\"Underground Grotto\", null, null, \"Enchanted Forest\"]"
+	"connections": ["Underground Grotto", null, null, "Enchanted Forest"]
 }
