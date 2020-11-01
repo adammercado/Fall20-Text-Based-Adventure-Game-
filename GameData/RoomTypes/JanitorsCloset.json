@@ -3,5 +3,5 @@
 	"longDesc": "Derek looks around but it is too dark to see. He takes out his cellphone and uses the light to look around. As he does so, he sees a rusty skeleton key laying on the floor. On a small table, there is a well worn hammer. To his left, he sees a narrow stairway hewn out of rock that leads down. There are old wooden boards crossing the entrance to the stairway, blocking it. To the right of the stairs an anteroom. There is a picture hanging on the far wall of the anteroom.",
 	"shortDesc": "There is a rusty skeleton key on the floor. On a small table, there is a hammer. To the left is a stairway with wooden boards. To the right is an anteroom with a picture.",
 	"priorVisit": "false",
-	"nextRoom": "Ice Cavern"
+	"connections": "[null, null, null, \"Ice Cavern\"]"
 }
