@@ -3,5 +3,5 @@
 	"longDesc": "The Anteroom is a simple room, much like a lounge with a small couch and table. The door hangs ajar, there is a picture of forest trees along a white river on the front of the door. On the table is a box with a silver bow. Quintix sits on the couch, reading the paper.",
 	"shortDesc": "There is a small couch and table. A picture is on one wall. The table has a box with a silver bow.",
 	"priorVisit": "false",
-	"connections": "[\"Throne Room\", null, null, null]"
+	"connections": ["Throne Room", null, null, null]
 }
