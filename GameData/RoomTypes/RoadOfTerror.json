@@ -3,5 +3,5 @@
 	"longDesc": "The road slowly darkens as the tree canopy thickens. Trash and the occasional bone litter the road. To the left is a dilapidated hut, the chimney is smoking. To the right is a small bridge that crosses a fast moving creek. The hut has a partially open window on the east side and a door on the south side.",
 	"shortDesc": "The road is heavily littered. There is a dilapidated hut to the left and a small bridge to the right.",
 	"priorVisit": "false",
-	"nextRoom": "Hall of Mirrors"
+	"connections": "[null, \"The Cross Roads\", \"Hall of Mirrors\", null]"
 }
