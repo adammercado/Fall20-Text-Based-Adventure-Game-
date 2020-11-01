@@ -3,5 +3,5 @@
 	"longDesc": "Large trees with hanging moss as far as the eye can see dominate the landscape, after a recent rain, petrichor fills his nose. He looks around and notices branches that have fallen are scattered about. To his left, a trail heads deeper into the forest. There are large boulders next to the river. There is movement between the boulders.",
    	"shortDesc": "There are branches on the ground and large boulders next to the river. To the left, a trail heads deeper into the forest.",
 	"priorVisit": "false",
-	"connections": "[\"Ice Cavern\", null, \"Base Camp\", null]"
+	"connections": ["Ice Cavern", null, "Base Camp", null]
 }
