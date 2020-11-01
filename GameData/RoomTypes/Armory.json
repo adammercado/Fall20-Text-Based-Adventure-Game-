@@ -3,5 +3,5 @@
 	"longDesc": "The room is like an armor museum. Hundreds of armor suits in stands behind glass enclosures fill the room. Most of the displays are on large pedestals, several feet above Derek’s head. One set of armor is at floor level. At the end of the room is a large wooden door. There is a sconce set into the door with a small candle that is burning.",
 	"shortDesc": "There are hundreds of armor displays, one is at floor level. At the end of the room is a large wooden door with a sconce set into it.",
 	"priorVisit": "false",
-	"nextRoom": "The Misty River"
+	"connections": "[\"The Misty River\", null, \"Library of Magical Tomes\", null]"
 }
