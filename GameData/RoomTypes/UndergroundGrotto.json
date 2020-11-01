@@ -3,5 +3,5 @@
 	"longDesc": "Inside the chamber, Derek looks around and  sees a beautiful purple crystal laying on the ground. It sparkles and has a strange glow around it. Shining his flashlight, letters appear inside the crystal. To his left, he finds a large body of water. The water is very clear and not too deep. Concentric rings of ripples from water dripping from stalactites decorate the water.  There is a small canoe tied to a stalagmite.",
 	"shortDesc": "There is a purple crystal laying on the ground. To the left, there is a large body of water. A small canoe is tied up.",
 	"priorVisit": "false",
-	"connections": "[null, \"Base Camp\", null, \"Library of Magical Tomes\"]"
+	"connections": [null, "Base Camp", null, "Library of Magical Tomes"]
 }
