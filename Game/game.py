@@ -84,7 +84,7 @@ class Game:
 
                 print("TEST - Player Name is " + self.playerName)
 
-                self.location = Room(tempLocation['name'], tempLocation['longDesc'], tempLocation['shortDesc'], tempLocation['priorVisit'], tempLocation['nextRoom'])
+                self.location = Room(tempLocation['name'], tempLocation['longDesc'], tempLocation['shortDesc'], tempLocation['priorVisit'], tempLocation['connections'])
 
                 # Convert inventory list received from json back into item objects
                 for item in tempInventoryList:
@@ -94,7 +94,7 @@ class Game:
                 # Convert room list received from json back into room objects
                 for room in tempRoomList:
                     # Re-create Room objects using list of strings using default constructor
-                    curRoom = Room(room['name'], room['longDesc'], room['shortDesc'], room['priorVisit'], room['nextRoom'])
+                    curRoom = Room(room['name'], room['longDesc'], room['shortDesc'], room['priorVisit'], room['connections'])
                     self.rooms.append(curRoom)
 
             self.playGame()
@@ -132,11 +132,14 @@ class Game:
 
         elif parsedText[0] == "move":
             direction = ""
+            print(parsedText[1])
 
             if len(parsedText) == 2:
+                print(parsedText[1])
                 direction = parsedText[1]
-
-            self.playerMove(direction)
+                self.playerMove(direction)
+            else:
+                print("You must enter a cardinal direction to move in.")
 
         elif parsedText[0] == "use":
             self.playerUse("item")
@@ -168,23 +171,27 @@ class Game:
             print("Command: Look " + direction)
 
     def playerMove(self, direction):
-        if len(direction) == 0:
-            print("Command: Move")
-            newRoom = self.location.nextRoom
+        print("Command: Move " + direction)
+        newRoom = ""
+        num = -1
 
-            for i, room in enumerate(self.rooms):
-                print(room.name)
-                if room.nextRoom == None:
-                    print("You have reached the end of the game.")
-                    sys.exit()
-                elif room.name == newRoom:
-                    self.location = room
-                    print("New location: ")
-                    self.location.getLoadData()
-                    break
+        if direction == "north":
+            num = 0 
+        elif direction == "south":
+            num = 1
+        elif direction == "east":
+            num = 2
+        elif direction == "west":
+            num = 3
 
-        else:
-            print("Command: Move " + direction)
+        newRoom = self.location.getConnection(num)
+
+        for i, room in enumerate(self.rooms):
+            if room.name == newRoom:
+                self.location = room
+                print("New location: ")
+                self.location.getLoadData()
+                break
 
     def playerUse(self, item):
         print("Command: Use <" + item + ">")
