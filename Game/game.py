@@ -186,12 +186,20 @@ class Game:
 
         newRoom = self.location.getConnection(num)
 
-        for i, room in enumerate(self.rooms):
-            if room.name == newRoom:
-                self.location = room
-                print("New location: ")
-                self.location.getLoadData()
-                break
+        if newRoom == None:
+            print("There is no exit in that direction.")
+        else:
+            for i, room in enumerate(self.rooms):
+                if room.name == newRoom:
+                    self.location = room
+                    print("New location: ")
+                    self.location.getLoadData()
+
+                    if self.location.name == "The Anteroom":
+                        print("You have reached the last room. Exiting game.")
+                        sys.exit()
+                    else:
+                        break
 
     def playerUse(self, item):
         print("Command: Use <" + item + ">")
