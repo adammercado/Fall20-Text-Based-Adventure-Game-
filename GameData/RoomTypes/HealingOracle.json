@@ -3,5 +3,5 @@
 	"longDesc": "A large stone building with ornate carved decorations stands tall.  At the top of the stairs are rows of columns with carvings in each one.  Above the columns, the words “Healing Oracle” are carved into the stone. There is an entrance at the top of the steps, blocked by an iron portcullis. Pathways of cut stone pavers encircle the building to the right.",
    	"shortDesc": "A large stone building with “Healing Oracle” carved into the stone. The entrance is blocked by an iron portcullis. A pathway encircles the building to the right.",
 	"priorVisit": "false",
-	"nextRoom": "The Cross Roads"
+	"connections": [null, null, "The Cross Roads", "The Golden Beach"]
 }

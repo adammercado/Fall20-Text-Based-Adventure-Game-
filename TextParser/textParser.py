@@ -56,7 +56,7 @@ class TextParser:
                     elif word in self.place_actions:
                         keyword = "place"
                     elif word in self.game_actions:
-                        keyword = "game"
+                        keyword = word
 
                     parsedText.append(keyword)
 

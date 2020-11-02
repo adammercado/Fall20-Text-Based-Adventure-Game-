@@ -3,5 +3,5 @@
 	"longDesc": "The library is large with many bookshelves filled with old books.  There are several tables and chairs scattered throughout. In the center of the room there is a table with a lamp, an open book rests there under the light. Behind the table on the far wall, a large window set several feet from the floor streams sunlight.",
 	"shortDesc": "A library filled with books. There are several tables and chairs scattered throughout. On the far wall is a large window.",
 	"priorVisit": "false",
-	"nextRoom": "The Armory"
+	"connections": [null, null, "Underground Grotto", "The Armory"]
 }
