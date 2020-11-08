@@ -69,6 +69,8 @@ class Game:
         with open("./Saves/gameSave.json", "w") as outfile:
             json.dump(data, outfile, indent=4)
 
+        print("Game saved successfully.")
+
     def loadGame(self):
         saveFile = Path("./Saves/gameSave.json")
 
