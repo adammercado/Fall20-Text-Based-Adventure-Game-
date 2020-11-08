@@ -132,10 +132,8 @@ class Game:
 
         elif parsedText[0] == "move":
             direction = ""
-            print(parsedText[1])
 
             if len(parsedText) == 2:
-                print(parsedText[1])
                 direction = parsedText[1]
                 self.playerMove(direction)
             else:
