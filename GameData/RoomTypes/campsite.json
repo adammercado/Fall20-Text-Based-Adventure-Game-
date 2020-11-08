@@ -1,0 +1,7 @@
+{
+	"name": "Campsite",
+	"longDesc": "temp long description",
+	"shortDesc": "temp short description",
+	"priorVisit": "false",
+	"connections": [null, null, "Dark Tunnel", "Ebon Mountains"]
+}

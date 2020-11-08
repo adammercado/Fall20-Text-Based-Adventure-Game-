@@ -1,0 +1,7 @@
+{
+	"name": "Solaris Highway",
+	"longDesc": "temp long description",
+	"shortDesc": "temp short description",
+	"priorVisit": "false",
+	"connections": ["Ebon Mountains", "Astraia - Market Plaza", null, null]
+}
