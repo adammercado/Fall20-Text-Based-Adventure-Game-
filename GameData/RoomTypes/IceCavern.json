@@ -1,7 +1,0 @@
-{
-	"name": "Ice Cavern",
-	"longDesc": "Ice covers every surface. In an alcove cut into the west wall there is a small shelf, on the shelf there is a blue glass bottle. Below, stacked on the floor, are several large ice blocks. To the east, a cold river runs North - South. Large ice blocks, just like the ones stacked under the alcove, occasionally flow downstream.",
-	"shortDesc": "There is a small shelf with a blue bottle, on the wall are several large ice blocks. To the east is a river.",
-	"priorVisit": "false",
-	"connections": [null, "Enchanted Forest", "Janitor's Closet", null]
-}
