@@ -43,7 +43,7 @@ class Game:
                 roomPath = directory + "/" + fileName
                 curRoom = Room.fromFileName(roomPath)
 
-                if curRoom.name == "Janitor's Closet":
+                if curRoom.name == "Serene Forest - South":
                     self.location = curRoom
 
                 self.rooms.append(curRoom)
@@ -195,7 +195,7 @@ class Game:
                     print("New location: ")
                     self.location.getLoadData()
 
-                    if self.location.name == "The Anteroom":
+                    if self.location.name == "Lake Lunaria":
                         print("You have reached the last room. Exiting game.")
                         sys.exit()
                     else:
