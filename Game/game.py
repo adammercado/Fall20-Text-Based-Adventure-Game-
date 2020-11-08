@@ -4,8 +4,9 @@ import os
 from pathlib import Path
 from TextParser.textParser import TextParser
 from Room.room import Room
-from Inventory.inventory import Inventory
+#from Inventory.inventory import Inventory
 from Item.item import Item
+from Player.player import Player
 
 """
 Methods:
@@ -29,9 +30,8 @@ Methods:
 
 class Game:
     parser = TextParser()
-    playerName = ""
+    player = Player()
     location = None
-    inventory = Inventory()
     rooms = []
 
     def startGame(self):
@@ -51,7 +51,7 @@ class Game:
             else:
                 continue
 
-        self.playerName = input("Enter a name: ")
+        self.player.initializePlayer()
         self.playGame()
 
     def saveGame(self):
@@ -145,10 +145,10 @@ class Game:
             self.playerUse("item")
 
         elif parsedText[0] == "take":
-            self.playerTake(parsedText[1])
+            self.player.playerTake(parsedText[1])
 
         elif parsedText[0] == "place":
-            self.playerPlace(parsedText[1])
+            self.player.playerPlace(parsedText[1])
             
         elif parsedText[0] == "savegame":
             self.saveGame()
@@ -157,7 +157,7 @@ class Game:
             self.loadGame()
 
         elif parsedText[0] == "inventory":
-            self.inventory.displayInventory()
+            self.player.inventory.displayInventory()
 
         elif parsedText[0] == "help":
             print("Display help menu here")
@@ -204,37 +204,5 @@ class Game:
     def playerUse(self, item):
         print("Command: Use <" + item + ">")
 
-    # Create an instance (aka object) of Item class using string received in user input
-    # Add to Game inventory, display inventory, then save to json
-    # GAME WILL NOT HAVE INVENTORY LATER - THIS IS FOR TESTING
-    def playerTake(self, item):
-        print("Command: Take " + item)
-        print("You grabbed the " + item + "!")
-        
-        #if level == janitors closet
-        if item == "key":
-            item1 = Item(item, "Use to open something...")
-            self.inventory.addItem(item1)
-        if item == "hammer":
-            item2 = Item(item, "use to smash something...")
-            self.inventory.addItem(item2)       
- 
-        #print the items in the inventory currently to verify
-        self.inventory.displayInventory()
-
-    def playerPlace(self, item):
-        print("Command: Place " + item)
-        print("in playerPlace")
-        if item == "key":
-            self.inventory.removeItem("key")
-            print("The key was dropped.")
-        if item == "hammer":
-            self.inventory.removeItem("hammer")
-            print("The hammer was dropped.")
-
-        #print the items in the inventory currently to verify
-        self.inventory.displayInventory()
-
     def playerGame(self):
         print("Command: Game Status")
-
