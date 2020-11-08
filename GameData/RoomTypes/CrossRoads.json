@@ -1,7 +1,0 @@
-{
-	"name": "The Cross Roads",
-	"longDesc": "The Cross Roads is a place that you can find anything you desire. Hundreds of shops are scattered about a central circle. To the rear of the clearing, narrow roads lead off into multiple directions. At the entrance to the center there is a merchant and his stand filled with baubles. The Merchant is looking at Derek and gestures for him to come nearer. Behind all the stands, multiple roads lead off into different directions. Each road entrance has a sign next to it.",
-	"shortDesc": "Hundreds of shops are in a clearing. Behind all the stands, multiple roads lead off into different directions. Each road entrance has a sign next to it.",
-	"priorVisit": "false",
-	"connections": ["The Road of Terror", null, null, "The Golden Beach"]
-}
