@@ -1,9 +1,12 @@
 import json
 from Inventory.inventory import Inventory
 from Item.item import Item
+from TextParser.textParser import TextParser
 
 
 class Room:
+    parser = TextParser()
+
     def __init__(self, name, longDesc, shortDesc, priorVisit, connections, items):
         self.name = name
         self.longDesc = longDesc
@@ -17,6 +20,9 @@ class Room:
         for item in items:
             if item != None:
                 itemName = item.lower()
+                print(itemName)
+                itemName = self.parser.convertSpaces(itemName)
+                print(itemName)
                 itemPath = "{0}/{1}.json".format(directory, itemName) 
                 curItem = Item.createItemFromFile(itemPath)
                 self.inventory.addItem(curItem)

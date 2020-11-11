@@ -78,3 +78,14 @@ class TextParser:
 
         return parsedText
 
+    def convertSpaces(self, string):
+        convertedStr = ""
+
+        for char in string:
+            if char.isspace():
+                convertedStr += '_'
+            else:
+                convertedStr += char
+
+        return convertedStr                
+
