@@ -15,10 +15,11 @@ class Room:
         directory = "./GameData/Items"
 
         for item in items:
-            itemName = item.lower()
-            itemPath = "{0}/{1}.json".format(directory, itemName) 
-            curItem = Item.createItemFromFile(itemPath)
-            self.inventory.addItem(curItem)
+            if item != None:
+                itemName = item.lower()
+                itemPath = "{0}/{1}.json".format(directory, itemName) 
+                curItem = Item.createItemFromFile(itemPath)
+                self.inventory.addItem(curItem)
 
         self.inventory.displayInventory()
 
