@@ -1,14 +1,21 @@
 import json
+from Inventory.inventory import inventory
+from Item.item import Item
 
 
 class Room:
-
-    def __init__(self, name, longDesc, shortDesc, priorVisit, connections):
+    def __init__(self, name, longDesc, shortDesc, priorVisit, connections, items):
         self.name = name
         self.longDesc = longDesc
         self.shortDesc = shortDesc
         self.priorVisit = bool(priorVisit == "true")
         self.connections = connections
+
+        self.inventory = Inventory()
+
+        for item in items:
+             
+
 
     # Constructor using file name
     def fromFileName(fileName):
@@ -21,8 +28,9 @@ class Room:
             shortDesc = data["shortDesc"]
             priorVisit = data["priorVisit"]
             connections = data["connections"]
+            items = data["items"]
 
-        return Room(name, longDesc, shortDesc, priorVisit, connections)
+        return Room(name, longDesc, shortDesc, priorVisit, connections, items)
 
     def getConnection(self, num):
         return self.connections[num]
