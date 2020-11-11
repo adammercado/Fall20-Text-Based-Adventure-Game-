@@ -15,7 +15,8 @@ class Room:
         directory = "./GameData/Items"
 
         for item in items:
-            itemPath = "{0}/{1}.json".format(directory, item) 
+            itemName = item.lower()
+            itemPath = "{0}/{1}.json".format(directory, itemName) 
             curItem = Item.createItemFromFile(itemPath)
             self.inventory.addItem(curItem)
 
@@ -34,6 +35,23 @@ class Room:
             items = data["items"]
 
         return Room(name, longDesc, shortDesc, priorVisit, connections, items)
+
+    def convertRoomToJson(self):
+        jsonInventory = []
+
+        for item in self.inventory.getInventoryList():
+           jsonInventory.append(item.name)
+
+        roomData = {
+            "name": self.name,
+            "longDesc": self.longDesc,
+            "shortDesc": self.shortDesc,
+            "priorVisit": self.priorVisit,
+            "connections": self.connections,
+            "inventory": jsonInventory
+        }
+
+        return roomData
 
     def getConnection(self, num):
         return self.connections[num]

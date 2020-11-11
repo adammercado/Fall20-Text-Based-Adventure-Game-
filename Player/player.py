@@ -8,11 +8,31 @@ from Inventory.inventory import Inventory
 from Item.item import Item
 
 class Player:
-    playerName = ""
-    inventory = Inventory()
+    def __init__(self, items):
+        self.name = "Boy"
+        self.inventory = Inventory()
+        directory = "./GameData/Items"
 
-    def initializePlayer(self):
-        self.playerName = input("Enter a name: ")
+        for item in items:
+            itemName = item.lower()
+            itemPath = "{0}/{1}.json".format(directory, itemName) 
+            curItem = Item.createItemFromFile(itemPath)
+            self.inventory.addItem(curItem)
+
+        self.inventory.displayInventory()
+
+    def convertPlayerToJson(self):
+        playerInventory = []
+        
+        for item in self.inventory.getInventoryList():
+            playerInventory.append(item.name)
+
+        playerData = {
+            "name": self.name,
+            "inventory": playerInventory
+        }
+
+        return playerData 
 
     def playerTake(self, item):
         print("Command: Take " + item)
@@ -41,10 +61,4 @@ class Player:
 
         #print items in inventory to verify they are being dropped
         self.inventory.displayInventory()
-
-
-
-
-
-
 

@@ -4,7 +4,6 @@ import os
 from pathlib import Path
 from TextParser.textParser import TextParser
 from Room.room import Room
-from Inventory.inventory import Inventory
 from Item.item import Item
 from Player.player import Player
 
@@ -30,10 +29,9 @@ Methods:
 
 class Game:
     parser = TextParser()
-    player = Player()
+    player = None
     location = None
     rooms = []
-    inventory = Inventory()
 
     def startGame(self):
         directory = "./GameData/RoomTypes"
@@ -52,18 +50,24 @@ class Game:
             else:
                 continue
 
-        self.player.initializePlayer()
+        self.player = Player("")
         self.playGame()
 
     def saveGame(self):
-        jsonCurLocation = json.dumps(self.location.__dict__)
-        jsonRoomsList = json.dumps([obj.__dict__ for obj in self.rooms])
-        jsonInventory = json.dumps([obj.__dict__ for obj in self.inventory.getInventoryList()])
+        jsonPlayer = json.dumps(self.player.convertPlayerToJson())
+        jsonCurLocation = json.dumps(self.location.convertRoomToJson())
+        jsonRoomsList = []
+
+        for room in self.rooms:
+            jsonRoomsList.append(room.convertRoomToJson())
+
+        #jsonInventory = json.dumps([obj.__dict__ for obj in self.inventory.getInventoryList()])
+
+        jsonRoomsList = json.dumps(jsonRoomsList)
 
         data = {
-            "name": self.playerName,
+            "player": jsonPlayer,
             "location": jsonCurLocation,
-            "inventory": jsonInventory,
             "rooms": jsonRoomsList
         }
 
@@ -79,25 +83,21 @@ class Game:
             with open("./Saves/gameSave.json") as infile:
                 data = json.load(infile)
 
-                self.playerName = data["name"]
+                tempPlayer = json.loads(data["player"])
                 # Receive json list of strings representing inventory and rooms
                 tempLocation = json.loads(data["location"])
-                tempInventoryList = json.loads(data["inventory"])
                 tempRoomList = json.loads(data["rooms"])
 
-                print("TEST - Player Name is " + self.playerName)
+                print(tempLocation)
+                self.location = Room(tempLocation['name'], tempLocation['longDesc'], tempLocation['shortDesc'], tempLocation['priorVisit'], tempLocation['connections'], tempLocation['inventory'])
 
-                self.location = Room(tempLocation['name'], tempLocation['longDesc'], tempLocation['shortDesc'], tempLocation['priorVisit'], tempLocation['connections'])
-
-                # Convert inventory list received from json back into item objects
-                for item in tempInventoryList:
-                    curItem = Item(item['name'], item['description'])
-                    self.inventory.addItem(curItem)
+                print(tempPlayer['inventory'])
+                self.player = Player(tempPlayer['inventory'])
 
                 # Convert room list received from json back into room objects
                 for room in tempRoomList:
                     # Re-create Room objects using list of strings using default constructor
-                    curRoom = Room(room['name'], room['longDesc'], room['shortDesc'], room['priorVisit'], room['connections'])
+                    curRoom = Room(room['name'], room['longDesc'], room['shortDesc'], room['priorVisit'], room['connections'], room['inventory'])
                     self.rooms.append(curRoom)
 
             self.playGame()
