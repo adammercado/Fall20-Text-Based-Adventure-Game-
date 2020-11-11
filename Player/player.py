@@ -1,13 +1,11 @@
-import sys
 import json
-import os
-from pathlib import Path
 from TextParser.textParser import TextParser
-from Room.room import Room
 from Inventory.inventory import Inventory
 from Item.item import Item
 
 class Player:
+    parser = TextParser()
+
     def __init__(self, items):
         self.name = "Boy"
         self.inventory = Inventory()
@@ -34,19 +32,10 @@ class Player:
 
         return playerData 
 
-    def playerTake(self, item):
-        print("Command: Take " + item)
-        print("You grabbed the " + item + "!")
-
-        if item == "key":
-            item1 = Item(item, "Use to open something...")
-            self.inventory.addItem(item1)
-        if item == "hammer":
-            item2 = Item(item, "use to smash something...")
-            self.inventory.addItem(item2)
-
-        #print the items to verify the inventory is being updated
-        self.inventory.displayInventory()
+    def playerAddItem(self, item):
+        self.inventory.addItem(item)
+        print("{0} grabbed the {1}!".format(self.name, item.name))
+        #self.inventory.displayInventory()
 
     def playerPlace(self, item):
         print("Command: Place " + item)

@@ -142,9 +142,17 @@ class Game:
             self.playerUse("item")
 
         elif parsedText[0] == "take":
-            print(self.location.inventory.checkInventory(parsedText[1]))
             if self.location.inventory.checkInventory(parsedText[1]) is True:
-                self.player.playerTake(parsedText[1])
+                self.location.roomRemoveItem(parsedText[1])
+
+                directory = "./GameData/Items"
+                itemName = self.parser.convertSpaces(parsedText[1].lower())
+                itemPath = "{0}/{1}.json".format(directory, itemName) 
+                curItem = Item.createItemFromFile(itemPath)
+
+                self.player.playerAddItem(curItem)
+                #self.player.inventory.displayInventory()
+                #self.location.inventory.displayInventory()
             else:
                 print("{} is not in this location.".format(parsedText[1]))
 

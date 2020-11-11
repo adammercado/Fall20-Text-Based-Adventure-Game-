@@ -69,3 +69,5 @@ class Room:
         print(self.name)
         print(self.shortDesc)
 
+    def roomRemoveItem(self, item):
+        self.inventory.removeItem(item)
