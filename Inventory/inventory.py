@@ -30,7 +30,6 @@ class Inventory:
         return self.inventory
 
     def checkInventory(self, itemName):
-        print(itemName)
         for item in self.inventory:
             if itemName == item.name.lower():
                 return True

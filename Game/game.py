@@ -86,10 +86,7 @@ class Game:
                 locationData = json.loads(data["location"])
                 roomData = json.loads(data["rooms"])
 
-                print(locationData)
                 self.location = Room(locationData['name'], locationData['longDesc'], locationData['shortDesc'], locationData['priorVisit'], locationData['connections'], locationData['inventory'])
-
-                print(playerData['inventory'])
                 self.player = Player(playerData['inventory'])
 
                 # Convert room list received from json back into room objects
@@ -99,6 +96,7 @@ class Game:
                     self.rooms.append(curRoom)
 
             self.playGame()
+
         else:
             print("No save file found. Creating a new game...")
             self.startGame()

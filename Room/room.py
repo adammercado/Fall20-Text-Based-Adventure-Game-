@@ -13,21 +13,17 @@ class Room:
         self.shortDesc = shortDesc
         self.priorVisit = bool(priorVisit == "true")
         self.connections = connections
-
         self.inventory = Inventory()
+
         directory = "./GameData/Items"
 
         for item in items:
             if item != None:
-                itemName = item.lower()
-                print(itemName)
-                itemName = self.parser.convertSpaces(itemName)
-                print(itemName)
+                itemName = self.parser.convertSpaces(item.lower())
                 itemPath = "{0}/{1}.json".format(directory, itemName) 
                 curItem = Item.createItemFromFile(itemPath)
-                self.inventory.addItem(curItem)
 
-        self.inventory.displayInventory()
+                self.inventory.addItem(curItem)
 
     # Constructor using file name
     def fromFileName(fileName):

@@ -14,12 +14,12 @@ class Player:
         directory = "./GameData/Items"
 
         for item in items:
-            itemName = item.lower()
-            itemPath = "{0}/{1}.json".format(directory, itemName) 
-            curItem = Item.createItemFromFile(itemPath)
-            self.inventory.addItem(curItem)
+            if item != None:
+                itemName = self.parser.convertSpaces(item.lower())
+                itemPath = "{0}/{1}.json".format(directory, itemName) 
+                curItem = Item.createItemFromFile(itemPath)
 
-        self.inventory.displayInventory()
+                self.inventory.addItem(curItem)
 
     def convertPlayerToJson(self):
         playerInventory = []
