@@ -3,5 +3,6 @@
 	"longDesc": "temp long description",
 	"shortDesc": "temp short description",
 	"priorVisit": "false",
-	"connections": [null, "Solaris Highway", "Campsite", null]
+	"connections": [null, "Solaris Highway", "Campsite", null],
+	"items": [null]
 }

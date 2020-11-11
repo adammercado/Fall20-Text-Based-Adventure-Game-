@@ -3,5 +3,6 @@
 	"longDesc": "temp long description",
 	"shortDesc": "temp short description",
 	"priorVisit": "false",
-	"connections": [null, null, null, "Trail of Dreams"]
+	"connections": [null, null, null, "Trail of Dreams"],
+	"items": [null]
 }
