@@ -4,7 +4,7 @@ class TextParser:
 
         self.move_actions = ["move", "go", "jump", "swim", "climb"]
 
-        self.move_directions = ["up", "down", "left", "right", "north", "south", "east", "west"]
+        self.move_directions = ["north", "south", "east", "west"]
 
         self.use_actions = ["use", "combine", "hit", "strike", "pull", "push", "eat", "drink", "sit", "pour", "consume", "spill", "pry", "whip", "shine"]
 
@@ -62,10 +62,11 @@ class TextParser:
 
             # If a direction is received is not valid with received action, list will clear and return empty list
             # Otherwise, append direction to return list
-            elif word in self.move_directions:
-                if actions == 0 or directionFlag == False:
+            elif directionFlag == True:
+                if actions == 0 or word not in self.move_directions:
                     parsedText.clear()
                 else:
+                    print(word)
                     parsedText.append(word)
 
             elif itemFlag == True and actions == 1:

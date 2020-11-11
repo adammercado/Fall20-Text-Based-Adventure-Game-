@@ -1,0 +1,7 @@
+{
+	"name": "Old Shrine",
+	"longDesc": "temp long description",
+	"shortDesc": "temp short description",
+	"priorVisit": "false",
+	"connections": [null, "Crossroads", null, null]
+}

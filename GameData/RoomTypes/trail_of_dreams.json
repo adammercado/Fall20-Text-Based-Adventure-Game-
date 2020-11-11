@@ -1,0 +1,7 @@
+{
+	"name": "Trail of Dreams",
+	"longDesc": "temp long description",
+	"shortDesc": "temp short description",
+	"priorVisit": "false",
+	"connections": ["Crossroads", null, "Lake Lunaria", null]
+}

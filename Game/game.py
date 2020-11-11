@@ -43,7 +43,7 @@ class Game:
                 roomPath = directory + "/" + fileName
                 curRoom = Room.fromFileName(roomPath)
 
-                if curRoom.name == "Janitor's Closet":
+                if curRoom.name == "Serene Forest - South":
                     self.location = curRoom
 
                 self.rooms.append(curRoom)
@@ -68,6 +68,8 @@ class Game:
 
         with open("./Saves/gameSave.json", "w") as outfile:
             json.dump(data, outfile, indent=4)
+
+        print("Game saved successfully.")
 
     def loadGame(self):
         saveFile = Path("./Saves/gameSave.json")
@@ -132,10 +134,8 @@ class Game:
 
         elif parsedText[0] == "move":
             direction = ""
-            print(parsedText[1])
 
             if len(parsedText) == 2:
-                print(parsedText[1])
                 direction = parsedText[1]
                 self.playerMove(direction)
             else:
@@ -195,7 +195,7 @@ class Game:
                     print("New location: ")
                     self.location.getLoadData()
 
-                    if self.location.name == "The Anteroom":
+                    if self.location.name == "Lake Lunaria":
                         print("You have reached the last room. Exiting game.")
                         sys.exit()
                     else:

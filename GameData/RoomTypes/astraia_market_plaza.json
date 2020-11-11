@@ -1,0 +1,7 @@
+{
+	"name": "Astraia - Market Plaza",
+	"longDesc": "temp long description",
+	"shortDesc": "temp short description",
+	"priorVisit": "false",
+	"connections": ["Solaris Highway", null, "Astraia - Residence Area", "Lake Astraia"]
+}

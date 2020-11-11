@@ -1,0 +1,7 @@
+{
+	"name": "Abandoned Home",
+	"longDesc": "temp long description",
+	"shortDesc": "temp short description",
+	"priorVisit": "false",
+	"connections": ["Astraia - Residence Area", null, null, null]
+}
