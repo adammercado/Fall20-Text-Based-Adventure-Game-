@@ -1,3 +1,5 @@
+import json
+
 class Item:
     """The item class is used to represent the objects
       that can be acquired during gameplay.
@@ -20,3 +22,5 @@ class Item:
 
             name = data["name"]
             description = data["description"]
+
+        return Item(name, description)

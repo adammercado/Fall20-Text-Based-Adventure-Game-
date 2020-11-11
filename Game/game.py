@@ -4,7 +4,7 @@ import os
 from pathlib import Path
 from TextParser.textParser import TextParser
 from Room.room import Room
-#from Inventory.inventory import Inventory
+from Inventory.inventory import Inventory
 from Item.item import Item
 from Player.player import Player
 
@@ -33,13 +33,14 @@ class Game:
     player = Player()
     location = None
     rooms = []
+    inventory = Inventory()
 
     def startGame(self):
         directory = "./GameData/RoomTypes"
 
         # Iterate through each .json file in directory of room types, pass into constructor using file name
         for fileName in os.listdir(directory):
-            if fileName.endswith(".json"):
+            if fileName.endswith("serene_forest_south.json"):
                 roomPath = directory + "/" + fileName
                 curRoom = Room.fromFileName(roomPath)
 
@@ -145,7 +146,11 @@ class Game:
             self.playerUse("item")
 
         elif parsedText[0] == "take":
-            self.player.playerTake(parsedText[1])
+            print(self.location.inventory.checkInventory(parsedText[1]))
+            if self.location.inventory.checkInventory(parsedText[1]) is True:
+                self.player.playerTake(parsedText[1])
+            else:
+                print("{} is not in this location.".format(parsedText[1]))
 
         elif parsedText[0] == "place":
             self.player.playerPlace(parsedText[1])

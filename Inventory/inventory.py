@@ -29,6 +29,14 @@ class Inventory:
     def getInventoryList(self):
         return self.inventory
 
+    def checkInventory(self, itemName):
+        print(itemName)
+        for item in self.inventory:
+            if itemName == item.name.lower():
+                return True
+
+        return False
+
     # Add items to inventory by appending object to list
     def addItem(self, itemObj):
         self.inventory.append(itemObj)

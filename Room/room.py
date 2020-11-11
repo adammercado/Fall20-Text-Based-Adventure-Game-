@@ -1,5 +1,5 @@
 import json
-from Inventory.inventory import inventory
+from Inventory.inventory import Inventory
 from Item.item import Item
 
 
@@ -12,14 +12,17 @@ class Room:
         self.connections = connections
 
         self.inventory = Inventory()
+        directory = "./GameData/Items"
 
         for item in items:
-             
+            itemPath = "{0}/{1}.json".format(directory, item) 
+            curItem = Item.createItemFromFile(itemPath)
+            self.inventory.addItem(curItem)
 
+        self.inventory.displayInventory()
 
     # Constructor using file name
     def fromFileName(fileName):
-
         with open(fileName) as infile:
             data = json.load(infile)
 
