@@ -69,5 +69,11 @@ class Room:
         print(self.name)
         print(self.shortDesc)
 
-    def roomRemoveItem(self, item):
-        self.inventory.removeItem(item)
+    def roomAddItem(self, item):
+        self.inventory.addItem(item)
+
+    def roomDropItem(self, item):
+        if self.inventory.checkInventory(item):
+            self.inventory.removeItem(item)
+        else:
+            print("{} is not located here.".format(item))

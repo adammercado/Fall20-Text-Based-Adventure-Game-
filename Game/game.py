@@ -143,7 +143,7 @@ class Game:
 
         elif parsedText[0] == "take":
             if self.location.inventory.checkInventory(parsedText[1]) is True:
-                self.location.roomRemoveItem(parsedText[1])
+                self.location.roomDropItem(parsedText[1])
 
                 directory = "./GameData/Items"
                 itemName = self.parser.convertSpaces(parsedText[1].lower())
@@ -151,14 +151,24 @@ class Game:
                 curItem = Item.createItemFromFile(itemPath)
 
                 self.player.playerAddItem(curItem)
-                #self.player.inventory.displayInventory()
-                #self.location.inventory.displayInventory()
+                self.player.inventory.displayInventory()
+                self.location.inventory.displayInventory()
             else:
                 print("{} is not in this location.".format(parsedText[1]))
 
         elif parsedText[0] == "place":
-            self.player.playerPlace(parsedText[1])
-            
+            if self.player.inventory.checkInventory(parsedText[1]) is True:
+                self.player.playerDropItem(parsedText[1])
+
+                directory = "./GameData/Items"
+                itemName = self.parser.convertSpaces(parsedText[1].lower())
+                itemPath = "{0}/{1}.json".format(directory, itemName) 
+                curItem = Item.createItemFromFile(itemPath)
+
+                self.location.roomAddItem(curItem)
+                self.player.inventory.displayInventory()
+                self.location.inventory.displayInventory()
+
         elif parsedText[0] == "savegame":
             self.saveGame()
 
