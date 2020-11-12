@@ -34,14 +34,11 @@ class Player:
 
     def playerAddItem(self, item):
         self.inventory.addItem(item)
-        print("{} grabbed the {} and placed it in his inventory".format(self.name, item.name))
+        print("{} grabbed the {} and placed it in his inventory.".format(self.name, item.name))
 
     def playerDropItem(self, item):
-        if self.inventory.checkInventory(item):
-            self.inventory.removeItem(item)
-            print("{} dropped the {}.".format(self.name, item))
-        else:
-            print("{} is not in {}'s inventory.".format(item, self.name))
+        self.inventory.removeItem(item)
+        print("{} dropped the {}.".format(self.name, item))
 
         #print items in inventory to verify they are being dropped
         #self.inventory.displayInventory()

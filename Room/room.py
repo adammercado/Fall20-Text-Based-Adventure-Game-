@@ -73,7 +73,4 @@ class Room:
         self.inventory.addItem(item)
 
     def roomDropItem(self, item):
-        if self.inventory.checkInventory(item):
-            self.inventory.removeItem(item)
-        else:
-            print("{} is not located here.".format(item))
+        self.inventory.removeItem(item)

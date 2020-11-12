@@ -141,34 +141,32 @@ class Game:
         elif parsedText[0] == "use":
             self.playerUse("item")
 
-        elif parsedText[0] == "take":
-            if self.location.inventory.checkInventory(parsedText[1]) is True:
-                self.location.roomDropItem(parsedText[1])
+        elif parsedText[0] == "take" or parsedText[0] == "place":
+            itemName = self.parser.convertSpaces(parsedText[1].lower())
+            itemPath = "./GameData/Items/{}.json".format(itemName) 
 
-                directory = "./GameData/Items"
-                itemName = self.parser.convertSpaces(parsedText[1].lower())
-                itemPath = "{0}/{1}.json".format(directory, itemName) 
-                curItem = Item.createItemFromFile(itemPath)
+            if parsedText[0] == "take":
+                if self.location.inventory.checkInventory(parsedText[1]):
+                    self.location.roomDropItem(parsedText[1])
+                    curItem = Item.createItemFromFile(itemPath)
 
-                self.player.playerAddItem(curItem)
-                self.player.inventory.displayInventory()
-                self.location.inventory.displayInventory()
-            else:
-                print("{} is not in this location.".format(parsedText[1]))
+                    self.player.playerAddItem(curItem)
+                    self.player.inventory.displayInventory()
+                    self.location.inventory.displayInventory()
+                else:
+                    print("There is no {} in this location.".format(parsedText[1]))
 
-        elif parsedText[0] == "place":
-            if self.player.inventory.checkInventory(parsedText[1]) is True:
-                self.player.playerDropItem(parsedText[1])
+            elif parsedText[0] == "place":
+                 if self.player.inventory.checkInventory(parsedText[1]):
+                    self.player.playerDropItem(parsedText[1])
+                    curItem = Item.createItemFromFile(itemPath)
 
-                directory = "./GameData/Items"
-                itemName = self.parser.convertSpaces(parsedText[1].lower())
-                itemPath = "{0}/{1}.json".format(directory, itemName) 
-                curItem = Item.createItemFromFile(itemPath)
-
-                self.location.roomAddItem(curItem)
-                self.player.inventory.displayInventory()
-                self.location.inventory.displayInventory()
-
+                    self.location.roomAddItem(curItem)
+                    self.player.inventory.displayInventory()
+                    self.location.inventory.displayInventory()
+                 else:
+                    print("Cannot drop {} because it is not in the inventory.".format(parsedText[1]))
+ 
         elif parsedText[0] == "savegame":
             self.saveGame()
 
