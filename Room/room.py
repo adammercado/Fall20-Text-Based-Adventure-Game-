@@ -2,28 +2,38 @@ import json
 from Inventory.inventory import Inventory
 from Item.item import Item
 from TextParser.textParser import TextParser
+from Feature.feature import Feature
 
 
 class Room:
     parser = TextParser()
 
-    def __init__(self, name, longDesc, shortDesc, priorVisit, connections, items):
+    def __init__(self, name, longDesc, shortDesc, priorVisit, connections, items, features):
         self.name = name
         self.longDesc = longDesc
         self.shortDesc = shortDesc
         self.priorVisit = bool(priorVisit == "true")
         self.connections = connections
         self.inventory = Inventory()
+        self.featureList = []
 
         directory = "./GameData/Items"
 
         for item in items:
             if item != None:
-                itemName = self.parser.convertSpaces(item.lower())
+                print(item[0])
+                itemName = self.parser.convertSpaces(item[0].lower())
                 itemPath = "{0}/{1}.json".format(directory, itemName) 
                 curItem = Item.createItemFromFile(itemPath)
 
                 self.inventory.addItem(curItem)
+
+        for obj in features:
+            cur = Feature(obj["name"], obj["desc"], obj["isInteractive"], obj["interactions"])
+            self.featureList.append(cur)
+
+        for obj in self.featureList:
+            obj.getInfo()
 
     # Constructor using file name
     def fromFileName(fileName):
@@ -35,9 +45,10 @@ class Room:
             shortDesc = data["shortDesc"]
             priorVisit = data["priorVisit"]
             connections = data["connections"]
-            items = data["items"]
+            items = data["items"],
+            features = data["features"]
 
-        return Room(name, longDesc, shortDesc, priorVisit, connections, items)
+        return Room(name, longDesc, shortDesc, priorVisit, connections, items, features)
 
     def convertRoomToJson(self):
         jsonInventory = []

@@ -6,6 +6,7 @@ from TextParser.textParser import TextParser
 from Room.room import Room
 from Item.item import Item
 from Player.player import Player
+from Feature.feature import Feature
 
 """
 Attributes:
@@ -35,7 +36,7 @@ class Game:
 
         # Iterate through room JSON files in directory and initialize with Room class constructor using file name
         for fileName in os.listdir(directory):
-            if fileName.endswith(".json"):
+            if fileName.endswith("serene_forest_south.json"):
                 roomPath = directory + "/" + fileName
                 curRoom = Room.fromFileName(roomPath)
 
