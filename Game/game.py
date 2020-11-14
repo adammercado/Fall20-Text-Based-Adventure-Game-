@@ -4,73 +4,76 @@ import os
 from pathlib import Path
 from TextParser.textParser import TextParser
 from Room.room import Room
-#from Inventory.inventory import Inventory
 from Item.item import Item
 from Player.player import Player
 
 """
+Attributes:
+    parser
+    player
+    location
+    rooms
+
 Methods:
     startGame()
     saveGame()
     loadGame()
+    playGame()
     getInput()
-
-    -- TEMPORARY ATTRIBUTES TO BE REPLACED/CHANGED--
-    playerName
-
-    -- TEMPORARY METHODS TO BE REPLACED/CHANGED --
-    playerLook()
-    playerMove()
-    playerUse()
-    playerTake() - currently creates an object with the input name and adds it to Game's inventory with a temporary description; GAME WILL NOT HAVE AN INVENTORY LATER ON - this is just for testing
-    playerPlace()
-    playerGame()
 """
 
 
 class Game:
     parser = TextParser()
-    player = Player()
+    player = None
     location = None
     rooms = []
 
+    # Initializes game state before calling playGame()
     def startGame(self):
         directory = "./GameData/RoomTypes"
 
-        # Iterate through each .json file in directory of room types, pass into constructor using file name
+        # Iterate through room JSON files in directory and initialize with Room class constructor using file name
         for fileName in os.listdir(directory):
             if fileName.endswith(".json"):
                 roomPath = directory + "/" + fileName
                 curRoom = Room.fromFileName(roomPath)
 
+                # Set starting location
                 if curRoom.name == "Serene Forest - South":
                     self.location = curRoom
 
                 self.rooms.append(curRoom)
-
             else:
                 continue
 
-        self.player.initializePlayer()
+        self.player = Player("")
         self.playGame()
 
+    # Calls class methods to convert data into JSON format and write to save file
     def saveGame(self):
-        jsonCurLocation = json.dumps(self.location.__dict__)
-        jsonRoomsList = json.dumps([obj.__dict__ for obj in self.rooms])
-        jsonInventory = json.dumps([obj.__dict__ for obj in self.inventory.getInventoryList()])
+        playerData = json.dumps(self.player.convertPlayerToJson())
+        locationData = json.dumps(self.location.convertRoomToJson())
+        roomData = []
+
+        for room in self.rooms:
+            roomData.append(room.convertRoomToJson())
+
+        roomData = json.dumps(roomData)
 
         data = {
-            "name": self.playerName,
-            "location": jsonCurLocation,
-            "inventory": jsonInventory,
-            "rooms": jsonRoomsList
+            "player": playerData,
+            "location": locationData,
+            "rooms": roomData
         }
 
+        # Open or create save file and dump JSON data into it
         with open("./Saves/gameSave.json", "w") as outfile:
             json.dump(data, outfile, indent=4)
 
         print("Game saved successfully.")
 
+    # Opens save file use loaded JSON data to re-initialize game state
     def loadGame(self):
         saveFile = Path("./Saves/gameSave.json")
 
@@ -78,25 +81,18 @@ class Game:
             with open("./Saves/gameSave.json") as infile:
                 data = json.load(infile)
 
-                self.playerName = data["name"]
-                # Receive json list of strings representing inventory and rooms
-                tempLocation = json.loads(data["location"])
-                tempInventoryList = json.loads(data["inventory"])
-                tempRoomList = json.loads(data["rooms"])
+                # Receive JSON lists of data 
+                playerData = json.loads(data["player"])
+                locationData = json.loads(data["location"])
+                roomData = json.loads(data["rooms"])
 
-                print("TEST - Player Name is " + self.playerName)
+                # Call constructors for initializing using JSON data
+                self.location = Room(locationData['name'], locationData['longDesc'], locationData['shortDesc'], locationData['priorVisit'], locationData['connections'], locationData['inventory'])
+                self.player = Player(playerData['inventory'])
 
-                self.location = Room(tempLocation['name'], tempLocation['longDesc'], tempLocation['shortDesc'], tempLocation['priorVisit'], tempLocation['connections'])
-
-                # Convert inventory list received from json back into item objects
-                for item in tempInventoryList:
-                    curItem = Item(item['name'], item['description'])
-                    self.inventory.addItem(curItem)
-
-                # Convert room list received from json back into room objects
-                for room in tempRoomList:
-                    # Re-create Room objects using list of strings using default constructor
-                    curRoom = Room(room['name'], room['longDesc'], room['shortDesc'], room['priorVisit'], room['connections'])
+                # Call constructors for each object in room list received from JSON and append to rooms list in Game
+                for room in roomData:
+                    curRoom = Room(room['name'], room['longDesc'], room['shortDesc'], room['priorVisit'], room['connections'], room['inventory'])
                     self.rooms.append(curRoom)
 
             self.playGame()
@@ -104,8 +100,7 @@ class Game:
             print("No save file found. Creating a new game...")
             self.startGame()
 
-
-    # Tokenize input and pass into class method
+    # Handles actions pertaining to gameplay using received input 
     def playGame(self):
         while 1:
             print("Current location: " + self.location.name)
@@ -113,7 +108,7 @@ class Game:
             args = input("Enter an action: ").lower().split()
             self.getInput(args)
 
-    # Receive tokenized input as list and pass to parser to determine command
+    # Receive tokenized input as list and pass to TextParser to determine command
     def getInput(self, args):
         parsedText = self.parser.parse(args)
 
@@ -144,12 +139,32 @@ class Game:
         elif parsedText[0] == "use":
             self.playerUse("item")
 
-        elif parsedText[0] == "take":
-            self.player.playerTake(parsedText[1])
+        elif parsedText[0] == "take" or parsedText[0] == "place":
+            itemName = self.parser.convertSpaces(parsedText[1].lower())
+            itemPath = "./GameData/Items/{}.json".format(itemName) 
 
-        elif parsedText[0] == "place":
-            self.player.playerPlace(parsedText[1])
-            
+            if parsedText[0] == "take":
+                if self.location.inventory.checkInventory(parsedText[1]):
+                    self.location.roomDropItem(parsedText[1])
+                    curItem = Item.createItemFromFile(itemPath)
+
+                    self.player.playerAddItem(curItem)
+                    self.player.inventory.displayInventory()
+                    self.location.inventory.displayInventory()
+                else:
+                    print("There is no {} in this location.".format(parsedText[1]))
+
+            elif parsedText[0] == "place":
+                 if self.player.inventory.checkInventory(parsedText[1]):
+                    self.player.playerDropItem(parsedText[1])
+                    curItem = Item.createItemFromFile(itemPath)
+
+                    self.location.roomAddItem(curItem)
+                    self.player.inventory.displayInventory()
+                    self.location.inventory.displayInventory()
+                 else:
+                    print("Cannot drop {} because it is not in the inventory.".format(parsedText[1]))
+ 
         elif parsedText[0] == "savegame":
             self.saveGame()
 

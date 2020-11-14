@@ -1,50 +1,45 @@
-import sys
 import json
-import os
-from pathlib import Path
 from TextParser.textParser import TextParser
-from Room.room import Room
 from Inventory.inventory import Inventory
 from Item.item import Item
 
 class Player:
-    playerName = ""
-    inventory = Inventory()
+    parser = TextParser()
 
-    def initializePlayer(self):
-        self.playerName = input("Enter a name: ")
+    def __init__(self, items):
+        self.name = "Boy"
+        self.inventory = Inventory()
+        directory = "./GameData/Items"
 
-    def playerTake(self, item):
-        print("Command: Take " + item)
-        print("You grabbed the " + item + "!")
+        for item in items:
+            if item != None:
+                itemName = self.parser.convertSpaces(item.lower())
+                itemPath = "{0}/{1}.json".format(directory, itemName) 
+                curItem = Item.createItemFromFile(itemPath)
 
-        if item == "key":
-            item1 = Item(item, "Use to open something...")
-            self.inventory.addItem(item1)
-        if item == "hammer":
-            item2 = Item(item, "use to smash something...")
-            self.inventory.addItem(item2)
+                self.inventory.addItem(curItem)
 
-        #print the items to verify the inventory is being updated
-        self.inventory.displayInventory()
+    def convertPlayerToJson(self):
+        playerInventory = []
+        
+        for item in self.inventory.getInventoryList():
+            playerInventory.append(item.name)
 
-    def playerPlace(self, item):
-        print("Command: Place " + item)
-        print("in PlayerPlace")
+        playerData = {
+            "name": self.name,
+            "inventory": playerInventory
+        }
 
-        if item == "key":
-            self.inventory.removeItem("key")
-            print("The key was dropped.")
-        if item == "hammer":
-            self.inventory.removeItem("hammer")
-            print("The hammer was dropped.")
+        return playerData 
+
+    def playerAddItem(self, item):
+        self.inventory.addItem(item)
+        print("{} grabbed the {} and placed it in his inventory.".format(self.name, item.name))
+
+    def playerDropItem(self, item):
+        self.inventory.removeItem(item)
+        print("{} dropped the {}.".format(self.name, item))
 
         #print items in inventory to verify they are being dropped
-        self.inventory.displayInventory()
-
-
-
-
-
-
+        #self.inventory.displayInventory()
 

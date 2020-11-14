@@ -1,5 +1,5 @@
 from Item.item import Item
-
+from copy import deepcopy
 
 """
 Methods:
@@ -29,14 +29,20 @@ class Inventory:
     def getInventoryList(self):
         return self.inventory
 
+    def checkInventory(self, itemName):
+        for item in self.inventory:
+            if itemName == item.name.lower():
+                return True
+
+        return False
+
     # Add items to inventory by appending object to list
     def addItem(self, itemObj):
         self.inventory.append(itemObj)
 
     # Remove items - UNTESTED (parser does not handle remove commands yet)
-    def removeItem(self, itemName):
+    def removeItem(self, item):
         for i, o in enumerate(self.inventory):
-            if o.name == itemName:
+            if o.name.lower() == item:
                 del self.inventory[i]
                 break
-                      

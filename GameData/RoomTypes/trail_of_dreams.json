@@ -3,5 +3,6 @@
 	"longDesc": "temp long description",
 	"shortDesc": "temp short description",
 	"priorVisit": "false",
-	"connections": ["Crossroads", null, "Lake Lunaria", null]
+	"connections": ["Crossroads", null, "Lake Lunaria", null],
+	"items": [null]
 }

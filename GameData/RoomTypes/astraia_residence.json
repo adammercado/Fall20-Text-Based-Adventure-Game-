@@ -3,5 +3,6 @@
 	"longDesc": "temp long description",
 	"shortDesc": "temp short description",
 	"priorVisit": "false",
-	"connections": [null, "Abandoned Home", "Achelous Falls", "Astraia - Market Plaza"]
+	"connections": [null, "Abandoned Home", "Achelous Falls", "Astraia - Market Plaza"],
+	"items": [null]
 }
