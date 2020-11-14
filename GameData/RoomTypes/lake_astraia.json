@@ -4,5 +4,20 @@
 	"shortDesc": "temp short description",
 	"priorVisit": "false",
 	"connections": [null, null, "Astraia - Market Plaza", null],
-	"items": [null]
+	"items": [null],
+	"features": 
+	[
+		{
+			"name": "fisherman",
+			"desc": "test feature description",
+			"isInteractive": "false",
+			"interactions": null
+		},
+		{
+			"name": "birds",
+			"desc": "test feature description",
+			"isInteractive": "false",
+			"interactions": null
+		}
+	]
 }
