@@ -4,5 +4,26 @@
 	"shortDesc": "temp short description",
 	"priorVisit": "false",
 	"connections": ["Ebon Mountains", "Astraia - Market Plaza", null, null],
-	"items": [null]
+	"items": [null],
+	"features": 
+	[
+		{
+			"name": "wooden carriage",
+			"desc": "test feature description",
+			"isInteractive": "false",
+			"interactions": null
+		},
+		{
+			"name": "river",
+			"desc": "test feature description",
+			"isInteractive": "false",
+			"interactions": null
+		},
+		{
+			"name": "mountains",
+			"desc": "test feature description",
+			"isInteractive": "false",
+			"interactions": null
+		}
+	]
 }
