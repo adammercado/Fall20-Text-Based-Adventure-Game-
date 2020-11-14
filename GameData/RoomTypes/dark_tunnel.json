@@ -4,5 +4,20 @@
 	"shortDesc": "temp short description",
 	"priorVisit": "false",
 	"connections": [null, null, "Crossroads", "Campsite"],
-	"items": [null]
+	"items": [null],
+	"features": 
+	[
+		{
+			"name": "stalagmites",
+			"desc": "test feature description",
+			"isInteractive": "false",
+			"interactions": null
+		},
+		{
+			"name": "bats",
+			"desc": "test feature description",
+			"isInteractive": "false",
+			"interactions": null
+		}
+	]
 }
