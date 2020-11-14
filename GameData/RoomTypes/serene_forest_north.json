@@ -4,5 +4,20 @@
 	"shortDesc": "temp short description",
 	"priorVisit": "false",
 	"connections": ["Achelous Falls", "Serene Forest - South", null, null],
-	"items": ["Rusted Key"]
+	"items": ["Rusted Key"],
+	"features": 
+	[
+		{
+			"name": "angry boar",
+			"desc": "test feature description",
+			"isInteractive": "false",
+			"interactions": null
+		},
+		{
+			"name": "forest opening",
+			"desc": "test feature description",
+			"isInteractive": "false",
+			"interactions": null
+		}
+	]
 }
