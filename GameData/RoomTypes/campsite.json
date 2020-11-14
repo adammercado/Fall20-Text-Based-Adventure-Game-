@@ -4,5 +4,26 @@
 	"shortDesc": "temp short description",
 	"priorVisit": "false",
 	"connections": [null, null, "Dark Tunnel", "Ebon Mountains"],
-	"items": ["Lantern"]
+	"items": ["Lantern"],
+	"features": 
+	[
+		{
+			"name": "campfire",
+			"desc": "test feature description",
+			"isInteractive": "false",
+			"interactions": null
+		},
+		{
+			"name": "tents",
+			"desc": "test feature description",
+			"isInteractive": "false",
+			"interactions": null
+		},
+		{
+			"name": "middled-aged woman",
+			"desc": "test feature description",
+			"isInteractive": "false",
+			"interactions": null
+		}
+	]
 }
