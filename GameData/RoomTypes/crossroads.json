@@ -4,5 +4,26 @@
 	"shortDesc": "temp short description",
 	"priorVisit": "false",
 	"connections": ["Old Shrine", "Trail of Dreams", null, "Dark Tunnel"],
-	"items": ["White Flower"]
+	"items": ["White Flower"],
+	"features": 
+	[
+		{
+			"name": "temp feature 1",
+			"desc": "test feature description",
+			"isInteractive": "false",
+			"interactions": null
+		},
+		{
+			"name": "temp feature 2",
+			"desc": "test feature description",
+			"isInteractive": "false",
+			"interactions": null
+		},
+		{
+			"name": "temp feature 3",
+			"desc": "test feature description",
+			"isInteractive": "false",
+			"interactions": null
+		}
+	]
 }

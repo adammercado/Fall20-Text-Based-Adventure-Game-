@@ -4,5 +4,20 @@
 	"shortDesc": "temp short description",
 	"priorVisit": "false",
 	"connections": ["Astraia - Residence Area", null, null, null],
-        "items": ["Dull Pendant"]
+        "items": ["Dull Pendant"],
+	"features": 
+	[
+		{
+			"name": "old journal",
+			"desc": "test feature description",
+			"isInteractive": "false",
+			"interactions": null
+		},
+		{
+			"name": "old phone",
+			"desc": "test feature description",
+			"isInteractive": "false",
+			"interactions": null
+		}
+	]
 }

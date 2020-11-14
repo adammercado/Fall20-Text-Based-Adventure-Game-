@@ -4,5 +4,26 @@
 	"shortDesc": "temp short description",
 	"priorVisit": "false",
 	"connections": ["Solaris Highway", null, "Astraia - Residence Area", "Lake Astraia"],
-	"items": ["Map", "Flask"]
+	"items": ["Map", "Flask"],
+	"features": 
+	[
+		{
+			"name": "fountain",
+			"desc": "test feature description",
+			"isInteractive": "false",
+			"interactions": null
+		},
+		{
+			"name": "loud merchant",
+			"desc": "test feature description",
+			"isInteractive": "false",
+			"interactions": null
+		},
+		{
+			"name": "market stand",
+			"desc": "test feature description",
+			"isInteractive": "false",
+			"interactions": null
+		}
+	]
 }

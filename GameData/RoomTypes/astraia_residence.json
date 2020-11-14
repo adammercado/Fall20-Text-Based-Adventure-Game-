@@ -4,5 +4,20 @@
 	"shortDesc": "temp short description",
 	"priorVisit": "false",
 	"connections": [null, "Abandoned Home", "Achelous Falls", "Astraia - Market Plaza"],
-	"items": [null]
+	"items": [null],
+	"features": 
+	[
+		{
+			"name": "abandoned home",
+			"desc": "test feature description",
+			"isInteractive": "false",
+			"interactions": null
+		},
+		{
+			"name": "dog",
+			"desc": "test feature description",
+			"isInteractive": "false",
+			"interactions": null
+		}
+	]
 }

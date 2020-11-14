@@ -8,13 +8,13 @@
 	"features": 
 	[
 		{
-			"name": "Tree",
+			"name": "tree",
 			"desc": "test feature description",
 			"isInteractive": "false",
 			"interactions": null
 		},
 		{
-			"name": "Rabbit",
+			"name": "rabbit",
 			"desc": "test feature description",
 			"isInteractive": "false",
 			"interactions": null

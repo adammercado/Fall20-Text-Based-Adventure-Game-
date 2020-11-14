@@ -4,5 +4,26 @@
 	"shortDesc": "temp short description",
 	"priorVisit": "false",
 	"connections": [null, null, null, "Trail of Dreams"],
-	"items": [null]
+	"items": [null],
+	"features": 
+	[
+		{
+			"name": "temp1",
+			"desc": "test feature description",
+			"isInteractive": "false",
+			"interactions": null
+		},
+		{
+			"name": "temp2",
+			"desc": "test feature description",
+			"isInteractive": "false",
+			"interactions": null
+		},
+		{
+			"name": "temp3",
+			"desc": "test feature description",
+			"isInteractive": "false",
+			"interactions": null
+		}
+	]
 }
