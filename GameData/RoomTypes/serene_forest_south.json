@@ -4,5 +4,20 @@
 	"shortDesc": "temp short description",
 	"priorVisit": "false",
 	"connections": ["Serene Forest - North", null, null, null],
-	"items": ["Tree Branch"]
+	"items": ["Tree Branch"],
+	"features": 
+	[
+		{
+			"name": "Tree",
+			"desc": "test feature description",
+			"isInteractive": "false",
+			"interactions": null
+		},
+		{
+			"name": "Rabbit",
+			"desc": "test feature description",
+			"isInteractive": "false",
+			"interactions": null
+		}
+	]
 }
