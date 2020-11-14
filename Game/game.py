@@ -36,8 +36,9 @@ class Game:
 
         # Iterate through room JSON files in directory and initialize with Room class constructor using file name
         for fileName in os.listdir(directory):
-            if fileName.endswith("serene_forest_south.json"):
+            if fileName.endswith(".json"):
                 roomPath = directory + "/" + fileName
+                print(roomPath)
                 curRoom = Room.fromFileName(roomPath)
 
                 # Set starting location

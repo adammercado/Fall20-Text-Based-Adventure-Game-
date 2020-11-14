@@ -20,8 +20,10 @@ class Room:
         directory = "./GameData/Items"
 
         for item in items:
-            if item != None:
-                print(item[0])
+            if item is None:
+                break
+            else:
+                print(item)
                 itemName = self.parser.convertSpaces(item[0].lower())
                 itemPath = "{0}/{1}.json".format(directory, itemName) 
                 curItem = Item.createItemFromFile(itemPath)
@@ -29,8 +31,9 @@ class Room:
                 self.inventory.addItem(curItem)
 
         for obj in features:
-            cur = Feature(obj["name"], obj["desc"], obj["isInteractive"], obj["interactions"])
-            self.featureList.append(cur)
+            if obj:
+                cur = Feature(obj["name"], obj["desc"], obj["isInteractive"], obj["interactions"])
+                self.featureList.append(cur)
 
         for obj in self.featureList:
             obj.getInfo()
@@ -48,6 +51,7 @@ class Room:
             items = data["items"],
             features = data["features"]
 
+        print(items)
         return Room(name, longDesc, shortDesc, priorVisit, connections, items, features)
 
     def convertRoomToJson(self):
