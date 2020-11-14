@@ -8,13 +8,13 @@
 	"features": 
 	[
 		{
-			"name": "Old Journal",
+			"name": "old journal",
 			"desc": "test feature description",
 			"isInteractive": "false",
 			"interactions": null
 		},
 		{
-			"name": "Old Phone",
+			"name": "old phone",
 			"desc": "test feature description",
 			"isInteractive": "false",
 			"interactions": null
