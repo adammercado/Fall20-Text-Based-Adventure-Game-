@@ -20,10 +20,7 @@ class Room:
         directory = "./GameData/Items"
 
         for item in items:
-            if item is None:
-                break
-            else:
-                print(item)
+            if item[0] != None:
                 itemName = self.parser.convertSpaces(item[0].lower())
                 itemPath = "{0}/{1}.json".format(directory, itemName) 
                 curItem = Item.createItemFromFile(itemPath)
@@ -51,7 +48,6 @@ class Room:
             items = data["items"],
             features = data["features"]
 
-        print(items)
         return Room(name, longDesc, shortDesc, priorVisit, connections, items, features)
 
     def convertRoomToJson(self):
