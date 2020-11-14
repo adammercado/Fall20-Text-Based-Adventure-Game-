@@ -8,22 +8,18 @@ from Item.item import Item
 from Player.player import Player
 
 """
+Attributes:
+    parser
+    player
+    location
+    rooms
+
 Methods:
     startGame()
     saveGame()
     loadGame()
+    playGame()
     getInput()
-
-    -- TEMPORARY ATTRIBUTES TO BE REPLACED/CHANGED--
-    playerName
-
-    -- TEMPORARY METHODS TO BE REPLACED/CHANGED --
-    playerLook()
-    playerMove()
-    playerUse()
-    playerTake() - currently creates an object with the input name and adds it to Game's inventory with a temporary description; GAME WILL NOT HAVE AN INVENTORY LATER ON - this is just for testing
-    playerPlace()
-    playerGame()
 """
 
 
@@ -33,26 +29,28 @@ class Game:
     location = None
     rooms = []
 
+    # Initializes game state before calling playGame()
     def startGame(self):
         directory = "./GameData/RoomTypes"
 
-        # Iterate through each .json file in directory of room types, pass into constructor using file name
+        # Iterate through room JSON files in directory and initialize with Room class constructor using file name
         for fileName in os.listdir(directory):
             if fileName.endswith(".json"):
                 roomPath = directory + "/" + fileName
                 curRoom = Room.fromFileName(roomPath)
 
+                # Set starting location
                 if curRoom.name == "Serene Forest - South":
                     self.location = curRoom
 
                 self.rooms.append(curRoom)
-
             else:
                 continue
 
         self.player = Player("")
         self.playGame()
 
+    # Calls class methods to convert data into JSON format and write to save file
     def saveGame(self):
         playerData = json.dumps(self.player.convertPlayerToJson())
         locationData = json.dumps(self.location.convertRoomToJson())
@@ -69,11 +67,13 @@ class Game:
             "rooms": roomData
         }
 
+        # Open or create save file and dump JSON data into it
         with open("./Saves/gameSave.json", "w") as outfile:
             json.dump(data, outfile, indent=4)
 
         print("Game saved successfully.")
 
+    # Opens save file use loaded JSON data to re-initialize game state
     def loadGame(self):
         saveFile = Path("./Saves/gameSave.json")
 
@@ -81,28 +81,26 @@ class Game:
             with open("./Saves/gameSave.json") as infile:
                 data = json.load(infile)
 
-                # Receive json list of strings
+                # Receive JSON lists of data 
                 playerData = json.loads(data["player"])
                 locationData = json.loads(data["location"])
                 roomData = json.loads(data["rooms"])
 
+                # Call constructors for initializing using JSON data
                 self.location = Room(locationData['name'], locationData['longDesc'], locationData['shortDesc'], locationData['priorVisit'], locationData['connections'], locationData['inventory'])
                 self.player = Player(playerData['inventory'])
 
-                # Convert room list received from json back into room objects
+                # Call constructors for each object in room list received from JSON and append to rooms list in Game
                 for room in roomData:
-                    # Re-create Room objects using list of strings using default constructor
                     curRoom = Room(room['name'], room['longDesc'], room['shortDesc'], room['priorVisit'], room['connections'], room['inventory'])
                     self.rooms.append(curRoom)
 
             self.playGame()
-
         else:
             print("No save file found. Creating a new game...")
             self.startGame()
 
-
-    # Tokenize input and pass into class method
+    # Handles actions pertaining to gameplay using received input 
     def playGame(self):
         while 1:
             print("Current location: " + self.location.name)
@@ -110,7 +108,7 @@ class Game:
             args = input("Enter an action: ").lower().split()
             self.getInput(args)
 
-    # Receive tokenized input as list and pass to parser to determine command
+    # Receive tokenized input as list and pass to TextParser to determine command
     def getInput(self, args):
         parsedText = self.parser.parse(args)
 
