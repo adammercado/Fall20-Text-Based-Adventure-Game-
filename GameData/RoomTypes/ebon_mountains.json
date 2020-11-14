@@ -4,5 +4,20 @@
 	"shortDesc": "temp short description",
 	"priorVisit": "false",
 	"connections": [null, "Solaris Highway", "Campsite", null],
-	"items": [null]
+	"items": [null],
+	"features": 
+	[
+		{
+			"name": "mountain path",
+			"desc": "test feature description",
+			"isInteractive": "false",
+			"interactions": null
+		},
+		{
+			"name": "astraia",
+			"desc": "test feature description",
+			"isInteractive": "false",
+			"interactions": null
+		}
+	]
 }
