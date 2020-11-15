@@ -32,8 +32,8 @@ class Room:
                 cur = Feature(obj["name"], obj["desc"], obj["isInteractive"], obj["interactions"])
                 self.featureList.append(cur)
 
-        for obj in self.featureList:
-            obj.getInfo()
+        #for obj in self.featureList:
+            #obj.getInfo()
 
     # Constructor using file name
     def fromFileName(fileName):
@@ -52,9 +52,15 @@ class Room:
 
     def convertRoomToJson(self):
         jsonInventory = []
+        jsonFeatures = []
 
         for item in self.inventory.getInventoryList():
            jsonInventory.append(item.name)
+
+        for obj in self.featureList:
+           jsonFeatures.append(obj.convertFeatureToJson())
+
+        print(jsonFeatures)
 
         roomData = {
             "name": self.name,
@@ -62,7 +68,8 @@ class Room:
             "shortDesc": self.shortDesc,
             "priorVisit": self.priorVisit,
             "connections": self.connections,
-            "inventory": jsonInventory
+            "inventory": jsonInventory,
+            "featureList": jsonFeatures
         }
 
         return roomData

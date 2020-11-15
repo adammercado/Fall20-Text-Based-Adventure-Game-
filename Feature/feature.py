@@ -9,3 +9,12 @@ class Feature:
     def getInfo(self):
         print("Feature: {}\nDesc: {}\nInteract: {}\nInteract With: {}".format(self.name, self.desc, self.isInteractive, self.interactions))
 
+    def convertFeatureToJson(self):
+        featureData = {
+            "name": self.name,
+            "desc": self.desc,
+            "isInteractive": self.isInteractive,
+            "interactions": self.interactions
+        }
+
+        return featureData
