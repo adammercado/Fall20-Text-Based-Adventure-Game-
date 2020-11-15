@@ -5,9 +5,8 @@
 	"priorVisit": "false",
 	"connections": ["Solaris Highway", null, "Astraia - Residence Area", "Lake Astraia"],
 	"items": ["Map", "Flask"],
-	"features": 
-	[
-		{
+	"features": [
+        	{
 			"name": "fountain",
 			"desc": "test feature description",
 			"isInteractive": "false",

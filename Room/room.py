@@ -20,9 +20,9 @@ class Room:
         directory = "./GameData/Items"
 
         for item in items:
-            if item[0] != None:
-                itemName = self.parser.convertSpaces(item[0].lower())
-                itemPath = "{0}/{1}.json".format(directory, itemName) 
+            if item != None:
+                itemName = self.parser.convertSpaces(item.lower())
+                itemPath = directory + "/{}.json".format(itemName) 
                 curItem = Item.createItemFromFile(itemPath)
 
                 self.inventory.addItem(curItem)
@@ -45,7 +45,7 @@ class Room:
             shortDesc = data["shortDesc"]
             priorVisit = data["priorVisit"]
             connections = data["connections"]
-            items = data["items"],
+            items = data["items"]
             features = data["features"]
 
         return Room(name, longDesc, shortDesc, priorVisit, connections, items, features)
