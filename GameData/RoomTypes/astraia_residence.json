@@ -11,13 +11,13 @@
 			"name": "abandoned home",
 			"desc": "test feature description",
 			"isInteractive": "false",
-			"interactions": null
+			"interactions": ["Rusted Key"]
 		},
 		{
 			"name": "dog",
 			"desc": "test feature description",
 			"isInteractive": "false",
-			"interactions": null
+			"interactions": [null]
 		}
 	]
 }
