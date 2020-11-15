@@ -11,13 +11,13 @@
 			"name": "abandoned home",
 			"desc": "test feature description",
 			"isInteractive": "false",
-			"interactions": [null]
+			"interactions": null
 		},
 		{
 			"name": "dog",
 			"desc": "test feature description",
 			"isInteractive": "false",
-			"interactions": [null]
+			"interactions": null
 		}
 	]
 }
