@@ -30,12 +30,14 @@ class TextParser:
         directionFlag = False
         itemFlag = False
         parsedText = []
-
-        if args[0] in self.take_actions or args[0] in self.place_actions:
+        
+        if args[0] in self.take_actions or args[0] in self.place_actions or args[0] in self.look_actions:
             if args[0] in self.take_actions:
                 parsedText.append("take")
             elif args[0] in self.place_actions:
                 parsedText.append("place")
+            else:
+                parsedText.append("look")
 
             package = ""
 
@@ -47,7 +49,7 @@ class TextParser:
                        package += " "
 
             print(package)
-            if package in self.item_list:
+            if package in self.item_list or package in self.feature_list:
                 parsedText.append(package)
             else:
                 parsedText.clear()
@@ -68,14 +70,12 @@ class TextParser:
 
                 # Otherwise, determine action type and append to return list
                 else:
-                    if word in self.move_actions or word in self.look_actions:
+                    if word in self.move_actions:
                         directionFlag = True
                     if word in self.use_actions:
                         itemFlag = True
                     if word in self.move_actions:
                         keyword = "move"
-                    elif word in self.look_actions:
-                        keyword = "look"
                     elif word in self.use_actions:
                         keyword = "use"
                     elif word in self.game_actions:
@@ -86,10 +86,9 @@ class TextParser:
             # If a direction is received is not valid with received action, list will clear and return empty list
             # Otherwise, append direction to return list
             elif directionFlag == True:
-                if actions == 0 or (word not in self.move_directions and  word not in self.feature_list):
+                if actions == 0 or word not in self.move_directions:
                     parsedText.clear()
                 else:
-                    print(word)
                     parsedText.append(word)
 
             elif itemFlag == True and actions == 1:
@@ -97,7 +96,7 @@ class TextParser:
                 itemFlag == False
             # Clear list if current word is not found in vocabulary space
             else:
-                parsedText.clear()    
+                parsedText.clear()
 
         return parsedText
 
