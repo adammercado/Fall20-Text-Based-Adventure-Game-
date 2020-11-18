@@ -20,7 +20,8 @@ class TextParser:
 
         self.item_list = ["tree branch", "rusted key", "dull pendant", "map", "flask", "lantern", "white flower", "gemstone"]
 
-        self.feature_list = ["tree", "rabbit"]
+        self.feature_list = ["tree", "rabbit", "angry boar", "forest opening", "old journal", "old phone", "waterfall", "jumping fishes", "town entrance", "fountain", "loud merchant", "market stand", "abandoned home", "dog", 
+"campfire", "tents", "middle-aged woman", "stalagmites", "bats", "mountain path", "astraia", "fisherman", "birds", "wooden carriage", "river", "mountains"]
 
     # Receive list of arguments and determine type of action received using vocabulary space defined in class
     # Returns list of strings
