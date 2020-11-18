@@ -78,6 +78,13 @@ class Room:
         for obj in self.featureList:
            obj.getInfo()
 
+    def examine(self, feature):
+        print("feature is: " + feature)
+        for obj in self.featureList:
+            if feature == obj.name:
+                obj.getDesc()
+                break
+
     # Test method called when saving room data to json
     def getData(self):
         print(self.name)

@@ -186,6 +186,7 @@ class Game:
             print("Command: Look")
         else:
             print("Command: Look " + direction)
+            self.location.examine(direction)
 
     def playerMove(self, direction):
         print("Command: Move " + direction)

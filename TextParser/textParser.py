@@ -20,6 +20,8 @@ class TextParser:
 
         self.item_list = ["tree branch", "rusted key", "dull pendant", "map", "flask", "lantern", "white flower", "gemstone"]
 
+        self.feature_list = ["tree", "rabbit"]
+
     # Receive list of arguments and determine type of action received using vocabulary space defined in class
     # Returns list of strings
     def parse(self, args):
@@ -69,7 +71,6 @@ class TextParser:
                         directionFlag = True
                     if word in self.use_actions:
                         itemFlag = True
-
                     if word in self.move_actions:
                         keyword = "move"
                     elif word in self.look_actions:
@@ -84,7 +85,7 @@ class TextParser:
             # If a direction is received is not valid with received action, list will clear and return empty list
             # Otherwise, append direction to return list
             elif directionFlag == True:
-                if actions == 0 or word not in self.move_directions:
+                if actions == 0 or (word not in self.move_directions and  word not in self.feature_list):
                     parsedText.clear()
                 else:
                     print(word)

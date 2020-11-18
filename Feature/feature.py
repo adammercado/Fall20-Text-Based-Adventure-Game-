@@ -18,3 +18,6 @@ class Feature:
         }
 
         return featureData
+
+    def getDesc(self):
+        print(self.desc)
