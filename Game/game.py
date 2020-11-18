@@ -209,8 +209,8 @@ class Game:
             for i, room in enumerate(self.rooms):
                 if room.name == newRoom:
                     self.location = room
-                    print("New location: ")
                     self.location.getLoadData()
+                    self.location.getFeatures()
 
                     if self.location.name == "Lake Lunaria":
                         print("You have reached the last room. Exiting game.")

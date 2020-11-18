@@ -32,9 +32,6 @@ class Room:
                 cur = Feature(obj["name"], obj["desc"], obj["isInteractive"], obj["interactions"])
                 self.featureList.append(cur)
 
-        #for obj in self.featureList:
-            #obj.getInfo()
-
     # Constructor using file name
     def fromFileName(fileName):
         with open(fileName) as infile:
@@ -76,6 +73,10 @@ class Room:
 
     def getConnection(self, num):
         return self.connections[num]
+
+    def getFeatures(self):
+        for obj in self.featureList:
+           obj.getInfo()
 
     # Test method called when saving room data to json
     def getData(self):
