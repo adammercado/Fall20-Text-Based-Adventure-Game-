@@ -100,7 +100,12 @@ class Room:
 
     def roomDropItem(self, item):
         for obj in self.inventory.getInventoryList():
-            print(obj.name)
-            if obj.name.lower() == item and obj.isObtainable():
-                print("Match found in room inventory")
-                self.inventory.removeItem(obj)
+            if obj.name.lower() == item:
+                if obj.isObtainable():
+                    print("Match found in room inventory")
+                    self.inventory.removeItem(obj)
+                    return True
+                else:
+                    print("{} is not located here.".format(obj.name))
+
+        return False

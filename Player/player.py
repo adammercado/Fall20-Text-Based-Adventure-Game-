@@ -38,13 +38,11 @@ class Player:
 
     def playerDropItem(self, item):
         for obj in self.inventory.getInventoryList():
-            print(obj.name)
-            if obj.name.lower() == item and obj.isObtainable():
-                print("Match found in room inventory")
-                self.inventory.removeItem(obj)
-                #self.inventory.removeItem(item)
-                print("{} dropped the {}.".format(self.name, item))
-
-        #print items in inventory to verify they are being dropped
-        #self.inventory.displayInventory()
+            if obj.name.lower() == item:
+                if obj.isObtainable():
+                    print("Match found in player inventory")
+                    self.inventory.removeItem(obj)
+                    print("{} dropped the {}.".format(self.name, obj.name))
+                else:
+                    print("{} is not located here.".format(obj.name))
 

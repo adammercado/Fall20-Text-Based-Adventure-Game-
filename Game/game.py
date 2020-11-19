@@ -147,14 +147,12 @@ class Game:
 
             if parsedText[0] == "take":
                 if self.location.inventory.checkInventory(parsedText[1]):
-                    self.location.roomDropItem(parsedText[1])
-                    curItem = Item.createItemFromFile(itemPath)
+                    if self.location.roomDropItem(parsedText[1]):
+                        curItem = Item.createItemFromFile(itemPath)
 
-                    self.player.playerAddItem(curItem)
-                    print("PLAYER INVENTORY")
-                    self.player.inventory.displayInventory()
-                    print("ROOM INVENTORY")
-                    self.location.inventory.displayInventory()
+                        self.player.playerAddItem(curItem)
+                    else:
+                        print("{} is not obtainable yet.".format(parsedText[1]))
                 else:
                     print("There is no {} in this location.".format(parsedText[1]))
 
@@ -164,13 +162,14 @@ class Game:
                     curItem = Item.createItemFromFile(itemPath)
 
                     self.location.roomAddItem(curItem)
-                    print("PLAYER INVENTORY")
-                    self.player.inventory.displayInventory()
-                    print("ROOM INVENTORY")
-                    self.location.inventory.displayInventory()
                  else:
                     print("Cannot drop {} because it is not in the inventory.".format(parsedText[1]))
- 
+
+            print("PLAYER INVENTORY")
+            self.player.inventory.displayInventory()
+            print("ROOM INVENTORY")
+            self.location.inventory.displayInventory()
+
         elif parsedText[0] == "savegame":
             self.saveGame()
 
