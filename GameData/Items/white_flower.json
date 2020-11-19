@@ -1,4 +1,5 @@
 {
 	"name": "White Flower",
-	"description": "temporary item description"
+	"description": "A flower native to the Astraia region. Its numerous white petals are said to symbolize one' hopes and dreams, innocent and unwavering.",
+	"obtainable": true
 }

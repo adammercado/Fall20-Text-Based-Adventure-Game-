@@ -1,4 +1,5 @@
 {
 	"name": "Rusted Key",
-	"description": "temporary item description"
+	"description": "An old key, found hanging in the forest for reasons unknown. It's attached to an old piece of string, as if the previous owner wore it around their neck.",
+	"obtainable": false
 }

@@ -1,4 +1,5 @@
 {
 	"name": "Map",
-	"description": "temporary item description"
+	"description": "A map of the areas surrounding Astraia.",
+	"obtainable": true
 }

@@ -1,4 +1,5 @@
 {
 	"name": "Tree Branch",
-	"description": "temporary item description"
+	"description": "A long, sturdy branch from some tree. It can probably be used to reach far or high places.",
+	"obtainable": true
 }
