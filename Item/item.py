@@ -12,9 +12,10 @@ class Item:
     """
    
     # Constructor
-    def __init__(self, name, description):
+    def __init__(self, name, description, obtainable):
         self.name = name
         self.description = description
+        self.obtainable = obtainable
 
     def createItemFromFile(fileName):
         with open(fileName) as infile:
@@ -22,5 +23,6 @@ class Item:
 
             name = data["name"]
             description = data["description"]
+            obtainable = data["obtainable"]
 
         return Item(name, description)
