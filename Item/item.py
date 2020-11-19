@@ -26,3 +26,9 @@ class Item:
             obtainable = data["obtainable"]
 
         return Item(name, description)
+
+    def isObtainable(self):
+        return self.obtainable
+
+    def getDescription(self):
+        print(self.description)
