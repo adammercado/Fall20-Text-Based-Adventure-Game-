@@ -49,7 +49,7 @@ class Game:
             else:
                 continue
 
-        self.player = Player("")
+        self.player = Player(None)
         self.playGame()
 
     # Calls class methods to convert data into JSON format and write to save file
@@ -89,12 +89,12 @@ class Game:
                 roomData = json.loads(data["rooms"])
 
                 # Call constructors for initializing using JSON data
-                self.location = Room(locationData['name'], locationData['longDesc'], locationData['shortDesc'], locationData['priorVisit'], locationData['connections'], locationData['inventory'], locationData['featureList'])
+                self.location = Room(locationData['name'], locationData['longDesc'], locationData['shortDesc'], locationData['priorVisit'], locationData['connections'], locationData['inventory'], locationData['featureList'], True)
                 self.player = Player(playerData['inventory'])
 
                 # Call constructors for each object in room list received from JSON and append to rooms list in Game
                 for room in roomData:
-                    curRoom = Room(room['name'], room['longDesc'], room['shortDesc'], room['priorVisit'], room['connections'], room['inventory'], room['featureList'])
+                    curRoom = Room(room['name'], room['longDesc'], room['shortDesc'], room['priorVisit'], room['connections'], room['inventory'], room['featureList'], True)
                     self.rooms.append(curRoom)
 
             self.playGame()

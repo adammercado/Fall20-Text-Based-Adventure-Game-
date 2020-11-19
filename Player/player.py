@@ -8,9 +8,9 @@ class Player:
 
     def __init__(self, items):
         self.name = "Boy"
-        self.inventory = Inventory()
-        directory = "./GameData/Items"
-
+        self.inventory = Inventory(None)
+        #directory = "./GameData/Items"
+        """
         for item in items:
             if item != None:
                 itemName = self.parser.convertSpaces(item.lower())
@@ -18,12 +18,19 @@ class Player:
                 curItem = Item.createItemFromFile(itemPath)
 
                 self.inventory.addItem(curItem)
+        """
+
+        if items != None:
+            for data in items:
+                if data != None:
+                    curItem = Item(data["name"], data["description"], data["obtainable"])
+                    self.inventory.addItem(curItem)
 
     def convertPlayerToJson(self):
-        playerInventory = []
+        playerInventory = self.inventory.convertInventoryToJson()
         
-        for item in self.inventory.getInventoryList():
-            playerInventory.append(item.name)
+        #for item in self.inventory.getInventoryList():
+        #    playerInventory.append(item.name)
 
         playerData = {
             "name": self.name,
@@ -40,9 +47,6 @@ class Player:
         for obj in self.inventory.getInventoryList():
             if obj.name.lower() == item:
                 if obj.isObtainable():
-                    print("Match found in player inventory")
                     self.inventory.removeItem(obj)
                     print("{} dropped the {}.".format(self.name, obj.name))
-                else:
-                    print("{} is not located here.".format(obj.name))
 

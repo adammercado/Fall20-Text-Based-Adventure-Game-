@@ -27,6 +27,15 @@ class Item:
 
         return Item(name, description, obtainable)
 
+    def convertItemToJson(self):
+        itemData = {
+            "name": self.name,
+            "description": self.description,
+            "obtainable": self.obtainable
+        }
+
+        return itemData
+
     def isObtainable(self):
         return self.obtainable
 

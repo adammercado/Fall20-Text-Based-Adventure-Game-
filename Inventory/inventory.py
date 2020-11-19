@@ -11,8 +11,23 @@ Methods:
 """
 
 class Inventory:
-    def __init__(self):
+    def __init__(self, items):
         self.inventory = []
+
+        if items != None:
+            for obj in items:
+                print(obj)
+                curItem = Item(obj["name"], obj["description"], obj["obtainable"])
+                self.addItem(curItem)
+
+    def convertInventoryToJson(self):
+        inventoryData = []
+
+        for item in self.inventory:
+            cur = item.convertItemToJson()
+            inventoryData.append(cur)
+
+        return inventoryData
 
     # Iterate through list and print name and description of each item object 
     def displayInventory(self):
@@ -37,13 +52,12 @@ class Inventory:
         return False
 
     # Add items to inventory by appending object to list
-    def addItem(self, itemObj):
-        self.inventory.append(itemObj)
+    def addItem(self, item):
+        self.inventory.append(item)
 
     # Remove items 
     def removeItem(self, item):
         for i, obj in enumerate(self.inventory):
             if obj == item:
-                print("match found in delete inventory")
                 del self.inventory[i]
                 break

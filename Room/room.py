@@ -8,24 +8,28 @@ from Feature.feature import Feature
 class Room:
     parser = TextParser()
 
-    def __init__(self, name, longDesc, shortDesc, priorVisit, connections, items, features):
+    def __init__(self, name, longDesc, shortDesc, priorVisit, connections, items, features, load):
         self.name = name
         self.longDesc = longDesc
         self.shortDesc = shortDesc
         self.priorVisit = bool(priorVisit == "true")
         self.connections = connections
-        self.inventory = Inventory()
+        self.inventory = Inventory(None)
         self.featureList = []
 
         directory = "./GameData/Items"
 
         for item in items:
-            if item != None:
+            if item != None and load == False:
                 itemName = self.parser.convertSpaces(item.lower())
                 itemPath = directory + "/{}.json".format(itemName) 
                 curItem = Item.createItemFromFile(itemPath)
-
                 self.inventory.addItem(curItem)
+            elif item != None and load:
+                self.inventory = Inventory(items)
+                #print(item)
+                #curItem = Item(item["name"], item["description"], item["obtainable"])
+                #self.inventory.addItem(curItem)
 
         for obj in features:
             if obj:
@@ -45,19 +49,19 @@ class Room:
             items = data["items"]
             features = data["features"]
 
-        return Room(name, longDesc, shortDesc, priorVisit, connections, items, features)
+        return Room(name, longDesc, shortDesc, priorVisit, connections, items, features, False)
 
     def convertRoomToJson(self):
-        jsonInventory = []
+        jsonInventory = self.inventory.convertInventoryToJson()
         jsonFeatures = []
 
-        for item in self.inventory.getInventoryList():
-           jsonInventory.append(item.name)
+        #for item in self.inventory.getInventoryList():
+        #   jsonInventory.append(item.name)
 
         for obj in self.featureList:
            jsonFeatures.append(obj.convertFeatureToJson())
 
-        print(jsonFeatures)
+        #print(jsonFeatures)
 
         roomData = {
             "name": self.name,
@@ -102,10 +106,7 @@ class Room:
         for obj in self.inventory.getInventoryList():
             if obj.name.lower() == item:
                 if obj.isObtainable():
-                    print("Match found in room inventory")
                     self.inventory.removeItem(obj)
                     return True
-                else:
-                    print("{} is not located here.".format(obj.name))
 
         return False
