@@ -40,9 +40,10 @@ class Inventory:
     def addItem(self, itemObj):
         self.inventory.append(itemObj)
 
-    # Remove items - UNTESTED (parser does not handle remove commands yet)
+    # Remove items 
     def removeItem(self, item):
-        for i, o in enumerate(self.inventory):
-            if o.name.lower() == item:
+        for i, obj in enumerate(self.inventory):
+            if obj == item:
+                print("match found in delete inventory")
                 del self.inventory[i]
                 break

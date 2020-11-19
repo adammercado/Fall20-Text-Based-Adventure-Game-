@@ -25,7 +25,7 @@ class Item:
             description = data["description"]
             obtainable = data["obtainable"]
 
-        return Item(name, description)
+        return Item(name, description, obtainable)
 
     def isObtainable(self):
         return self.obtainable

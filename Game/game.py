@@ -151,7 +151,9 @@ class Game:
                     curItem = Item.createItemFromFile(itemPath)
 
                     self.player.playerAddItem(curItem)
+                    print("PLAYER INVENTORY")
                     self.player.inventory.displayInventory()
+                    print("ROOM INVENTORY")
                     self.location.inventory.displayInventory()
                 else:
                     print("There is no {} in this location.".format(parsedText[1]))
@@ -162,7 +164,9 @@ class Game:
                     curItem = Item.createItemFromFile(itemPath)
 
                     self.location.roomAddItem(curItem)
+                    print("PLAYER INVENTORY")
                     self.player.inventory.displayInventory()
+                    print("ROOM INVENTORY")
                     self.location.inventory.displayInventory()
                  else:
                     print("Cannot drop {} because it is not in the inventory.".format(parsedText[1]))

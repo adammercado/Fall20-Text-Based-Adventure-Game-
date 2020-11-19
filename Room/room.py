@@ -99,4 +99,8 @@ class Room:
         self.inventory.addItem(item)
 
     def roomDropItem(self, item):
-        self.inventory.removeItem(item)
+        for obj in self.inventory.getInventoryList():
+            print(obj.name)
+            if obj.name.lower() == item and obj.isObtainable():
+                print("Match found in room inventory")
+                self.inventory.removeItem(obj)
