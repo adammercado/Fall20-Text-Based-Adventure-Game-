@@ -48,7 +48,6 @@ class TextParser:
                     if i != (len(args) - 1):
                        package += " "
 
-            print(package)
             if package in self.item_list or package in self.feature_list:
                 parsedText.append(package)
             else:

@@ -38,7 +38,6 @@ class Game:
         for fileName in os.listdir(directory):
             if fileName.endswith(".json"):
                 roomPath = directory + "/" + fileName
-                print(roomPath)
                 curRoom = Room.fromFileName(roomPath)
 
                 # Set starting location
@@ -164,11 +163,12 @@ class Game:
                     self.location.roomAddItem(curItem)
                  else:
                     print("Cannot drop {} because it is not in the inventory.".format(parsedText[1]))
-
+            """
             print("PLAYER INVENTORY")
             self.player.inventory.displayInventory()
             print("ROOM INVENTORY")
             self.location.inventory.displayInventory()
+            """
 
         elif parsedText[0] == "savegame":
             self.saveGame()
@@ -181,8 +181,6 @@ class Game:
 
         elif parsedText[0] == "help":
             print("Display help menu here")
-
-# PLACEHOLDER METHODS
 
     def playerLook(self, direction):
         if len(direction) == 0:
@@ -214,7 +212,7 @@ class Game:
                 if room.name == newRoom:
                     self.location = room
                     self.location.getLoadData()
-                    self.location.getFeatures()
+                    #self.location.getFeatures()
 
                     if self.location.name == "Lake Lunaria":
                         print("You have reached the last room. Exiting game.")
