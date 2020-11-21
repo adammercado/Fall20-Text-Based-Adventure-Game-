@@ -33,7 +33,7 @@ class Room:
 
         for obj in features:
             if obj:
-                cur = Feature(obj["name"], obj["desc"], obj["isInteractive"], obj["interactions"])
+                cur = Feature(obj["name"], obj["desc"], obj["is_interactive"], obj["interactions"])
                 self.feature_list.append(cur)
 
     # Constructor using file name
