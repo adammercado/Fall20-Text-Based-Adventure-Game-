@@ -1,8 +1,8 @@
 {
 	"name": "Ebon Mountains",
-	"longDesc": "temp long description",
-	"shortDesc": "temp short description",
-	"priorVisit": "false",
+	"long_desc": "temp long description",
+	"short_desc": "temp short description",
+	"prior_visit": "false",
 	"connections": [null, "Solaris Highway", "Campsite", null],
 	"items": [null],
 	"features": 
@@ -10,13 +10,13 @@
 		{
 			"name": "mountain path",
 			"desc": "test feature description",
-			"isInteractive": "false",
+			"is_interactive": "false",
 			"interactions": null
 		},
 		{
 			"name": "astraia",
 			"desc": "test feature description",
-			"isInteractive": "false",
+			"is_interactive": "false",
 			"interactions": null
 		}
 	]

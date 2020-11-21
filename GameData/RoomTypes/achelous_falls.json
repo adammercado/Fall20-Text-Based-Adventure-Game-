@@ -1,8 +1,8 @@
 {
 	"name": "Achelous Falls",
-	"longDesc": "temp long description",
-	"shortDesc": "temp short description",
-	"priorVisit": "false",
+	"long_desc": "temp long description",
+	"short_desc": "temp short description",
+	"prior_visit": "false",
 	"connections": [null, "Serene Forest - North", null, "Astraia - Residence Area"],
 	"items": [null],
 	"features": 
@@ -10,19 +10,19 @@
 		{
 			"name": "waterfall",
 			"desc": "test feature description",
-			"isInteractive": "false",
+			"is_interactive": "false",
 			"interactions": null
 		},
 		{
 			"name": "jumping fishes",
 			"desc": "test feature description",
-			"isInteractive": "false",
+			"is_interactive": "false",
 			"interactions": null
 		},
 		{
 			"name": "town entrance",
 			"desc": "test feature description",
-			"isInteractive": "false",
+			"is_interactive": "false",
 			"interactions": null
 		}
 	]
