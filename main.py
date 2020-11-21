@@ -14,7 +14,7 @@ def quit_game():
     choice = input("""
                       1: YES
                       2: NO
-   
+
                       Please enter your choice: """)
 
     if choice == "1":
@@ -53,7 +53,7 @@ def play_game():
                       1: NEW GAME
                       2: LOAD GAME
                       3: GO BACK
-       
+
                       Please enter your choice: """)
 
     if choice == "1":

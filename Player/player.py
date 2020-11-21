@@ -15,7 +15,7 @@ class Player:
         for item in items:
             if item != None:
                 itemName = self.parser.convertSpaces(item.lower())
-                itemPath = "{0}/{1}.json".format(directory, itemName) 
+                itemPath = "{0}/{1}.json".format(directory, itemName)
                 cur_item = Item.createItemFromFile(itemPath)
 
                 self.inventory.addItem(cur_item)
@@ -24,7 +24,8 @@ class Player:
         if items is not None:
             for data in items:
                 if data is not None:
-                    cur_item = Item(data["name"], data["description"], data["obtainable"])
+                    cur_item = Item(data["name"], data["description"],
+                                    data["obtainable"])
                     self.inventory.add_item(cur_item)
 
     def convert_player_to_json(self):
@@ -42,7 +43,8 @@ class Player:
 
     def player_add_item(self, item):
         self.inventory.add_item(item)
-        print("{} grabbed the {} and placed it in his inventory.".format(self.name, item.name))
+        print("{} grabbed the {} and placed it in his inventory."
+              .format(self.name, item.name))
 
     def player_drop_item(self, item):
         for obj in self.inventory.get_inventory_list():

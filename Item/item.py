@@ -8,10 +8,9 @@ class Item:
       Attribute(s):
       - Name (string)
       - Description (string)
-      
       Method(s):
     """
-   
+
     # Constructor
     def __init__(self, name, description, obtainable):
         self.name = name

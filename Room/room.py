@@ -8,7 +8,8 @@ from Feature.feature import Feature
 class Room:
     parser = TextParser()
 
-    def __init__(self, name, long_desc, short_desc, prior_visit, connections, items, features, load):
+    def __init__(self, name, long_desc, short_desc, prior_visit,
+                 connections, items, features, load):
         self.name = name
         self.long_desc = long_desc
         self.short_desc = short_desc
@@ -27,13 +28,11 @@ class Room:
                 self.inventory.add_item(cur_item)
             elif item is not None and load:
                 self.inventory = Inventory(items)
-                # print(item)
-                # cur_item = Item(item["name"], item["description"], item["obtainable"])
-                # self.inventory.addItem(cur_item)
 
         for obj in features:
             if obj:
-                cur = Feature(obj["name"], obj["desc"], obj["is_interactive"], obj["interactions"])
+                cur = Feature(obj["name"], obj["desc"],
+                              obj["is_interactive"], obj["interactions"])
                 self.feature_list.append(cur)
 
     # Constructor using file name
@@ -49,7 +48,8 @@ class Room:
             items = data["items"]
             features = data["features"]
 
-        return Room(name, long_desc, short_desc, prior_visit, connections, items, features, False)
+        return Room(name, long_desc, short_desc, prior_visit,
+                    connections, items, features, False)
 
     def convert_room_to_json(self):
         json_inventory = self.inventory.convert_inventory_to_json()

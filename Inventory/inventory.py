@@ -1,13 +1,12 @@
 from Item.item import Item
-from copy import deepcopy
 
 """
 Methods:
     __init__(): default constructor initializes empty list
-    displayInventory(): prints name and description of each item in inventory list
+    displayInventory(): prints name and description of each item
     getInventoryList(): returns list attribute (used for json)
     addItem(itemObj): receives an object of Item class and appends to list
-    removeItem(itemName): locates item with matching name in list and deletes from list - UNTESTED
+    removeItem(itemName): locates item in list and deletes
 """
 
 
@@ -17,7 +16,8 @@ class Inventory:
 
         if items is not None:
             for obj in items:
-                cur_item = Item(obj["name"], obj["description"], obj["obtainable"])
+                cur_item = Item(obj["name"], obj["description"],
+                                obj["obtainable"])
                 self.add_item(cur_item)
 
     def convert_inventory_to_json(self):
@@ -29,7 +29,7 @@ class Inventory:
 
         return inventory_data
 
-    # Iterate through list and print name and description of each item object 
+    # Iterate through list and print name and description of each item object
     def display_inventory(self):
         if not self.inventory:
             print("THE INVENTORY IS EMPTY")
@@ -55,7 +55,7 @@ class Inventory:
     def add_item(self, item):
         self.inventory.append(item)
 
-    # Remove items 
+    # Remove items
     def remove_item(self, item):
         for i, obj in enumerate(self.inventory):
             if obj == item:

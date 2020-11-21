@@ -34,7 +34,8 @@ class Game:
     def start_game(self):
         directory = "./GameData/RoomTypes"
 
-        # Iterate through room JSON files in directory and initialize with Room class constructor using file name
+        # Iterate through room JSON files in directory and
+        # initialize with Room class constructor using file name
         for fileName in os.listdir(directory):
             if fileName.endswith(".json"):
                 room_path = directory + "/" + fileName
@@ -51,7 +52,7 @@ class Game:
         self.player = Player(None)
         self.play_game()
 
-    # Calls class methods to convert data into JSON format and write to save file
+    # Calls class methods to convert data into JSON format and write to save
     def save_game(self):
         player_data = json.dumps(self.player.convert_player_to_json())
         location_data = json.dumps(self.location.convert_room_to_json())
@@ -82,23 +83,30 @@ class Game:
             with open("./Saves/gameSave.json") as infile:
                 data = json.load(infile)
 
-                # Receive JSON lists of data 
+                # Receive JSON lists of data
                 player_data = json.loads(data["player"])
                 location_data = json.loads(data["location"])
                 room_data = json.loads(data["rooms"])
 
                 # Call constructors for initializing using JSON data
-                self.location = Room(location_data['name'], location_data['long_desc'], location_data['short_desc'],
-                                     location_data['prior_visit'], location_data['connections'],
+                self.location = Room(location_data['name'],
+                                     location_data['long_desc'],
+                                     location_data['short_desc'],
+                                     location_data['prior_visit'],
+                                     location_data['connections'],
                                      location_data['inventory'],
                                      location_data['feature_list'],
                                      True)
+
                 self.player = Player(player_data['inventory'])
 
-                # Call constructors for each object in room list received from JSON and append to rooms list in Game
+                # Call constructors for each object in room list from JSON
+                # and append to rooms list in Game
                 for room in room_data:
-                    cur_room = Room(room['name'], room['long_desc'], room['short_desc'], room['prior_visit'],
-                                    room['connections'], room['inventory'], room['feature_list'], True)
+                    cur_room = Room(room['name'], room['long_desc'],
+                                    room['short_desc'], room['prior_visit'],
+                                    room['connections'], room['inventory'],
+                                    room['feature_list'], True)
                     self.rooms.append(cur_room)
 
             self.play_game()
@@ -106,7 +114,7 @@ class Game:
             print("No save file found. Creating a new game...")
             self.start_game()
 
-    # Handles actions pertaining to gameplay using received input 
+    # Handles actions pertaining to gameplay using received input
     def play_game(self):
         while 1:
             print("Current location: " + self.location.name)
@@ -119,7 +127,7 @@ class Game:
 
             self.get_input(args)
 
-    # Receive tokenized input as list and pass to TextParser to determine command
+    # Receive tokenized input as list and pass to TextParser
     def get_input(self, args):
         parsed_text = self.parser.parse(args)
 
@@ -157,13 +165,16 @@ class Game:
             if parsed_text[0] == "take":
                 if self.location.inventory.check_inventory(parsed_text[1]):
                     if self.location.room_drop_item(parsed_text[1]):
-                        cur_item = Item.create_item_from_file(item_path)
+                        cur_item = \
+                            Item.create_item_from_file(item_path)
 
                         self.player.player_add_item(cur_item)
                     else:
-                        print("{} is not obtainable yet.".format(parsed_text[1]))
+                        print("{} is not obtainable yet."
+                              .format(parsed_text[1]))
                 else:
-                    print("There is no {} in this location.".format(parsed_text[1]))
+                    print("There is no {} in this location."
+                          .format(parsed_text[1]))
 
             elif parsed_text[0] == "place":
                 if self.player.inventory.check_inventory(parsed_text[1]):
@@ -172,7 +183,8 @@ class Game:
 
                     self.location.room_add_item(cur_item)
                 else:
-                    print("Cannot drop {} because it is not in the inventory.".format(parsed_text[1]))
+                    print("Cannot drop {} because it is not in the inventory."
+                          .format(parsed_text[1]))
             """
             print("PLAYER INVENTORY")
             self.player.inventory.displayInventory()
@@ -201,7 +213,6 @@ class Game:
 
     def player_move(self, direction):
         print("Command: Move " + direction)
-        new_room = ""
         num = -1
 
         if direction == "north":
