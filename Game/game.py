@@ -216,7 +216,7 @@ class Game:
             for i, room in enumerate(self.rooms):
                 if room.name == new_room:
                     self.location = room
-                    self.location.get_load_data()
+                    self.location.get_short_desc()
                     # self.location.getFeatures()
 
                     if self.location.name == "Lake Lunaria":

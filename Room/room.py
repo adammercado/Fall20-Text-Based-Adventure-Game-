@@ -90,12 +90,12 @@ class Room:
                 break
 
     # Test method called when saving room data to json
-    def get_data(self):
+    def get_long_desc(self):
         print(self.name)
         print(self.long_desc)
 
     # Test method called when loading room data from json
-    def get_load_data(self):
+    def get_short_desc(self):
         print(self.name)
         print(self.short_desc)
 

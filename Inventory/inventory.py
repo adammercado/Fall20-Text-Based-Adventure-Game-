@@ -17,7 +17,6 @@ class Inventory:
 
         if items is not None:
             for obj in items:
-                print(obj)
                 cur_item = Item(obj["name"], obj["description"], obj["obtainable"])
                 self.add_item(cur_item)
 
