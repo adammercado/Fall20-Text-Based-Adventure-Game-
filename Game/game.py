@@ -88,16 +88,16 @@ class Game:
                 room_data = json.loads(data["rooms"])
 
                 # Call constructors for initializing using JSON data
-                self.location = Room(location_data['name'], location_data['longDesc'], location_data['shortDesc'],
-                                     location_data['priorVisit'], location_data['connections'],
+                self.location = Room(location_data['name'], location_data['long_desc'], location_data['short_desc'],
+                                     location_data['prior_visit'], location_data['connections'],
                                      location_data['inventory'],
-                                     location_data['featureList'], True)
+                                     location_data['feature_list'], True)
                 self.player = Player(player_data['inventory'])
 
                 # Call constructors for each object in room list received from JSON and append to rooms list in Game
                 for room in room_data:
-                    cur_room = Room(room['name'], room['longDesc'], room['shortDesc'], room['priorVisit'],
-                                    room['connections'], room['inventory'], room['featureList'], True)
+                    cur_room = Room(room['name'], room['long_desc'], room['short_desc'], room['prior_visit'],
+                                    room['connections'], room['inventory'], room['feature_list'], True)
                     self.rooms.append(cur_room)
 
             self.play_game()
