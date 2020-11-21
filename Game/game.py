@@ -91,7 +91,8 @@ class Game:
                 self.location = Room(location_data['name'], location_data['long_desc'], location_data['short_desc'],
                                      location_data['prior_visit'], location_data['connections'],
                                      location_data['inventory'],
-                                     location_data['feature_list'], True)
+                                     location_data['feature_list'],
+                                     True)
                 self.player = Player(player_data['inventory'])
 
                 # Call constructors for each object in room list received from JSON and append to rooms list in Game

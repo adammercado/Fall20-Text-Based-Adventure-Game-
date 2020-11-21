@@ -15,7 +15,7 @@ class Feature:
         feature_data = {
             "name": self.name,
             "desc": self.desc,
-            "isInteractive": self.is_interactive,
+            "is_interactive": self.is_interactive,
             "interactions": self.interactions
         }
 

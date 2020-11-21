@@ -18,7 +18,7 @@ class Item:
         self.description = description
         self.obtainable = obtainable
 
-    def create_item_from_file(self, file_name):
+    def create_item_from_file(file_name):
         with open(file_name) as infile:
             data = json.load(infile)
 
