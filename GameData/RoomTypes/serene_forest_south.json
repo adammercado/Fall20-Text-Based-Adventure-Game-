@@ -1,8 +1,23 @@
 {
 	"name": "Serene Forest - South",
-	"longDesc": "temp long description",
-	"shortDesc": "temp short description",
-	"priorVisit": "false",
+	"long_desc": "temp long description",
+	"short_desc": "temp short description",
+	"prior_visit": "false",
 	"connections": ["Serene Forest - North", null, null, null],
-	"items": ["Tree Branch"]
+	"items": ["Tree Branch"],
+	"features": 
+	[
+		{
+			"name": "tree",
+			"desc": "test feature description",
+			"is_interactive": "false",
+			"interactions": null
+		},
+		{
+			"name": "rabbit",
+			"desc": "test feature description",
+			"is_interactive": "false",
+			"interactions": null
+		}
+	]
 }

@@ -1,4 +1,5 @@
 {
 	"name": "Dull Pendant",
-	"description": "temporary item description"
+	"description": "An old, somewhat worn-down pendant found in an abandoned home. It appears to have an opening to insert small, spherical object.",
+	"obtainable": false
 }

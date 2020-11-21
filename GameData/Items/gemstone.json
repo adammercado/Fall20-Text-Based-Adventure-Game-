@@ -1,4 +1,5 @@
 {
 	"name": "Gemstone",
-	"description": "temporary item description"
+	"description": "A small but bright, translucent stone from that appeared at the shrine. Staring at it feels like a glimpse into one's many possible futures.",
+	"obtainable": false
 }

@@ -1,8 +1,29 @@
 {
 	"name": "Astraia - Market Plaza",
-	"longDesc": "temp long description",
-	"shortDesc": "temp short description",
-	"priorVisit": "false",
+	"long_desc": "temp long description",
+	"short_desc": "temp short description",
+	"prior_visit": "false",
 	"connections": ["Solaris Highway", null, "Astraia - Residence Area", "Lake Astraia"],
-	"items": ["Map", "Flask"]
+	"items": ["Map", "Flask"],
+	"features":
+	[
+		{
+			"name": "fountain",
+			"desc": "test feature description",
+			"is_interactive": "false",
+			"interactions": null
+		},
+		{
+			"name": "loud merchant",
+			"desc": "test feature description",
+			"is_interactive": "false",
+			"interactions": null
+		},
+		{
+			"name": "market stand",
+			"desc": "test feature description",
+			"is_interactive": "false",
+			"interactions": null
+		}
+	]
 }

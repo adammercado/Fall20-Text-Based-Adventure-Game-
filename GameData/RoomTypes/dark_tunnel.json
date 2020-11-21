@@ -1,8 +1,23 @@
 {
 	"name": "Dark Tunnel",
-	"longDesc": "temp long description",
-	"shortDesc": "temp short description",
-	"priorVisit": "false",
+	"long_desc": "temp long description",
+	"short_desc": "temp short description",
+	"prior_visit": "false",
 	"connections": [null, null, "Crossroads", "Campsite"],
-	"items": [null]
+	"items": [null],
+	"features": 
+	[
+		{
+			"name": "stalagmites",
+			"desc": "test feature description",
+			"is_interactive": "false",
+			"interactions": null
+		},
+		{
+			"name": "bats",
+			"desc": "test feature description",
+			"is_interactive": "false",
+			"interactions": null
+		}
+	]
 }

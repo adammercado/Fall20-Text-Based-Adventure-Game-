@@ -1,4 +1,5 @@
 {
 	"name": "Flask",
-	"description": "temporary item description"
+	"description": "An empty, standard flask given away for free at Astraia's market place as part of a local celebration.",
+	"obtainable": true
 }

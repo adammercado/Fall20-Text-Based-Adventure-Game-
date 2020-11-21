@@ -6,6 +6,7 @@ from TextParser.textParser import TextParser
 from Room.room import Room
 from Item.item import Item
 from Player.player import Player
+from Feature.feature import Feature
 
 """
 Attributes:
@@ -30,41 +31,41 @@ class Game:
     rooms = []
 
     # Initializes game state before calling playGame()
-    def startGame(self):
+    def start_game(self):
         directory = "./GameData/RoomTypes"
 
         # Iterate through room JSON files in directory and initialize with Room class constructor using file name
         for fileName in os.listdir(directory):
             if fileName.endswith(".json"):
-                roomPath = directory + "/" + fileName
-                curRoom = Room.fromFileName(roomPath)
+                room_path = directory + "/" + fileName
+                cur_room = Room.from_file_name(room_path)
 
                 # Set starting location
-                if curRoom.name == "Serene Forest - South":
-                    self.location = curRoom
+                if cur_room.name == "Serene Forest - South":
+                    self.location = cur_room
 
-                self.rooms.append(curRoom)
+                self.rooms.append(cur_room)
             else:
                 continue
 
-        self.player = Player("")
-        self.playGame()
+        self.player = Player(None)
+        self.play_game()
 
     # Calls class methods to convert data into JSON format and write to save file
-    def saveGame(self):
-        playerData = json.dumps(self.player.convertPlayerToJson())
-        locationData = json.dumps(self.location.convertRoomToJson())
-        roomData = []
+    def save_game(self):
+        player_data = json.dumps(self.player.convert_player_to_json())
+        location_data = json.dumps(self.location.convert_room_to_json())
+        room_data = []
 
         for room in self.rooms:
-            roomData.append(room.convertRoomToJson())
+            room_data.append(room.convert_room_to_json())
 
-        roomData = json.dumps(roomData)
+        room_data = json.dumps(room_data)
 
         data = {
-            "player": playerData,
-            "location": locationData,
-            "rooms": roomData
+            "player": player_data,
+            "location": location_data,
+            "rooms": room_data
         }
 
         # Open or create save file and dump JSON data into it
@@ -74,124 +75,132 @@ class Game:
         print("Game saved successfully.")
 
     # Opens save file use loaded JSON data to re-initialize game state
-    def loadGame(self):
-        saveFile = Path("./Saves/gameSave.json")
+    def load_game(self):
+        save_file = Path("./Saves/gameSave.json")
 
-        if saveFile.is_file():
+        if save_file.is_file():
             with open("./Saves/gameSave.json") as infile:
                 data = json.load(infile)
 
                 # Receive JSON lists of data 
-                playerData = json.loads(data["player"])
-                locationData = json.loads(data["location"])
-                roomData = json.loads(data["rooms"])
+                player_data = json.loads(data["player"])
+                location_data = json.loads(data["location"])
+                room_data = json.loads(data["rooms"])
 
                 # Call constructors for initializing using JSON data
-                self.location = Room(locationData['name'], locationData['longDesc'], locationData['shortDesc'], locationData['priorVisit'], locationData['connections'], locationData['inventory'])
-                self.player = Player(playerData['inventory'])
+                self.location = Room(location_data['name'], location_data['long_desc'], location_data['short_desc'],
+                                     location_data['prior_visit'], location_data['connections'],
+                                     location_data['inventory'],
+                                     location_data['feature_list'],
+                                     True)
+                self.player = Player(player_data['inventory'])
 
                 # Call constructors for each object in room list received from JSON and append to rooms list in Game
-                for room in roomData:
-                    curRoom = Room(room['name'], room['longDesc'], room['shortDesc'], room['priorVisit'], room['connections'], room['inventory'])
-                    self.rooms.append(curRoom)
+                for room in room_data:
+                    cur_room = Room(room['name'], room['long_desc'], room['short_desc'], room['prior_visit'],
+                                    room['connections'], room['inventory'], room['feature_list'], True)
+                    self.rooms.append(cur_room)
 
-            self.playGame()
+            self.play_game()
         else:
             print("No save file found. Creating a new game...")
-            self.startGame()
+            self.start_game()
 
     # Handles actions pertaining to gameplay using received input 
-    def playGame(self):
+    def play_game(self):
         while 1:
             print("Current location: " + self.location.name)
 
             args = input("Enter an action: ").lower().split()
-            self.getInput(args)
+            self.get_input(args)
 
     # Receive tokenized input as list and pass to TextParser to determine command
-    def getInput(self, args):
-        parsedText = self.parser.parse(args)
+    def get_input(self, args):
+        parsed_text = self.parser.parse(args)
 
-        if len(parsedText) == 0:
+        if len(parsed_text) == 0:
             print("Not a valid action.")
 
-        elif parsedText[0] == "quit":
+        elif parsed_text[0] == "quit":
             print("Exiting gameplay")
             sys.exit()
 
-        elif parsedText[0] == "look":
+        elif parsed_text[0] == "look":
             direction = ""
 
-            if len(parsedText) == 2:
-                direction = parsedText[1]
+            if len(parsed_text) == 2:
+                direction = parsed_text[1]
 
-            self.playerLook(direction)
+            self.player_look(direction)
 
-        elif parsedText[0] == "move":
+        elif parsed_text[0] == "move":
             direction = ""
 
-            if len(parsedText) == 2:
-                direction = parsedText[1]
-                self.playerMove(direction)
+            if len(parsed_text) == 2:
+                direction = parsed_text[1]
+                self.player_move(direction)
             else:
                 print("You must enter a cardinal direction to move in.")
 
-        elif parsedText[0] == "use":
-            self.playerUse("item")
+        elif parsed_text[0] == "use":
+            self.player_use("item")
 
-        elif parsedText[0] == "take" or parsedText[0] == "place":
-            itemName = self.parser.convertSpaces(parsedText[1].lower())
-            itemPath = "./GameData/Items/{}.json".format(itemName) 
+        elif parsed_text[0] == "take" or parsed_text[0] == "place":
+            item_name = self.parser.convert_spaces(parsed_text[1].lower())
+            item_path = "./GameData/Items/{}.json".format(item_name)
 
-            if parsedText[0] == "take":
-                if self.location.inventory.checkInventory(parsedText[1]):
-                    self.location.roomDropItem(parsedText[1])
-                    curItem = Item.createItemFromFile(itemPath)
+            if parsed_text[0] == "take":
+                if self.location.inventory.check_inventory(parsed_text[1]):
+                    if self.location.room_drop_item(parsed_text[1]):
+                        cur_item = Item.create_item_from_file(item_path)
 
-                    self.player.playerAddItem(curItem)
-                    self.player.inventory.displayInventory()
-                    self.location.inventory.displayInventory()
+                        self.player.player_add_item(cur_item)
+                    else:
+                        print("{} is not obtainable yet.".format(parsed_text[1]))
                 else:
-                    print("There is no {} in this location.".format(parsedText[1]))
+                    print("There is no {} in this location.".format(parsed_text[1]))
 
-            elif parsedText[0] == "place":
-                 if self.player.inventory.checkInventory(parsedText[1]):
-                    self.player.playerDropItem(parsedText[1])
-                    curItem = Item.createItemFromFile(itemPath)
+            elif parsed_text[0] == "place":
+                if self.player.inventory.check_inventory(parsed_text[1]):
+                    self.player.player_drop_item(parsed_text[1])
+                    cur_item = Item.create_item_from_file(item_path)
 
-                    self.location.roomAddItem(curItem)
-                    self.player.inventory.displayInventory()
-                    self.location.inventory.displayInventory()
-                 else:
-                    print("Cannot drop {} because it is not in the inventory.".format(parsedText[1]))
- 
-        elif parsedText[0] == "savegame":
-            self.saveGame()
-
-        elif parsedText[0] == "loadgame":
-            self.loadGame()
-
-        elif parsedText[0] == "inventory":
+                    self.location.room_add_item(cur_item)
+                else:
+                    print("Cannot drop {} because it is not in the inventory.".format(parsed_text[1]))
+            """
+            print("PLAYER INVENTORY")
             self.player.inventory.displayInventory()
+            print("ROOM INVENTORY")
+            self.location.inventory.displayInventory()
+            """
 
-        elif parsedText[0] == "help":
+        elif parsed_text[0] == "savegame":
+            self.save_game()
+
+        elif parsed_text[0] == "loadgame":
+            self.load_game()
+
+        elif parsed_text[0] == "inventory":
+            self.player.inventory.display_inventory()
+
+        elif parsed_text[0] == "help":
             print("Display help menu here")
 
-# PLACEHOLDER METHODS
-
-    def playerLook(self, direction):
+    def player_look(self, direction):
         if len(direction) == 0:
             print("Command: Look")
         else:
             print("Command: Look " + direction)
+            self.location.examine(direction)
 
-    def playerMove(self, direction):
+    def player_move(self, direction):
         print("Command: Move " + direction)
-        newRoom = ""
+        new_room = ""
         num = -1
 
         if direction == "north":
-            num = 0 
+            num = 0
         elif direction == "south":
             num = 1
         elif direction == "east":
@@ -199,16 +208,16 @@ class Game:
         elif direction == "west":
             num = 3
 
-        newRoom = self.location.getConnection(num)
+        new_room = self.location.get_connection(num)
 
-        if newRoom == None:
+        if new_room is None:
             print("There is no exit in that direction.")
         else:
             for i, room in enumerate(self.rooms):
-                if room.name == newRoom:
+                if room.name == new_room:
                     self.location = room
-                    print("New location: ")
-                    self.location.getLoadData()
+                    self.location.get_short_desc()
+                    # self.location.getFeatures()
 
                     if self.location.name == "Lake Lunaria":
                         print("You have reached the last room. Exiting game.")
@@ -216,8 +225,8 @@ class Game:
                     else:
                         break
 
-    def playerUse(self, item):
+    def player_use(self, item):
         print("Command: Use <" + item + ">")
 
-    def playerGame(self):
+    def player_game(self):
         print("Command: Game Status")

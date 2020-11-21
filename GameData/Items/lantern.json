@@ -1,4 +1,5 @@
 {
 	"name": "Lantern",
-	"description": "temporary item description"
+	"description": "A standard-grade lantern. A traveler's best friend for making it through a dark place.",
+	"obtainable": true
 }

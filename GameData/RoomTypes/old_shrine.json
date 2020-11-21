@@ -1,8 +1,29 @@
 {
 	"name": "Old Shrine",
-	"longDesc": "temp long description",
-	"shortDesc": "temp short description",
-	"priorVisit": "false",
+	"long_desc": "temp long description",
+	"short_desc": "temp short description",
+	"prior_visit": "false",
 	"connections": [null, "Crossroads", null, null],
-	"items": ["Gemstone"]
+	"items": ["Gemstone"],
+	"features": 
+	[
+		{
+			"name": "temp1",
+			"desc": "test feature description",
+			"is_interactive": "false",
+			"interactions": null
+		},
+		{
+			"name": "temp2",
+			"desc": "test feature description",
+			"is_interactive": "false",
+			"interactions": null
+		},
+		{
+			"name": "temp3",
+			"desc": "test feature description",
+			"is_interactive": "false",
+			"interactions": null
+		}
+	]
 }

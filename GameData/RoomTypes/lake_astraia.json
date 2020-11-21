@@ -1,8 +1,23 @@
 {
 	"name": "Lake Astraia",
-	"longDesc": "temp long description",
-	"shortDesc": "temp short description",
-	"priorVisit": "false",
+	"long_desc": "temp long description",
+	"short_desc": "temp short description",
+	"prior_visit": "false",
 	"connections": [null, null, "Astraia - Market Plaza", null],
-	"items": [null]
+	"items": [null],
+	"features": 
+	[
+		{
+			"name": "fisherman",
+			"desc": "test feature description",
+			"is_interactive": "false",
+			"interactions": null
+		},
+		{
+			"name": "birds",
+			"desc": "test feature description",
+			"is_interactive": "false",
+			"interactions": null
+		}
+	]
 }
