@@ -1,7 +1,7 @@
 {
 	"name": "Serene Forest - North",
-	"long_desc": "temp long description",
-	"short_desc": "temp short description",
+	"long_desc": "As the Boy moves along to the northern side, he reaches an opening among the trees.  It feels like he can hear a faint sound of moving water to the north. As soon as he realizes that it could be a river, he hears grunting. Startled, he realizes that a fairly large and strange-looking boar has noticed his presence.  The Boy takes a few steps back, and it doesn't seem like the boar will attack. However, it is certainly nervous with the Boy’s presence, and stares him down.\n\nOn a tree opposite the boar is an object with a faint glimmer, hanging from a branch by a worn piece of string. Upon closer inspection, the Boy makes out the shape of a key. While the tree is not that tall, the branch is abnormally long and flimsy. “I’d probably fall if I tried to climb up there”, he mutters to himself.",
+	"short_desc": "The northern end of the quiet forest. Further north is the sound of rushing water. Nearby, a four-tusked boar loiters around. All around are large trees; ignoring the incredible differences among the animals, the forest really isn’t too out of the ordinary.",
 	"prior_visit": "false",
 	"connections": ["Achelous Falls", "Serene Forest - South", null, null],
 	"items": ["Rusted Key"],
@@ -9,7 +9,7 @@
 	[
 		{
 			"name": "angry boar",
-			"desc": "test feature description",
+			"desc": "The boar seems like an ordinary boar in size, based on what he’s read in books.  But one thing stood out: the boar definitely has more tusks than it’s supposed to. The Boy counts four tusks protruding from the creature’s face. The Boy feels he could probably walk by and head towards the sound of water safely, since the beast seems more defensive than aggressive.",
 			"is_interactive": "false",
 			"interactions": null
 		},

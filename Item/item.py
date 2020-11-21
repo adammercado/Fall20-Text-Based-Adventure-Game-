@@ -19,7 +19,7 @@ class Item:
         self.obtainable = obtainable
 
     def create_item_from_file(file_name):
-        with open(file_name) as infile:
+        with open(file_name, encoding="utf-8") as infile:
             data = json.load(infile)
 
             name = data["name"]
