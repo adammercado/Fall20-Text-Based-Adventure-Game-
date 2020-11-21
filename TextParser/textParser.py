@@ -6,7 +6,8 @@ class TextParser:
 
         self.move_directions = ["north", "south", "east", "west"]
 
-        self.use_actions = ["use", "combine", "hit", "strike", "pull", "push", "eat", "drink", "sit", "pour", "consume", "spill", "pry", "whip", "shine"]
+        self.use_actions = ["use", "combine", "hit", "strike", "pull", "push", "eat", "drink", "sit", "pour",
+                            "consume", "spill", "pry", "whip", "shine"]
 
         self.take_actions = ["take", "grab"]
 
@@ -18,26 +19,29 @@ class TextParser:
 
         self.use_prepositions = ["with", "together"]
 
-        self.item_list = ["tree branch", "rusted key", "dull pendant", "map", "flask", "lantern", "white flower", "gemstone"]
+        self.item_list = ["tree branch", "rusted key", "dull pendant", "map", "flask", "lantern", "white flower",
+                          "gemstone"]
 
-        self.feature_list = ["tree", "rabbit", "angry boar", "forest opening", "old journal", "old phone", "waterfall", "jumping fishes", "town entrance", "fountain", "loud merchant", "market stand", "abandoned home", "dog", 
-"campfire", "tents", "middle-aged woman", "stalagmites", "bats", "mountain path", "astraia", "fisherman", "birds", "wooden carriage", "river", "mountains"]
+        self.feature_list = ["tree", "rabbit", "angry boar", "forest opening", "old journal", "old phone", "waterfall",
+                             "jumping fishes", "town entrance", "fountain", "loud merchant", "market stand",
+                             "abandoned home", "dog", "campfire", "tents", "middle-aged woman", "stalagmites", "bats",
+                             "mountain path", "astraia", "fisherman", "birds", "wooden carriage", "river", "mountains"]
 
     # Receive list of arguments and determine type of action received using vocabulary space defined in class
     # Returns list of strings
     def parse(self, args):
         actions = 0
-        directionFlag = False
-        itemFlag = False
-        parsedText = []
-        
+        direction_flag = False
+        item_flag = False
+        parsed_text = []
+
         if args[0] in self.take_actions or args[0] in self.place_actions or args[0] in self.look_actions:
             if args[0] in self.take_actions:
-                parsedText.append("take")
+                parsed_text.append("take")
             elif args[0] in self.place_actions:
-                parsedText.append("place")
+                parsed_text.append("place")
             else:
-                parsedText.append("look")
+                parsed_text.append("look")
 
             package = ""
 
@@ -46,33 +50,34 @@ class TextParser:
                     package += word
 
                     if i != (len(args) - 1):
-                       package += " "
+                        package += " "
 
             if package in self.item_list or package in self.feature_list:
-                parsedText.append(package)
+                parsed_text.append(package)
             else:
-                parsedText.clear()
-    
-            return parsedText
+                parsed_text.clear()
+
+            return parsed_text
 
         for word in args:
             if word == "quit" and len(args) == 1:
                 return args
 
-            elif word in self.look_actions or word in self.move_actions or word in self.use_actions or word in self.game_actions:
+            elif word in self.look_actions or word in self.move_actions or word in self.use_actions \
+                    or word in self.game_actions:
                 actions += 1
                 keyword = ""
 
                 # List containing more than one recognized action will clear and return the empty list
                 if actions > 1:
-                    parsedText.clear()
+                    parsed_text.clear()
 
                 # Otherwise, determine action type and append to return list
                 else:
                     if word in self.move_actions:
-                        directionFlag = True
+                        direction_flag = True
                     if word in self.use_actions:
-                        itemFlag = True
+                        item_flag = True
                     if word in self.move_actions:
                         keyword = "move"
                     elif word in self.use_actions:
@@ -80,33 +85,32 @@ class TextParser:
                     elif word in self.game_actions:
                         keyword = word
 
-                    parsedText.append(keyword)
+                    parsed_text.append(keyword)
 
             # If a direction is received is not valid with received action, list will clear and return empty list
             # Otherwise, append direction to return list
-            elif directionFlag == True:
+            elif direction_flag:
                 if actions == 0 or word not in self.move_directions:
-                    parsedText.clear()
+                    parsed_text.clear()
                 else:
-                    parsedText.append(word)
+                    parsed_text.append(word)
 
-            elif itemFlag == True and actions == 1:
-                parsedText.append(word)
-                itemFlag == False
+            elif item_flag and actions == 1:
+                parsed_text.append(word)
+                item_flag = False
             # Clear list if current word is not found in vocabulary space
             else:
-                parsedText.clear()
+                parsed_text.clear()
 
-        return parsedText
+        return parsed_text
 
-    def convertSpaces(self, string):
-        convertedStr = ""
+    def convert_spaces(self, string):
+        converted_str = ""
 
         for char in string:
             if char.isspace():
-                convertedStr += '_'
+                converted_str += '_'
             else:
-                convertedStr += char
+                converted_str += char
 
-        return convertedStr                
-
+        return converted_str

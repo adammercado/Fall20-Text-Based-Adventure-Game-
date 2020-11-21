@@ -4,33 +4,34 @@ from copy import deepcopy
 """
 Methods:
     __init__(): default constructor initializes empty list
-    displayInventory(): prints name and descrption of each item in inventory list
+    displayInventory(): prints name and description of each item in inventory list
     getInventoryList(): returns list attribute (used for json)
     addItem(itemObj): receives an object of Item class and appends to list
     removeItem(itemName): locates item with matching name in list and deletes from list - UNTESTED
 """
 
+
 class Inventory:
     def __init__(self, items):
         self.inventory = []
 
-        if items != None:
+        if items is not None:
             for obj in items:
                 print(obj)
-                curItem = Item(obj["name"], obj["description"], obj["obtainable"])
-                self.addItem(curItem)
+                cur_item = Item(obj["name"], obj["description"], obj["obtainable"])
+                self.add_item(cur_item)
 
-    def convertInventoryToJson(self):
-        inventoryData = []
+    def convert_inventory_to_json(self):
+        inventory_data = []
 
         for item in self.inventory:
-            cur = item.convertItemToJson()
-            inventoryData.append(cur)
+            cur = item.convert_item_to_json()
+            inventory_data.append(cur)
 
-        return inventoryData
+        return inventory_data
 
     # Iterate through list and print name and description of each item object 
-    def displayInventory(self):
+    def display_inventory(self):
         if not self.inventory:
             print("THE INVENTORY IS EMPTY")
         else:
@@ -41,22 +42,22 @@ class Inventory:
                 print(item.description)
                 print('\n')
 
-    def getInventoryList(self):
+    def get_inventory_list(self):
         return self.inventory
 
-    def checkInventory(self, itemName):
+    def check_inventory(self, item_name):
         for item in self.inventory:
-            if itemName == item.name.lower():
+            if item_name == item.name.lower():
                 return True
 
         return False
 
     # Add items to inventory by appending object to list
-    def addItem(self, item):
+    def add_item(self, item):
         self.inventory.append(item)
 
     # Remove items 
-    def removeItem(self, item):
+    def remove_item(self, item):
         for i, obj in enumerate(self.inventory):
             if obj == item:
                 del self.inventory[i]

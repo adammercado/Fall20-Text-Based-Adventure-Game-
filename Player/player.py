@@ -3,50 +3,50 @@ from TextParser.textParser import TextParser
 from Inventory.inventory import Inventory
 from Item.item import Item
 
+
 class Player:
     parser = TextParser()
 
     def __init__(self, items):
         self.name = "Boy"
         self.inventory = Inventory(None)
-        #directory = "./GameData/Items"
+        # directory = "./GameData/Items"
         """
         for item in items:
             if item != None:
                 itemName = self.parser.convertSpaces(item.lower())
                 itemPath = "{0}/{1}.json".format(directory, itemName) 
-                curItem = Item.createItemFromFile(itemPath)
+                cur_item = Item.createItemFromFile(itemPath)
 
-                self.inventory.addItem(curItem)
+                self.inventory.addItem(cur_item)
         """
 
-        if items != None:
+        if items is not None:
             for data in items:
-                if data != None:
-                    curItem = Item(data["name"], data["description"], data["obtainable"])
-                    self.inventory.addItem(curItem)
+                if data is not None:
+                    cur_item = Item(data["name"], data["description"], data["obtainable"])
+                    self.inventory.add_item(cur_item)
 
-    def convertPlayerToJson(self):
-        playerInventory = self.inventory.convertInventoryToJson()
-        
-        #for item in self.inventory.getInventoryList():
-        #    playerInventory.append(item.name)
+    def convert_player_to_json(self):
+        player_inventory = self.inventory.convert_inventory_to_json()
 
-        playerData = {
+        # for item in self.inventory.getInventoryList():
+        #    player_inventory.append(item.name)
+
+        player_data = {
             "name": self.name,
-            "inventory": playerInventory
+            "inventory": player_inventory
         }
 
-        return playerData 
+        return player_data
 
-    def playerAddItem(self, item):
-        self.inventory.addItem(item)
+    def player_add_item(self, item):
+        self.inventory.add_item(item)
         print("{} grabbed the {} and placed it in his inventory.".format(self.name, item.name))
 
-    def playerDropItem(self, item):
-        for obj in self.inventory.getInventoryList():
+    def player_drop_item(self, item):
+        for obj in self.inventory.get_inventory_list():
             if obj.name.lower() == item:
-                if obj.isObtainable():
-                    self.inventory.removeItem(obj)
+                if obj.is_obtainable():
+                    self.inventory.remove_item(obj)
                     print("{} dropped the {}.".format(self.name, obj.name))
-

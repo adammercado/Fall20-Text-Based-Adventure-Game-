@@ -1,48 +1,54 @@
-#Using import sys to exit the program if user decides to quit the game
+# Using import sys to exit the program if user decides to quit the game
 import sys
 from Game.game import Game
 
-#Main function calls the menu
+
+# Main function calls the menu
 def main():
     menu()
 
-#Quit function 
-def quit():
+
+# Quit function
+def quit_game():
     print("Are you sure you want to quit?")
     choice = input("""
                       1: YES
                       2: NO
    
                       Please enter your choice: """)
-   
+
     if choice == "1":
         sys.exit
     elif choice == "2":
         menu()
     else:
         print("You can only select 1 for yes or 2 for no")
-        quit()
+        quit_game()
 
-#The playNewGame() initializes a new game from the beginning
-def playNewGame():
+
+# The playNewGame() initializes a new game from the beginning
+def play_new_game():
     print()
     print("a new game is initialized...")
     game = Game()
-    game.startGame()
+    game.start_game()
 
-#The loadCurrentGame() opens a file to the players current level
-def loadCurrentGame():
+
+# The loadCurrentGame() opens a file to the players current level
+def load_current_game():
     print()
     print("the game is loaded...")
     game = Game()
-    game.loadGame()
+    game.load_game()
+
 
 '''
 The playGame() allows the user to play a new game, load an existing game,
 or return to the main menu.
 '''
-def playGame():
-    
+
+
+def play_game():
     choice = input("""
                       1: NEW GAME
                       2: LOAD GAME
@@ -51,21 +57,21 @@ def playGame():
                       Please enter your choice: """)
 
     if choice == "1":
-        playNewGame()
+        play_new_game()
     elif choice == "2":
-        loadCurrentGame()
+        load_current_game()
     elif choice == "3":
         menu()
     else:
         print("Invalid choice, please select 1, 2, or 3.")
-        playGame()
+        play_game()
 
-           
-#The main menu()
+
+# The main menu()
 def menu():
     print("************MAIN MENU**************")
     print()
-    
+
     choice = input("""
                       1: PLAY GAME
                       2: QUIT
@@ -73,15 +79,15 @@ def menu():
                       Please enter your choice: """)
 
     if choice == "1":
-        playGame()
+        play_game()
     elif choice == "2":
-        quit()  
+        quit_game()
     else:
         print("You must only select 1 to play or 2 to quit.")
         print("Please try again")
-        menu()    
+        menu()
 
-#Main function
+
+# Main function
 if __name__ == '__main__':
     main()
-

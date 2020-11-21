@@ -8,11 +8,11 @@ from Feature.feature import Feature
 class Room:
     parser = TextParser()
 
-    def __init__(self, name, longDesc, shortDesc, priorVisit, connections, items, features, load):
+    def __init__(self, name, long_desc, short_desc, prior_visit, connections, items, features, load):
         self.name = name
-        self.longDesc = longDesc
-        self.shortDesc = shortDesc
-        self.priorVisit = bool(priorVisit == "true")
+        self.longDesc = long_desc
+        self.shortDesc = short_desc
+        self.priorVisit = bool(prior_visit == "true")
         self.connections = connections
         self.inventory = Inventory(None)
         self.featureList = []
@@ -20,16 +20,16 @@ class Room:
         directory = "./GameData/Items"
 
         for item in items:
-            if item != None and load == False:
-                itemName = self.parser.convertSpaces(item.lower())
-                itemPath = directory + "/{}.json".format(itemName) 
-                curItem = Item.createItemFromFile(itemPath)
-                self.inventory.addItem(curItem)
-            elif item != None and load:
+            if item is not None and not load:
+                item_name = self.parser.convert_spaces(item.lower())
+                item_path = directory + "/{}.json".format(item_name)
+                cur_item = Item.create_item_from_file(item_path)
+                self.inventory.add_item(cur_item)
+            elif item is not None and load:
                 self.inventory = Inventory(items)
-                #print(item)
-                #curItem = Item(item["name"], item["description"], item["obtainable"])
-                #self.inventory.addItem(curItem)
+                # print(item)
+                # cur_item = Item(item["name"], item["description"], item["obtainable"])
+                # self.inventory.addItem(cur_item)
 
         for obj in features:
             if obj:
@@ -37,76 +37,76 @@ class Room:
                 self.featureList.append(cur)
 
     # Constructor using file name
-    def fromFileName(fileName):
-        with open(fileName) as infile:
+    def from_file_name(file_name):
+        with open(file_name) as infile:
             data = json.load(infile)
 
             name = data["name"]
-            longDesc = data["longDesc"]
-            shortDesc = data["shortDesc"]
-            priorVisit = data["priorVisit"]
+            long_desc = data["long_desc"]
+            short_desc = data["short_desc"]
+            prior_visit = data["prior_visit"]
             connections = data["connections"]
             items = data["items"]
             features = data["features"]
 
-        return Room(name, longDesc, shortDesc, priorVisit, connections, items, features, False)
+        return Room(name, long_desc, short_desc, prior_visit, connections, items, features, False)
 
-    def convertRoomToJson(self):
-        jsonInventory = self.inventory.convertInventoryToJson()
-        jsonFeatures = []
+    def convert_room_to_json(self):
+        json_inventory = self.inventory.convert_inventory_to_json()
+        json_features = []
 
-        #for item in self.inventory.getInventoryList():
-        #   jsonInventory.append(item.name)
+        # for item in self.inventory.getInventoryList():
+        #   json_inventory.append(item.name)
 
         for obj in self.featureList:
-           jsonFeatures.append(obj.convertFeatureToJson())
+            json_features.append(obj.convert_feature_to_json())
 
-        #print(jsonFeatures)
+        # print(json_features)
 
-        roomData = {
+        room_data = {
             "name": self.name,
             "longDesc": self.longDesc,
             "shortDesc": self.shortDesc,
             "priorVisit": self.priorVisit,
             "connections": self.connections,
-            "inventory": jsonInventory,
-            "featureList": jsonFeatures
+            "inventory": json_inventory,
+            "featureList": json_features
         }
 
-        return roomData
+        return room_data
 
-    def getConnection(self, num):
+    def get_connection(self, num):
         return self.connections[num]
 
-    def getFeatures(self):
+    def get_features(self):
         for obj in self.featureList:
-           obj.getInfo()
+            obj.get_feature_info()
 
     def examine(self, feature):
         print("feature is: " + feature)
         for obj in self.featureList:
             if feature == obj.name:
-                obj.getDesc()
+                obj.get_desc()
                 break
 
     # Test method called when saving room data to json
-    def getData(self):
+    def get_data(self):
         print(self.name)
         print(self.longDesc)
 
     # Test method called when loading room data from json
-    def getLoadData(self):
+    def get_load_data(self):
         print(self.name)
         print(self.shortDesc)
 
-    def roomAddItem(self, item):
-        self.inventory.addItem(item)
+    def room_add_item(self, item):
+        self.inventory.add_item(item)
 
-    def roomDropItem(self, item):
-        for obj in self.inventory.getInventoryList():
+    def room_drop_item(self, item):
+        for obj in self.inventory.get_inventory_list():
             if obj.name.lower() == item:
-                if obj.isObtainable():
-                    self.inventory.removeItem(obj)
+                if obj.is_obtainable():
+                    self.inventory.remove_item(obj)
                     return True
 
         return False

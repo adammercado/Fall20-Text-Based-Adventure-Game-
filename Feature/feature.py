@@ -1,23 +1,25 @@
+
 class Feature:
 
-    def __init__(self, name, desc, isInteractive, interactions):
+    def __init__(self, name, desc, is_interactive, interactions):
         self.name = name
         self.desc = desc
-        self.isInteractive = isInteractive
+        self.is_interactive = is_interactive
         self.interactions = interactions
 
-    def getInfo(self):
-        print("Feature: {}\nDesc: {}\nInteract: {}\nInteract With: {}".format(self.name, self.desc, self.isInteractive, self.interactions))
+    def get_feature_info(self):
+        print("Feature: {}\nDesc: {}\nInteract: {}\nInteract With: {}"
+              .format(self.name, self.desc, self.is_interactive, self.interactions))
 
-    def convertFeatureToJson(self):
-        featureData = {
+    def convert_feature_to_json(self):
+        feature_data = {
             "name": self.name,
             "desc": self.desc,
-            "isInteractive": self.isInteractive,
+            "isInteractive": self.is_interactive,
             "interactions": self.interactions
         }
 
-        return featureData
+        return feature_data
 
-    def getDesc(self):
+    def get_desc(self):
         print(self.desc)

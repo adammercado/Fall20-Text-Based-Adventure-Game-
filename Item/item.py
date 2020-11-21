@@ -1,5 +1,6 @@
 import json
 
+
 class Item:
     """The item class is used to represent the objects
       that can be acquired during gameplay.
@@ -17,8 +18,8 @@ class Item:
         self.description = description
         self.obtainable = obtainable
 
-    def createItemFromFile(fileName):
-        with open(fileName) as infile:
+    def create_item_from_file(self, file_name):
+        with open(file_name) as infile:
             data = json.load(infile)
 
             name = data["name"]
@@ -27,17 +28,17 @@ class Item:
 
         return Item(name, description, obtainable)
 
-    def convertItemToJson(self):
-        itemData = {
+    def convert_item_to_json(self):
+        item_data = {
             "name": self.name,
             "description": self.description,
             "obtainable": self.obtainable
         }
 
-        return itemData
+        return item_data
 
-    def isObtainable(self):
+    def is_obtainable(self):
         return self.obtainable
 
-    def getDescription(self):
+    def get_description(self):
         print(self.description)
