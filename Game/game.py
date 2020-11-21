@@ -111,7 +111,12 @@ class Game:
         while 1:
             print("Current location: " + self.location.name)
 
-            args = input("Enter an action: ").lower().split()
+            args = []
+
+            while len(args) == 0 or args[0] == '\n':
+                args.clear()
+                args = input("Enter an action: ").lower().split()
+
             self.get_input(args)
 
     # Receive tokenized input as list and pass to TextParser to determine command
