@@ -10,12 +10,12 @@ class Room:
 
     def __init__(self, name, long_desc, short_desc, prior_visit, connections, items, features, load):
         self.name = name
-        self.longDesc = long_desc
-        self.shortDesc = short_desc
-        self.priorVisit = bool(prior_visit == "true")
+        self.long_desc = long_desc
+        self.short_desc = short_desc
+        self.prior_visit = bool(prior_visit == "true")
         self.connections = connections
         self.inventory = Inventory(None)
-        self.featureList = []
+        self.feature_list = []
 
         directory = "./GameData/Items"
 
@@ -34,7 +34,7 @@ class Room:
         for obj in features:
             if obj:
                 cur = Feature(obj["name"], obj["desc"], obj["isInteractive"], obj["interactions"])
-                self.featureList.append(cur)
+                self.feature_list.append(cur)
 
     # Constructor using file name
     def from_file_name(file_name):
@@ -58,19 +58,19 @@ class Room:
         # for item in self.inventory.getInventoryList():
         #   json_inventory.append(item.name)
 
-        for obj in self.featureList:
+        for obj in self.feature_list:
             json_features.append(obj.convert_feature_to_json())
 
         # print(json_features)
 
         room_data = {
             "name": self.name,
-            "longDesc": self.longDesc,
-            "shortDesc": self.shortDesc,
-            "priorVisit": self.priorVisit,
+            "long_desc": self.long_desc,
+            "short_desc": self.short_desc,
+            "prior_visit": self.prior_visit,
             "connections": self.connections,
             "inventory": json_inventory,
-            "featureList": json_features
+            "feature_list": json_features
         }
 
         return room_data
@@ -79,12 +79,12 @@ class Room:
         return self.connections[num]
 
     def get_features(self):
-        for obj in self.featureList:
+        for obj in self.feature_list:
             obj.get_feature_info()
 
     def examine(self, feature):
         print("feature is: " + feature)
-        for obj in self.featureList:
+        for obj in self.feature_list:
             if feature == obj.name:
                 obj.get_desc()
                 break
@@ -92,12 +92,12 @@ class Room:
     # Test method called when saving room data to json
     def get_data(self):
         print(self.name)
-        print(self.longDesc)
+        print(self.long_desc)
 
     # Test method called when loading room data from json
     def get_load_data(self):
         print(self.name)
-        print(self.shortDesc)
+        print(self.short_desc)
 
     def room_add_item(self, item):
         self.inventory.add_item(item)
