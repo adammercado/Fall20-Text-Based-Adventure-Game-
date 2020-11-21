@@ -187,12 +187,12 @@ class Game:
         elif parsed_text[0] == "help":
             print("Display help menu here")
 
-    def player_look(self, direction):
-        if len(direction) == 0:
-            print("Command: Look")
+    def player_look(self, name):
+        if len(name) == 0:
+            self.location.get_long_desc()
         else:
-            print("Command: Look " + direction)
-            self.location.examine(direction)
+            print("Command: Look " + name)
+            self.location.examine(name)
 
     def player_move(self, direction):
         print("Command: Move " + direction)

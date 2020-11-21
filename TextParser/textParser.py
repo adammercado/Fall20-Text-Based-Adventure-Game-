@@ -54,7 +54,7 @@ class TextParser:
 
             if package in self.item_list or package in self.feature_list:
                 parsed_text.append(package)
-            else:
+            elif parsed_text[0] != "look":
                 parsed_text.clear()
 
             return parsed_text
