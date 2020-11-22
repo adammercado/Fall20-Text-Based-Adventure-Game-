@@ -7,6 +7,7 @@ from Room.room import Room
 from Item.item import Item
 from Player.player import Player
 from Feature.feature import Feature
+from Map.map import displayMap
 
 """
 Attributes:
@@ -154,9 +155,12 @@ class Game:
                 self.player_move(direction)
             else:
                 print("You must enter a cardinal direction to move in.")
-
+        #MY ADDITIONS; IF THE SECOND ARGUMENT IS "map" AND IT HAS BEEN GRABBED ALREADY
+        #THE MAP WILL BE DISPLAYED
         elif parsed_text[0] == "use":
             self.player_use("item")
+            if self.player.inventory.check_inventory("map"):
+                displayMap()
 
         elif parsed_text[0] == "take" or parsed_text[0] == "place":
             item_name = self.parser.convert_spaces(parsed_text[1].lower())
