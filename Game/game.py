@@ -6,6 +6,7 @@ from TextParser.textParser import TextParser
 from Room.room import Room
 from Item.item import Item
 from Player.player import Player
+from Progression.progression import Progression
 from Feature.feature import Feature
 
 """
@@ -26,6 +27,7 @@ Methods:
 
 class Game:
     parser = TextParser()
+    progression = Progression()
     player = None
     location = None
     rooms = []
@@ -157,7 +159,7 @@ class Game:
 
         elif parsed_text[0] == "use":
             if self.player.inventory.check_inventory(parsed_text[1]):
-                self.player_use("item")
+                self.player_use(parsed_text[1])
             else:
                 print("{} is not in the inventory.".format(parsed_text[1]))
 
@@ -246,6 +248,10 @@ class Game:
 
     def player_use(self, item):
         print("Command: Use <" + item + ">")
+
+        self.progression.perform_interaction(item, self.location)
+
+
 
     def player_game(self):
         print("Command: Game Status")
