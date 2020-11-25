@@ -218,7 +218,9 @@ class Game:
                         break
 
     def player_use(self, item):
+        # Debugging print statement
         print("Command: Use <" + item + ">")
+
         self.progression.perform_interaction(item, self.player.inventory, self.location)
 
     def player_game(self):
