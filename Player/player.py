@@ -46,9 +46,9 @@ class Player:
         print("{} grabbed the {} and placed it in his inventory."
               .format(self.name, item.name))
 
-    def player_drop_item(self, item):
+    def player_drop_item(self, item, room_inventory):
         for obj in self.inventory.get_inventory_list():
             if obj.name.lower() == item:
-                if obj.is_obtainable():
-                    self.inventory.remove_item(obj)
-                    print("{} dropped the {}.".format(self.name, obj.name))
+                room_inventory.add_item(obj)
+                self.inventory.remove_item(obj)
+                print("{} dropped the {}.".format(self.name, obj.name))

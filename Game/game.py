@@ -169,24 +169,27 @@ class Game:
 
             if parsed_text[0] == "take":
                 if self.location.inventory.check_inventory(parsed_text[1]):
-                    if self.location.room_drop_item(parsed_text[1]):
-                        cur_item = \
-                            Item.create_item_from_file(item_path)
-
-                        self.player.player_add_item(cur_item)
-                    else:
-                        print("{} is not obtainable yet."
-                              .format(parsed_text[1]))
+                    self.location.room_drop_item(parsed_text[1], self.player.inventory)
+                # if self.location.inventory.check_inventory(parsed_text[1]):
+                #     if self.location.room_drop_item(parsed_text[1]):
+                #         cur_item = \
+                #             Item.create_item_from_file(item_path)
+                #
+                #         self.player.player_add_item(cur_item)
+                #     else:
+                #         print("{} is not obtainable yet."
+                #               .format(parsed_text[1]))
                 else:
                     print("There is no {} in this location."
                           .format(parsed_text[1]))
 
             elif parsed_text[0] == "place":
                 if self.player.inventory.check_inventory(parsed_text[1]):
-                    self.player.player_drop_item(parsed_text[1])
-                    cur_item = Item.create_item_from_file(item_path)
-
-                    self.location.room_add_item(cur_item)
+                    self.player.player_drop_item(parsed_text[1], self.location.inventory)
+                    # self.player.player_drop_item(parsed_text[1])
+                    # cur_item = Item.create_item_from_file(item_path)
+                    #
+                    # self.location.room_add_item(cur_item)
                 else:
                     print("Cannot drop {} because it is not in the inventory."
                           .format(parsed_text[1]))
@@ -248,10 +251,8 @@ class Game:
 
     def player_use(self, item):
         print("Command: Use <" + item + ">")
-
-        self.progression.perform_interaction(item, self.player, self.location)
-
-
+        self.progression.perform_interaction(item, self.player.inventory, self.location)
 
     def player_game(self):
         print("Command: Game Status")
+

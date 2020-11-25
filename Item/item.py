@@ -36,8 +36,18 @@ class Item:
 
         return item_data
 
+    def toggle_obtainable(self):
+        if self.obtainable:
+            self.obtainable = False
+        else:
+            self.obtainable = True
+
     def is_obtainable(self):
         return self.obtainable
 
     def get_description(self):
         print(self.description)
+
+    def get_item_data(self):
+        print(self.name)
+        print(self.obtainable)

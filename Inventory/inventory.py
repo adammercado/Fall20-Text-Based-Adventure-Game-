@@ -37,8 +37,7 @@ class Inventory:
             print('\n')
             print("ITEMS IN INVENTORY")
             for item in self.inventory:
-                print(item.name)
-                print(item.description)
+                item.get_item_data()
                 print('\n')
 
     def get_inventory_list(self):

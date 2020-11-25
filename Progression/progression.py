@@ -7,15 +7,18 @@ from Item.item import Item
 class Progression:
 
     @staticmethod
-    def perform_interaction(item, player, room):
+    def perform_interaction(item, player_inventory, room):
+
         if item == "tree branch" and room.name == "Serene Forest - North":
-            for item in room.inventory.get_inventory_list():
-                if item.name.lower() == item:
-                    item.obtainable = True
+            for obj in room.inventory.get_inventory_list():
+                if obj.name == "Rusted Key":
+                    print("debug")
+                    obj.toggle_obtainable()
+                    room.room_drop_item("rusted key", player_inventory)
                     break
 
-            room.room_drop_item(item)
-            player.player_add_item(item)
+            # room.room_drop_item(item)
+            # player.player_add_item(item)
 
         else:
             print("Not a valid interaction.")

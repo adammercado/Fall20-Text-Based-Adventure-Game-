@@ -102,11 +102,20 @@ class Room:
     def room_add_item(self, item):
         self.inventory.add_item(item)
 
-    def room_drop_item(self, item):
+    def room_drop_item(self, item, player_inventory):
         for obj in self.inventory.get_inventory_list():
+            print(obj.name)
+            print(item)
             if obj.name.lower() == item:
                 if obj.is_obtainable():
+                    print("dropping item")
+                    player_inventory.add_item(obj)
                     self.inventory.remove_item(obj)
-                    return True
-
-        return False
+        # for obj in self.inventory.get_inventory_list():
+        #     if obj.name.lower() == item:
+        #         if obj.is_obtainable():
+        #
+        #             self.inventory.remove_item(obj)
+        #             return
+        #
+        # return False
