@@ -156,7 +156,10 @@ class Game:
                 print("You must enter a cardinal direction to move in.")
 
         elif parsed_text[0] == "use":
-            self.player_use("item")
+            if self.player.inventory.check_inventory(parsed_text[1]):
+                self.player_use("item")
+            else:
+                print("{} is not in the inventory.".format(parsed_text[1]))
 
         elif parsed_text[0] == "take" or parsed_text[0] == "place":
             item_name = self.parser.convert_spaces(parsed_text[1].lower())

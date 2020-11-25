@@ -42,11 +42,14 @@ class TextParser:
 
         if args[0] in self.take_actions\
                 or args[0] in self.place_actions\
-                or args[0] in self.look_actions:
+                or args[0] in self.look_actions\
+                or args[0] in self.use_actions:
             if args[0] in self.take_actions:
                 parsed_text.append("take")
             elif args[0] in self.place_actions:
                 parsed_text.append("place")
+            elif args[0] in self.use_actions:
+                parsed_text.append("use")
             else:
                 parsed_text.append("look")
 
@@ -73,7 +76,6 @@ class TextParser:
 
             elif word in self.look_actions\
                     or word in self.move_actions\
-                    or word in self.use_actions\
                     or word in self.game_actions:
                 actions += 1
                 keyword = ""
@@ -86,12 +88,8 @@ class TextParser:
                 else:
                     if word in self.move_actions:
                         direction_flag = True
-                    if word in self.use_actions:
-                        item_flag = True
                     if word in self.move_actions:
                         keyword = "move"
-                    elif word in self.use_actions:
-                        keyword = "use"
                     elif word in self.game_actions:
                         keyword = word
 
@@ -104,10 +102,6 @@ class TextParser:
                     parsed_text.clear()
                 else:
                     parsed_text.append(word)
-
-            elif item_flag and actions == 1:
-                parsed_text.append(word)
-                item_flag = False
             # Clear list if current word is not found in vocabulary space
             else:
                 parsed_text.clear()
