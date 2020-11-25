@@ -2,13 +2,32 @@ import json
 
 
 class Item:
-    """The item class is used to represent the objects
-      that can be acquired during gameplay.
+    """Represents an object in the game
 
-      Attribute(s):
-      - Name (string)
-      - Description (string)
-      Method(s):
+    Attributes
+    ----------
+        name : str
+            name of item
+        description: str
+            description of item
+        obtainable: boolean
+            if an object is able to be picked up
+    Methods
+    -------
+        __init__(name, description, obtainable)
+            default constructor creates instances using parameters
+        create_item_from_file(file_name)
+            loads data from JSON file and passes into default constructor
+        convert_item_to_json()
+            returns object containing item data to write to JSON
+        toggle_obtainable()
+            toggles obtainable attribute
+        is_obtainable()
+            returns boolean value of obtainable attribute
+        get_description()
+            prints item description
+        get_item_data()
+            prints item name and obtainable attribute
     """
 
     # Constructor

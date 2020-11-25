@@ -15,7 +15,7 @@ class Inventory:
             default constructor initializes list attribute
             by constructing Item objects using parameter list
         convert_inventory_to_json()
-            return list with JSON formatted Item objects
+            returns list of items in inventory to write to JSON
         display_inventory()
             print information about Item objects in list
         get_inventory_list()
