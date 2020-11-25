@@ -249,7 +249,7 @@ class Game:
     def player_use(self, item):
         print("Command: Use <" + item + ">")
 
-        self.progression.perform_interaction(item, self.location)
+        self.progression.perform_interaction(item, self.player, self.location)
 
 
 
