@@ -3,7 +3,9 @@ class Progression:
     def __init__(self):
         self.interactions = [
             ("tree branch", "Serene Forest - North", "rusted key"),
-            ("rusted key", "Abandoned Home", "dull pendant")
+            ("rusted key", "Abandoned Home", "dull pendant"),
+            ("flask", "Campsite", "lantern"),
+            ("white flower", "Old Shrine", "gemstone")
         ]
 
     def perform_interaction(self, item, player_inventory, room):
