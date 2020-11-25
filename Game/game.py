@@ -149,66 +149,34 @@ class Game:
             self.player_look(direction)
 
         elif parsed_text[0] == "move":
-            direction = ""
-
             if len(parsed_text) == 2:
                 direction = parsed_text[1]
                 self.player_move(direction)
             else:
                 print("You must enter a cardinal direction to move in.")
-
         elif parsed_text[0] == "use":
             if self.player.inventory.check_inventory(parsed_text[1]):
                 self.player_use(parsed_text[1])
             else:
                 print("{} is not in the inventory.".format(parsed_text[1]))
-
-        elif parsed_text[0] == "take" or parsed_text[0] == "place":
-            item_name = self.parser.convert_spaces(parsed_text[1].lower())
-            item_path = "./GameData/Items/{}.json".format(item_name)
-
-            if parsed_text[0] == "take":
-                if self.location.inventory.check_inventory(parsed_text[1]):
-                    self.location.room_drop_item(parsed_text[1], self.player.inventory)
-                # if self.location.inventory.check_inventory(parsed_text[1]):
-                #     if self.location.room_drop_item(parsed_text[1]):
-                #         cur_item = \
-                #             Item.create_item_from_file(item_path)
-                #
-                #         self.player.player_add_item(cur_item)
-                #     else:
-                #         print("{} is not obtainable yet."
-                #               .format(parsed_text[1]))
-                else:
-                    print("There is no {} in this location."
-                          .format(parsed_text[1]))
-
-            elif parsed_text[0] == "place":
-                if self.player.inventory.check_inventory(parsed_text[1]):
-                    self.player.player_drop_item(parsed_text[1], self.location.inventory)
-                    # self.player.player_drop_item(parsed_text[1])
-                    # cur_item = Item.create_item_from_file(item_path)
-                    #
-                    # self.location.room_add_item(cur_item)
-                else:
-                    print("Cannot drop {} because it is not in the inventory."
-                          .format(parsed_text[1]))
-            """
-            print("PLAYER INVENTORY")
-            self.player.inventory.displayInventory()
-            print("ROOM INVENTORY")
-            self.location.inventory.displayInventory()
-            """
-
+        elif parsed_text[0] == "take":
+            if self.location.inventory.check_inventory(parsed_text[1]):
+                self.location.room_drop_item(parsed_text[1], self.player.inventory)
+            else:
+                print("There is no {} in this location."
+                      .format(parsed_text[1]))
+        elif parsed_text[0] == "place":
+            if self.player.inventory.check_inventory(parsed_text[1]):
+                self.player.player_drop_item(parsed_text[1], self.location.inventory)
+            else:
+                print("Cannot drop {} because it is not in the inventory."
+                      .format(parsed_text[1]))
         elif parsed_text[0] == "savegame":
             self.save_game()
-
         elif parsed_text[0] == "loadgame":
             self.load_game()
-
         elif parsed_text[0] == "inventory":
             self.player.inventory.display_inventory()
-
         elif parsed_text[0] == "help":
             print("Display help menu here")
 

@@ -31,9 +31,6 @@ class Player:
     def convert_player_to_json(self):
         player_inventory = self.inventory.convert_inventory_to_json()
 
-        # for item in self.inventory.getInventoryList():
-        #    player_inventory.append(item.name)
-
         player_data = {
             "name": self.name,
             "inventory": player_inventory

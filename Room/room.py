@@ -55,13 +55,8 @@ class Room:
         json_inventory = self.inventory.convert_inventory_to_json()
         json_features = []
 
-        # for item in self.inventory.getInventoryList():
-        #   json_inventory.append(item.name)
-
         for obj in self.feature_list:
             json_features.append(obj.convert_feature_to_json())
-
-        # print(json_features)
 
         room_data = {
             "name": self.name,
@@ -104,18 +99,7 @@ class Room:
 
     def room_drop_item(self, item, player_inventory):
         for obj in self.inventory.get_inventory_list():
-            print(obj.name)
-            print(item)
             if obj.name.lower() == item:
                 if obj.is_obtainable():
-                    print("dropping item")
                     player_inventory.add_item(obj)
                     self.inventory.remove_item(obj)
-        # for obj in self.inventory.get_inventory_list():
-        #     if obj.name.lower() == item:
-        #         if obj.is_obtainable():
-        #
-        #             self.inventory.remove_item(obj)
-        #             return
-        #
-        # return False

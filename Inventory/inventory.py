@@ -34,8 +34,7 @@ class Inventory:
         if not self.inventory:
             print("THE INVENTORY IS EMPTY")
         else:
-            print('\n')
-            print("ITEMS IN INVENTORY")
+            print("\nITEMS IN INVENTORY")
             for item in self.inventory:
                 item.get_item_data()
                 print('\n')
