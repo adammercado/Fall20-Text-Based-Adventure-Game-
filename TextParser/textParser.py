@@ -25,8 +25,8 @@ class TextParser:
                           "flask", "lantern", "white flower", "gemstone"]
 
         self.feature_list = ["tree", "rabbit", "angry boar", "forest opening",
-                             "old journal", "old phone", "waterfall",
-                             "jumping fishes", "town entrance",
+                             "old journal", "old phone",
+                             "waterfall", "town entrance",
                              "fountain", "loud merchant", "market stand",
                              "abandoned home", "dog", "campfire", "tents",
                              "middle-aged woman", "stalagmites", "bats",
