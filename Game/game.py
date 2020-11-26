@@ -7,6 +7,8 @@ from Room.room import Room
 from Item.item import Item
 from Player.player import Player
 from Feature.feature import Feature
+from Game.map import displayMap
+from Game.helpMenu import displayHelpMenu
 
 """
 Attributes:
@@ -157,6 +159,8 @@ class Game:
 
         elif parsed_text[0] == "use":
             self.player_use("item")
+            if self.player.inventory.check_inventory("map"):
+                displayMap()
 
         elif parsed_text[0] == "take" or parsed_text[0] == "place":
             item_name = self.parser.convert_spaces(parsed_text[1].lower())
@@ -203,7 +207,9 @@ class Game:
 
         elif parsed_text[0] == "help":
             print("Display help menu here")
-
+            displayHelpMenu()
+                        
+            
     def player_look(self, name):
         if len(name) == 0:
             self.location.get_long_desc()
