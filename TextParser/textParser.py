@@ -33,13 +33,6 @@ class TextParser:
                              "mountain path", "astraia", "fisherman",
                              "birds", "wooden carriage", "river", "mountains"]
 
-    def printActions(self, args):
-        if args[0] == self.look_actions:
-            for action in self.looks_actions:
-                print(action)
-
-
-
     # Receive list of arguments and determine action received
     def parse(self, args):
         actions = 0

@@ -7,8 +7,6 @@ from Room.room import Room
 from Item.item import Item
 from Player.player import Player
 from Feature.feature import Feature
-from Game.map import displayMap
-from Game.helpMenu import displayHelpMenu
 
 """
 Attributes:
@@ -160,7 +158,7 @@ class Game:
         elif parsed_text[0] == "use":
             self.player_use("item")
             if self.player.inventory.check_inventory("map"):
-                displayMap()
+                self.display_map()
 
         elif parsed_text[0] == "take" or parsed_text[0] == "place":
             item_name = self.parser.convert_spaces(parsed_text[1].lower())
@@ -207,7 +205,7 @@ class Game:
 
         elif parsed_text[0] == "help":
             print("Display help menu here")
-            displayHelpMenu()
+            self.display_help_menu()
                         
             
     def player_look(self, name):
@@ -252,3 +250,99 @@ class Game:
 
     def player_game(self):
         print("Command: Game Status")
+
+    def display_map(self):
+        print("""\
+    
+                                                      ----------
+                                                      |        |
+                                                      |  Old   |
+                                                      | Shrine |
+                                                      ----------                                        
+                                                           |
+                 -----------  ----------  ----------  ------------          
+                 |         |  |        |  |        |  |          |
+                 |Mountains|--|Campsite|--|  Dark  |--|Crossroads|
+                 |         |  |        |  | Tunnel |  |          |
+                 -----------  ----------  ----------  ------------
+                      |                                    |
+                 -----------                           ----------  ----------
+                 |         |                           | Trail  |  |        |
+                 | Solaris |                           |   of   |--|  Lake  |
+                 | Highway |                           | Dreams |  | Lunaria|
+                 -----------                           ----------  ----------
+                      |
+     ----------  -----------  ----------  ----------
+     |        |  |         |  |        |  |        |
+     |  Lake  |--| Astraia |--| Astraia|--|Achelous|
+     | Astraia|  |  West   |  |  East  |  | Falls  |
+     ----------  -----------  ----------  ----------
+                                  |          |  
+                             -----------  ----------
+                             |         |  | Serene |
+                             |Abandoned|  | Forest |
+                             |   Home  |  | North  |
+                             -----------  ----------
+                                               |
+                                          ----------
+                                          | Serene |
+                                          | Forest |
+                                          | South  |
+                                          ----------
+""") 
+
+    def display_help_menu(self):
+        print("\n")
+        print("**** HELP MENU ****")
+        print("1. List Look Actions")
+        print("2. List Move Actions")
+        print("3. List Move Directions")
+        print("4. List Use Actions")
+        print("5. List Take Actions")
+        print("6. List Place Actions")
+        print("7. List Game Actions")
+        print("8. List Look Prepositions")
+        print("9. List Use Prepositions")
+        print("10. List Game Items")
+        print("11. List Features")
+        print("\n")
+
+        choice = input("Enter the number of your choice: ")
+        print("\n")
+        if choice == "1":
+            for look_action in self.parser.look_actions:
+                print(look_action)
+        elif choice == "2":
+            for move_action in self.parser.move_actions:
+                print(move_action)
+        elif choice == "3":
+            for move_direction in self.parser.move_directions:
+                print(move_direction)
+        elif choice == "4":
+            for use_action in self.parser.use_actions:
+                print(use_action)
+        elif choice == "5":
+            for take_action in self.parser.take_actions:
+                print(take_action)
+        elif choice == "6":
+            for place_action in self.parser.place_actions:
+                print(place_action)
+        elif choice == "7":
+            for game_action in self.parser.game_actions:
+                print(game_action)
+        elif choice == "8":
+            for look_preposition in self.parser.look_prepositions:
+                print(look_preposition)
+        elif choice == "9":
+            for use_preposition in self.parser.use_prepositions:
+                print(use_preposition)
+        elif choice == "10":
+            for item in self.parser.item_list:
+                print(item)
+        elif choice == "11":
+            for feature in self.parser.feature_list:
+                print(feature)
+        else:
+            print("Invalid menu choice. Please enter a valid number")
+        print("\n")
+
