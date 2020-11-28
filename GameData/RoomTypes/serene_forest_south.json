@@ -9,13 +9,13 @@
 	[
 		{
 			"name": "tree",
-			"desc": "test feature description",
+			"desc": "A tall tree.  The Boy isn't very interested on plants or trees, so he has no idea what kind it is, or if it's even a tree that exists near his hometown. All he knows is that this tree is pretty tall, and has a large trunk. ",
 			"is_interactive": "false",
 			"interactions": null
 		},
 		{
 			"name": "rabbit",
-			"desc": "test feature description",
+			"desc": "A rather large, purple rabbit. It seems to be slowly chewing on some leaves from a bush. The Boy has to close his eyes and pinch himself every time he looks at the rabbit because of how bizarre its fur color is.",
 			"is_interactive": "false",
 			"interactions": null
 		}

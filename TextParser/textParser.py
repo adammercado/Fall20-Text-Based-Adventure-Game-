@@ -24,7 +24,7 @@ class TextParser:
         self.item_list = ["tree branch", "rusted key", "dull pendant", "map",
                           "flask", "lantern", "white flower", "gemstone"]
 
-        self.feature_list = ["tree", "rabbit", "angry boar", "forest opening",
+        self.feature_list = ["tree", "rabbit", "boar", "forest opening",
                              "old journal", "old phone",
                              "waterfall", "town entrance",
                              "fountain", "loud merchant", "market stand",
