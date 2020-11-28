@@ -133,7 +133,7 @@ class Game:
     def get_input(self, args):
         parsed_text = self.parser.parse(args)
 
-        if len(parsed_text) == 0:
+        if len(parsed_text) == 0 or parsed_text is None:
             print("Not a valid action.")
 
         elif parsed_text[0] == "quit":
