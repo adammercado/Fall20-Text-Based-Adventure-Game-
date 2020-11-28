@@ -1,3 +1,4 @@
+from Item.item import Item
 
 class Progression:
     def __init__(self):
@@ -8,7 +9,18 @@ class Progression:
             ("white flower", "Old Shrine", "gemstone")
         ]
 
+        self.item_combo = [
+            ("dull pendant", "gemstone")
+        ]
+
+    def get_progression(self, item_1, item_2, player_inventory, room):
+        if item_2 is None:
+            self.perform_interaction(item_1, player_inventory, room)
+        else:
+            self.combine_items(item_1, item_2, player_inventory)
+
     def perform_interaction(self, item, player_inventory, room):
+        print("Perform")
         pair = (item, room.name)
 
         for group in self.interactions:
@@ -23,3 +35,13 @@ class Progression:
                 break
             else:
                 print("Not a valid interaction.")
+
+    def combine_items(self, item_1, item_2, player_inventory):
+        print("combine")
+        pair = (item_1, item_2)
+        if pair in self.item_combo \
+                or pair[::-1] in self.item_combo:
+            print("combo found")
+            new_item = Item.create_item_from_file("./GameData/Items/shining_pendant.json")
+            new_item.get_item_data()
+            player_inventory.add_item(new_item)

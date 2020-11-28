@@ -135,30 +135,27 @@ class Game:
 
         if len(parsed_text) == 0 or parsed_text is None:
             print("Not a valid action.")
-
         elif parsed_text[0] == "quit":
             print("Exiting gameplay")
             sys.exit()
-
         elif parsed_text[0] == "look":
-            direction = ""
-
-            if len(parsed_text) == 2:
-                direction = parsed_text[1]
-
-            self.player_look(direction)
-
+            feature = parsed_text[1]
+            self.player_look(feature)
         elif parsed_text[0] == "move":
             if len(parsed_text) == 2:
                 direction = parsed_text[1]
                 self.player_move(direction)
             else:
                 print("You must enter a cardinal direction to move in.")
-        elif parsed_text[0] == "use":
+        elif parsed_text[0] == "use" and len(parsed_text) == 2:
             if self.player.inventory.check_inventory(parsed_text[1]):
-                self.player_use(parsed_text[1])
+                self.player_use(parsed_text[1], None)
             else:
                 print("{} is not in the inventory.".format(parsed_text[1]))
+        elif parsed_text[0] == "use" and len(parsed_text) == 3:
+            if self.player.inventory.check_inventory(parsed_text[1])\
+                    and self.player.inventory.check_inventory(parsed_text[2]):
+                self.player_use(parsed_text[1], parsed_text[2])
         elif parsed_text[0] == "take":
             if self.location.inventory.check_inventory(parsed_text[1]):
                 self.location.room_drop_item(parsed_text[1], self.player.inventory)
@@ -211,17 +208,20 @@ class Game:
                     self.location.get_short_desc()
                     # self.location.getFeatures()
 
-                    if self.location.name == "Lake Lunaria":
+                    if self.location.name == "Lake Lunaria"\
+                            and self.player.inventory.check_inventory("shining pendant"):
                         print("You have reached the last room. Exiting game.")
                         sys.exit()
                     else:
                         break
 
-    def player_use(self, item):
+    def player_use(self, item_1, item_2):
         # Debugging print statement
-        print("Command: Use <" + item + ">")
+        # print("Command: Use <" + item + ">")
 
-        self.progression.perform_interaction(item, self.player.inventory, self.location)
+        self.progression.get_progression(item_1, item_2, self.player.inventory, self.location)
+        # self.progression.perform_interaction(item, self.player.inventory, self.location)
+
 
     def player_game(self):
         print("Command: Game Status")
