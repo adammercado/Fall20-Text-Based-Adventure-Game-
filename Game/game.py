@@ -119,8 +119,10 @@ class Game:
     # Handles actions pertaining to gameplay using received input
     def play_game(self):
         while 1:
-            print("Current location: " + self.location.name)
+            if self.check_victory():
+                sys.exit()
 
+            print("Current location: " + self.location.name)
             args = []
 
             while len(args) == 0 or args[0] == '\n':
@@ -206,23 +208,14 @@ class Game:
                 if room.name == new_room:
                     self.location = room
                     self.location.get_short_desc()
-                    # self.location.getFeatures()
-
-                    if self.location.name == "Lake Lunaria"\
-                            and self.player.inventory.check_inventory("shining pendant"):
-                        print("You have reached the last room. Exiting game.")
-                        sys.exit()
-                    else:
-                        break
 
     def player_use(self, item_1, item_2):
-        # Debugging print statement
-        # print("Command: Use <" + item + ">")
-
         self.progression.get_progression(item_1, item_2, self.player.inventory, self.location)
-        # self.progression.perform_interaction(item, self.player.inventory, self.location)
 
+    def check_victory(self):
+        if self.location.name == "Lake Lunaria" \
+                and self.player.inventory.check_inventory("shining pendant"):
+            print("PLACEHOLDER VICTORY MESSAGE")
+            return True
 
-    def player_game(self):
-        print("Command: Game Status")
-
+        return False
