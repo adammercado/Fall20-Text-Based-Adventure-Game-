@@ -6,6 +6,7 @@ from TextParser.textParser import TextParser
 from Room.room import Room
 from Item.item import Item
 from Player.player import Player
+from Progression.progression import Progression
 from Feature.feature import Feature
 
 """
@@ -26,6 +27,7 @@ Methods:
 
 class Game:
     parser = TextParser()
+    progression = Progression()
     player = None
     location = None
     rooms = []
@@ -117,8 +119,10 @@ class Game:
     # Handles actions pertaining to gameplay using received input
     def play_game(self):
         while 1:
-            print("Current location: " + self.location.name)
+            if self.check_victory():
+                sys.exit()
 
+            print("Current location: " + self.location.name)
             args = []
 
             while len(args) == 0 or args[0] == '\n':
@@ -131,76 +135,47 @@ class Game:
     def get_input(self, args):
         parsed_text = self.parser.parse(args)
 
-        if len(parsed_text) == 0:
+        if len(parsed_text) == 0 or parsed_text is None:
             print("Not a valid action.")
-
         elif parsed_text[0] == "quit":
             print("Exiting gameplay")
             sys.exit()
-
         elif parsed_text[0] == "look":
-            direction = ""
-
-            if len(parsed_text) == 2:
-                direction = parsed_text[1]
-
-            self.player_look(direction)
-
+            feature = parsed_text[1]
+            self.player_look(feature)
         elif parsed_text[0] == "move":
-            direction = ""
-
             if len(parsed_text) == 2:
                 direction = parsed_text[1]
                 self.player_move(direction)
             else:
                 print("You must enter a cardinal direction to move in.")
-
-        elif parsed_text[0] == "use":
-            self.player_use("item")
-
-        elif parsed_text[0] == "take" or parsed_text[0] == "place":
-            item_name = self.parser.convert_spaces(parsed_text[1].lower())
-            item_path = "./GameData/Items/{}.json".format(item_name)
-
-            if parsed_text[0] == "take":
-                if self.location.inventory.check_inventory(parsed_text[1]):
-                    if self.location.room_drop_item(parsed_text[1]):
-                        cur_item = \
-                            Item.create_item_from_file(item_path)
-
-                        self.player.player_add_item(cur_item)
-                    else:
-                        print("{} is not obtainable yet."
-                              .format(parsed_text[1]))
-                else:
-                    print("There is no {} in this location."
-                          .format(parsed_text[1]))
-
-            elif parsed_text[0] == "place":
-                if self.player.inventory.check_inventory(parsed_text[1]):
-                    self.player.player_drop_item(parsed_text[1])
-                    cur_item = Item.create_item_from_file(item_path)
-
-                    self.location.room_add_item(cur_item)
-                else:
-                    print("Cannot drop {} because it is not in the inventory."
-                          .format(parsed_text[1]))
-            """
-            print("PLAYER INVENTORY")
-            self.player.inventory.displayInventory()
-            print("ROOM INVENTORY")
-            self.location.inventory.displayInventory()
-            """
-
+        elif parsed_text[0] == "use" and len(parsed_text) == 2:
+            if self.player.inventory.check_inventory(parsed_text[1]):
+                self.player_use(parsed_text[1], None)
+            else:
+                print("{} is not in the inventory.".format(parsed_text[1]))
+        elif parsed_text[0] == "use" and len(parsed_text) == 3:
+            if self.player.inventory.check_inventory(parsed_text[1])\
+                    and self.player.inventory.check_inventory(parsed_text[2]):
+                self.player_use(parsed_text[1], parsed_text[2])
+        elif parsed_text[0] == "take":
+            if self.location.inventory.check_inventory(parsed_text[1]):
+                self.location.room_drop_item(parsed_text[1], self.player.inventory)
+            else:
+                print("There is no {} in this location."
+                      .format(parsed_text[1]))
+        elif parsed_text[0] == "place":
+            if self.player.inventory.check_inventory(parsed_text[1]):
+                self.player.player_drop_item(parsed_text[1], self.location.inventory)
+            else:
+                print("Cannot drop {} because it is not in the inventory."
+                      .format(parsed_text[1]))
         elif parsed_text[0] == "savegame":
             self.save_game()
-
         elif parsed_text[0] == "loadgame":
             self.load_game()
-
         elif parsed_text[0] == "inventory":
             self.player.inventory.display_inventory()
-
         elif parsed_text[0] == "help":
             print("Display help menu here")
 
@@ -233,16 +208,14 @@ class Game:
                 if room.name == new_room:
                     self.location = room
                     self.location.get_short_desc()
-                    # self.location.getFeatures()
 
-                    if self.location.name == "Lake Lunaria":
-                        print("You have reached the last room. Exiting game.")
-                        sys.exit()
-                    else:
-                        break
+    def player_use(self, item_1, item_2):
+        self.progression.get_progression(item_1, item_2, self.player.inventory, self.location)
 
-    def player_use(self, item):
-        print("Command: Use <" + item + ">")
+    def check_victory(self):
+        if self.location.name == "Lake Lunaria" \
+                and self.player.inventory.check_inventory("shining pendant"):
+            print("PLACEHOLDER VICTORY MESSAGE")
+            return True
 
-    def player_game(self):
-        print("Command: Game Status")
+        return False

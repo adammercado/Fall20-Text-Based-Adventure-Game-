@@ -1,16 +1,32 @@
 from Item.item import Item
 
-"""
-Methods:
-    __init__(): default constructor initializes empty list
-    displayInventory(): prints name and description of each item
-    getInventoryList(): returns list attribute (used for json)
-    addItem(itemObj): receives an object of Item class and appends to list
-    removeItem(itemName): locates item in list and deletes
-"""
-
 
 class Inventory:
+    """Represents a collection of Item objects
+
+    Attributes
+    ----------
+        inventory : list(str)
+            list of Item object instances
+
+    Methods
+    -------
+        __init__(items)
+            default constructor initializes list attribute
+            by constructing Item objects using parameter list
+        convert_inventory_to_json()
+            returns list of items in inventory to write to JSON
+        display_inventory()
+            print information about Item objects in list
+        get_inventory_list()
+            return inventory as list type
+        check_inventory(item_name)
+            return boolean based on if item_name is in list or not
+        add_item(item)
+            Appends item to list
+        remove_item(item)
+            Removes item if found in list
+    """
     def __init__(self, items):
         self.inventory = []
 
@@ -34,11 +50,9 @@ class Inventory:
         if not self.inventory:
             print("THE INVENTORY IS EMPTY")
         else:
-            print('\n')
-            print("ITEMS IN INVENTORY")
+            print("\nITEMS IN INVENTORY")
             for item in self.inventory:
-                print(item.name)
-                print(item.description)
+                item.get_item_data()
                 print('\n')
 
     def get_inventory_list(self):
