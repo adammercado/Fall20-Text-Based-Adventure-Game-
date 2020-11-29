@@ -1,27 +1,21 @@
 {
 	"name": "Old Shrine",
-	"long_desc": "temp long description",
-	"short_desc": "temp short description",
+	"long_desc": "A shrine sits in the middle of a field. While exposure to the elements seems like it would wear down, the area is in pristine condition, as if travelers who stop by all pitch in a small effort to help maintain the shrine.  In the middle of the shrine stands a tall <statue> of a person that the Boy does not recognize.  In front of the statue rests a <plaque> with writing on it.  \n\nAs the Boy looks around, he sees white flowers that have been placed in front of the <statue> as an offering, just like he had heard.  He wonders to himself what the significance of this place is, or how it came to be.\n",
+	"short_desc": "The old shrine north of the crossroads is a place where those who are seeking offer a prayer. Flowers cover the shrine, the same white flower that filled the crossroad.  The <statue> stands tall and looming, as if overlooking the land.  The <plaque> looks like it was cleaned not too long ago.\n",
 	"prior_visit": "false",
 	"connections": [null, "Crossroads", null, null],
 	"items": ["Gemstone"],
 	"features": 
 	[
 		{
-			"name": "temp1",
-			"desc": "test feature description",
+			"name": "statue",
+			"desc": "A statue of a woman watches over the shrine. Perhaps it is someone famous, or even a goddess. Though a goddess seems a bit too fantastical, in the Boy's mind.  The statue is well-kept, clean, and surrounded by the white of the offered flowers, lending to the pure imagery.",
 			"is_interactive": "false",
 			"interactions": null
 		},
 		{
-			"name": "temp2",
-			"desc": "test feature description",
-			"is_interactive": "false",
-			"interactions": null
-		},
-		{
-			"name": "temp3",
-			"desc": "test feature description",
+			"name": "plaque",
+			"desc": "The plaque reads: \"One's life is full of hills to climb and currents to push against. Offer your prayers here, and find the clarity you may seek.\"",
 			"is_interactive": "false",
 			"interactions": null
 		}

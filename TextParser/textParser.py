@@ -28,10 +28,12 @@ class TextParser:
                              "old journal", "old phone",
                              "waterfall", "town entrance",
                              "fountain", "market stand",
-                             "abandoned home", "dog", "campfire", "tents",
+                             "abandoned home", "dog", "campfire",
                              "woman", "stalagmites", "bats",
                              "mountain path", "astraia", "fisherman",
-                             "birds", "wooden carriage", "river"]
+                             "birds", "wooden carriage", "river", "lake",
+                             "clouds", "water", "dock", "statue", "plaque",
+                             "white flower", "signpost"]
 
     def parse_interaction(self, args, command, prepositions):
         package = ""
