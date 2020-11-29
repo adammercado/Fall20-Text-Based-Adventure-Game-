@@ -1,27 +1,21 @@
 {
 	"name": "Trail of Dreams",
-	"long_desc": "temp long description",
-	"short_desc": "temp short description",
+	"long_desc": "The Boy heads south from the crossroads and follows along the road. After walking for some time, he realizes he must be on the so-called Trail of Dreams.  “It... doesn’t seem special to me”, he says.\n\nSure enough, the trail he is on looks no different from any other. In fact, the area looks plain when compared to the other sights he has seen around here.  The land is clean and peaceful, but not much of interest exists here. The Boy can see a <lake> to the east, which must be Lake Lunaria.\n\nFeeling underwhelmed, the Boy wonders if the old man was just exaggerating about what he might find here. He feels a bit discouraged, but resolves to continue on anyways, stopping to lay down on the grass for a short bit first.  Relaxing here gives him some time to gather his thoughts, and reflect on his journey so far. Overhead are some looming <clouds>, though they are almost as white as snow.  \n",
+	"short_desc": "The Trail of Dreams is an ordinary path, leading to a <lake> to the east.  The day is bright and sunny, with a few <clouds> in sight. There is no one else currently on the trail, but it does seem like people have walked on it here and there. Could such a normal pathwayreally lead to something magical?",
 	"prior_visit": "false",
 	"connections": ["Crossroads", null, "Lake Lunaria", null],
 	"items": [null],
 	"features": 
 	[
 		{
-			"name": "temp1",
-			"desc": "test feature description",
+			"name": "lake",
+			"desc": "Lake Lunaria, according to the man at the campsite, is fabled for it's ability to guide those who are searching. The final destination is within reach, but what will the Boy find? What could be so special about a lake? From a distance, it looks ordinary. A large lake, to be sure, surrounded by some trees, but nothing strange or mystical about it.",
 			"is_interactive": "false",
 			"interactions": null
 		},
 		{
-			"name": "temp2",
-			"desc": "test feature description",
-			"is_interactive": "false",
-			"interactions": null
-		},
-		{
-			"name": "temp3",
-			"desc": "test feature description",
+			"name": "clouds",
+			"desc": "As the Boy lays down, he looks at the clouds over head. They are bright, so rain does not seem likely. The clouds float on by, slowly, as if wandering on an endless journey wherever the wind takes them.",
 			"is_interactive": "false",
 			"interactions": null
 		}

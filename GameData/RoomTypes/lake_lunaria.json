@@ -1,27 +1,21 @@
 {
 	"name": "Lake Lunaria",
-	"long_desc": "temp long description",
-	"short_desc": "temp short description",
+	"long_desc": "At long last, Lake Lunaria.  The Boy has arrived at his destination, and takes in the view.  The lake is fairly large, but is quiet. Not a single creature or other human being is in sight.  A <dock> reaches out a surprising distance in the <water>, which surprises the Boy, as there is no sign of fisherman or even fish around.  Not a boat or anything of the sort either.  No birds, no strange rabbits, no boars, no wildlife at all.  It is simply a body of water, shining under the sunlight.\n\nThe vague stories he has heard suggest that the lake holds some secret, some key that many are often searching for. Magic? A portal to return home? The Boy stands still and observes, as if waiting for something to happen.\n",
+	"short_desc": "Lake Lunaria, the alleged final destination. It is quiet - peaceful, but maybe a little eerie. There are no people or animals in sight.  The lake is almost perfectly still, as if it contains nothing but <water>.  This is supposed to be something special, and so the Boy looks around, waiting for something to happen.",
 	"prior_visit": "false",
 	"connections": [null, null, null, "Trail of Dreams"],
 	"items": [null],
 	"features": 
 	[
 		{
-			"name": "temp1",
-			"desc": "test feature description",
+			"name": "dock",
+			"desc": "A wooden dock, probably man-made, reaches out towards the center of Lake Lunaria. Walking along the dock, it feels like the Boy's footsteps echo due to the sheer silence of the lake. The planks are in good condition, and look barely used. The view at the edge of the dock makes one feel immersed in the still waters.",
 			"is_interactive": "false",
 			"interactions": null
 		},
 		{
-			"name": "temp2",
-			"desc": "test feature description",
-			"is_interactive": "false",
-			"interactions": null
-		},
-		{
-			"name": "temp3",
-			"desc": "test feature description",
+			"name": "water",
+			"desc": "The water of the lake remains still. If it weren't for the natural, gentle ripples on the surface, it would feel like the lake itself were frozen in time. Looking at the water, the Boy sees his own reflection, as if the collection of his life to this point were staring back at him.",
 			"is_interactive": "false",
 			"interactions": null
 		}

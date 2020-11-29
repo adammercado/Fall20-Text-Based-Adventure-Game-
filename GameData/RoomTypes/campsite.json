@@ -1,7 +1,7 @@
 {
 	"name": "Campsite",
-	"long_desc": "temp long description",
-	"short_desc": "temp short description",
+	"long_desc": "The Boy arrives at the camp and takes a seat on a log near the <campfire>.  He figures it’s a good time to take a break. As he sits down, he overhears a <woman> talking about a commemorative flask as she flails around what appears to be a lantern.  As the Boy settles in, an elderly gentleman looks over at him and asks if he’s heading for the Trail of Dreams.\n\n“The Trail… of Dreams?”, the Boy asks.  The man explains how the trail on the other side of a tunnel to the east is fabled for leading wanderers to find their resolve.  “But the real secret about the trail, is that the trail is a mere path. Lake Lunaria, off of the trail, is where folks go to reflect.”  \n\nCurious, the Boy inquires further about the Lake and its location.  Apparently, the tunnel to the east he had seen before leads towards the area, and while relatively safe, the darkness makes it near impossible to travel through.  It seems he would need some sort of light source to make it through.\n",
+	"short_desc": "Returning to the campground, the Boy takes a seat again near the <campfire>.  A little rest is nice, considering the travel through either the tunnel or the mountains is rather daunting. Looking into the flame, the Boy gets lost in thought as the campers and travelers carry on.",
 	"prior_visit": "false",
 	"connections": [null, null, "Dark Tunnel", "Ebon Mountains"],
 	"items": ["Lantern"],
@@ -9,19 +9,13 @@
 	[
 		{
 			"name": "campfire",
-			"desc": "test feature description",
+			"desc": "Though the sunlight is still strong, a fire blazes in the center of the tent circle. An essential to any sort of camping, it appears that some folks are using the fire to roast some sort of pig.  It smells rather nice, but for some reason, the Boy doesn't feel too hungry despite his journey thus far.",
 			"is_interactive": "false",
 			"interactions": null
 		},
 		{
-			"name": "tents",
-			"desc": "test feature description",
-			"is_interactive": "false",
-			"interactions": null
-		},
-		{
-			"name": "middled-aged woman",
-			"desc": "test feature description",
+			"name": "woman",
+			"desc": "A woman wanders around, complaining about how she had lost of commemorative flask from Astraia. Though it is just a simple flask, she seems a bit distressed about losing a memento of her first visit. \"Maybe I don't really need mine anyways...\", the Boy thinks to himself.",
 			"is_interactive": "false",
 			"interactions": null
 		}

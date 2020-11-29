@@ -1,7 +1,7 @@
 {
 	"name": "Astraia - Residence Area",
-	"long_desc": "temp long description",
-	"short_desc": "temp short description",
+	"long_desc": "The Boy walks into the town, passing by a large wooden sign reading “Astraia”.  He scans the area around him, seeing streets lined with homes.  The townsfolk are out and about, men and women at work, children running and shouting while their older siblings chase them around.  A few people offer the Boy a warm smile or a quick “hello” as they pass by.  The atmosphere feels welcoming, and the people are just… normal people.  “A lot like home, huh?”, he thinks to himself.\n\nHe walks around a bit to familiarize with the place.  A few dogs are strutting about - one brown-haired <dog> stops and takes a seat right next to the Boy, calmly observing the surroundings too. The Boy turns to the south, finding even more buildings, though one seemingly <abandoned home> sticks out like a sore thumb.  Looking toward the west, there seems to be an even livelier area of town, with carts and carriages coming in and out, some passing through this residential area on their way out of town.  \n",
+	"short_desc": "The neighborhood continues with its day-to-day life - ordinary people going about their day, workers and children shouting and others making small talk.  To the west is the market plaza of the town. To the south is an old, <abandoned home>.  A familiar dog sits nearby, tongue hanging and tail wagging.",
 	"prior_visit": "false",
 	"connections": [null, "Abandoned Home", "Achelous Falls", "Astraia - Market Plaza"],
 	"items": [null],
@@ -9,13 +9,13 @@
 	[
 		{
 			"name": "abandoned home",
-			"desc": "test feature description",
+			"desc": "An old home on the south end of town.  The Boy wonders why all the homes are so well-kept except for this one.  As he looks around, a lady passes by and nonchalantly explains: \"There used to be a young man who lived there. He hasn't been back in ages, but some of the older townsfolk were quite fond of him, so no one has done anything with the building.  Some kids have gone in and out, but otherwise, it's just been sitting there.\" As the woman walks away, the Boy notices that the door is indeed unlocked. ",
 			"is_interactive": "false",
 			"interactions": null
 		},
 		{
 			"name": "dog",
-			"desc": "test feature description",
+			"desc": "A brown-haired dog sits on the ground near the street.  The Boy examines it for anything abnormal, but finds... nothing.  Adult-sized, normal hair and eye colors, no extra limbs, nothing.  The dog sits and wags its tail, occasionally looking over at the Boy before its attention is drawn elsewhere.",
 			"is_interactive": "false",
 			"interactions": null
 		}

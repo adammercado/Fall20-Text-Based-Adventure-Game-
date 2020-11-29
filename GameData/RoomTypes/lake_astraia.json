@@ -1,7 +1,7 @@
 {
 	"name": "Lake Astraia",
-	"long_desc": "temp long description",
-	"short_desc": "temp short description",
+	"long_desc": "A short distance west from Astraia is Lake Astraia, connected to a river that runs west to east to Achelous Falls.  The Boy arrives at the calm scene of nature, yet another sharp shift in atmosphere compared to the market plaza.  The lake is larger than any body of water he’s seen before, with gentle ripples scattered across its surface.  The area surrounding the lake is lightly decorated with trees and shrubbery, just like the small path on the way here.\n\nAround the lake, the Boy sees a number of people fishing. Near him is an older <fisherman>, casting his line into the lake. Families of <birds> roam the area, some flying overhead while others float around on the lake.  Though there isn’t much to see here, the Boy takes a seat in the grass to take in the sights.\n",
+	"short_desc": "Lake Astraia flows west to east at a gentle pace, unlike the roars near Achelous Falls.  Not much about the lake is extraordinary, though that’s not to say it lacks substance - it seems many folks enjoy coming here for rest and relaxation.  A familiar old <fisherman> is still playing the game of patience, hoping for a nice catch.  Some <birds> inhabit the area, diving in for a quick swim from time to time.",
 	"prior_visit": "false",
 	"connections": [null, null, "Astraia - Market Plaza", null],
 	"items": [null],
@@ -9,13 +9,13 @@
 	[
 		{
 			"name": "fisherman",
-			"desc": "test feature description",
+			"desc": "An elderly man sits in a folding chair near the edge of the lake.  The Boy chuckles to himself, as its almost a stereotypical fisherman setup.  It seems he is a local resident of Astraia, taking the day to enjoy the nature.  The Boy acknowledges that the area here is, in many ways, full of life. It reminds him a lot of home - a realization which makes the Boy feel a litte sad, before brushing it off.",
 			"is_interactive": "false",
 			"interactions": null
 		},
 		{
 			"name": "birds",
-			"desc": "test feature description",
+			"desc": "The Boy focuses in on a small group of birds swimming around near the edge of the lake.  It looks like two adult birds, and one smaller one - perhaps their child.  The avians are on the large size, and they do not look quite like ducks either, more like... swimming chickens.\n\nThe Boy laughs a bit at the thought of swimming chickens, but the birds remind him a bit of his own family. He is an only child, but has a happy life with both of his parents.\n\n\"I wonder if that little bird has to grow up and head out on its own one day, too...\"",
 			"is_interactive": "false",
 			"interactions": null
 		}

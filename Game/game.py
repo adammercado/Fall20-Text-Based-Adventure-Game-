@@ -120,6 +120,7 @@ class Game:
     def play_game(self):
         while 1:
             if self.check_victory():
+                self.progression.get_victory_text()
                 sys.exit()
 
             print("Current location: " + self.location.name)
@@ -218,7 +219,6 @@ class Game:
     def check_victory(self):
         if self.location.name == "Lake Lunaria" \
                 and self.player.inventory.check_inventory("shining pendant"):
-            print("PLACEHOLDER VICTORY MESSAGE")
             return True
 
         return False
