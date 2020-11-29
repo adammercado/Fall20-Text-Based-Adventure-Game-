@@ -31,6 +31,8 @@ class Game:
     player = None
     location = None
     rooms = []
+    intro = None
+    ending = None
 
     # Initializes game state before calling playGame()
     def start_game(self):
@@ -52,6 +54,16 @@ class Game:
                 continue
 
         self.player = Player(None)
+
+        with open("./GameData/Text/story.json", encoding="utf-8") as infile:
+            data = json.load(infile)
+
+            self.intro = data['intro']
+            self.ending = data['ending']
+
+
+        print(self.intro)
+
         self.play_game()
 
     # Calls class methods to convert data into JSON format and write to save
@@ -120,7 +132,7 @@ class Game:
     def play_game(self):
         while 1:
             if self.check_victory():
-                self.progression.get_victory_text()
+                print(self.ending)
                 sys.exit()
 
             print("Current location: " + self.location.name)
