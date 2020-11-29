@@ -46,10 +46,11 @@ class Progression:
             player_inventory.add_item(new_item)
 
     def get_victory_text(self):
-        text = """The shining pendant the Boy has begins glowing. As he pulls it out and observes the light, he 
+        text = """
+        The shining pendant the Boy has begins glowing. As he pulls it out and observes the light, he 
         looks up and realizes something strange is happening. Daylight is suddenly shifting into a night sky, 
         and taking the place of the sun is a full moon. Just like the moon back home, it is fills the land with 
-        light. The Boy notices that the moonlight seems to be particularly shining on the Lake Lunaria itself.
+        light. The Boy notices that the moonlight seems to be particularly shining on the Lake Lunaria itself.\
         
         All around him, he is surrounded by a glow. Glowing moonlight, a glowing pendant, the glistening water of 
         the lake.  It seems the old pendant with the gemstone slotted inside of it is reacting to the scene. Gradually, 
@@ -69,3 +70,5 @@ class Progression:
         of his home. Turning over, lost in the comfort of familiarity and optimism towards his unknown future, the 
         weary Boy begins to drift off to sleep, peacefully, for the first time in a long time.
         """
+
+        print(text)
