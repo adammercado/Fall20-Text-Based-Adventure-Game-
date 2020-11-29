@@ -27,7 +27,7 @@ class TextParser:
         self.feature_list = ["tree", "rabbit", "boar", "forest opening",
                              "old journal", "old phone",
                              "waterfall", "town entrance",
-                             "fountain", "loud merchant", "market stand",
+                             "fountain", "market stand",
                              "abandoned home", "dog", "campfire", "tents",
                              "middle-aged woman", "stalagmites", "bats",
                              "mountain path", "astraia", "fisherman",
