@@ -1,7 +1,7 @@
 {
 	"name": "Astraia - Market Plaza",
 	"long_desc": "Astraia’s west end is the center of commerce for the town.  Surrounding a massive <fountain> in the center are merchants and their goods, set up in stands of various sizes.  Pubs, shops, and restaurants line the perimeter of the area.  The Boy can make out two exits to the crowded area to the west and the north.  The north appears to contain the most traffic, with vendors coming in and out of the entrance overseen by the town guards. Near the northern exit, there is a small <merchant stand> run by local citizens welcoming travelers unfamiliar with the area.  The Boy is almost overwhelmed by the sudden shift from the peaceful residential section to the booming plaza.",
-	"short_desc": "Though not as overbearing as his first time, the Boy is still not used to the crowds.  The Saturday flea market is the closest thing to this back home, but even that doesn’t really compare.  The <merchant stand> is still around, providing vendors with information and goodies.  The north exit leads out to the highway, and the west seems to lead out to some nature.",
+	"short_desc": "Though not as overbearing as his first time, the Boy is still not used to the crowds.  The Saturday flea market is the closest thing to this back home, but even that does not really compare.  The <merchant stand> is still around, providing vendors with information and goodies.  The north exit leads out to the highway, and the west seems to lead out to some nature.",
 	"prior_visit": "false",
 	"connections": ["Solaris Highway", null, "Astraia - Residence Area", "Lake Astraia"],
 	"items": ["Map", "Flask"],

@@ -1,7 +1,7 @@
 {
 	"name": "Serene Forest - North",
-	"long_desc": "As the Boy moves along to the northern side, he reaches an opening among the trees.  It feels like he can hear a faint sound of moving water to the north. As soon as he realizes that it could be a river, he hears grunting. Startled, he realizes that a fairly large and strange-looking boar has noticed his presence.  The Boy takes a few steps back, and it doesn't seem like the boar will attack. However, it is certainly nervous with the Boy’s presence, and stares him down.\n\nOn a tree opposite the boar is an object with a faint glimmer, hanging from a branch by a worn piece of string. Upon closer inspection, the Boy makes out the shape of a key. While the tree is not that tall, the branch is abnormally long and flimsy. “I’d probably fall if I tried to climb up there”, he mutters to himself.",
-	"short_desc": "The northern end of the quiet forest. Further north is the sound of rushing water. Nearby, a four-tusked boar loiters around. All around are large trees; ignoring the incredible differences among the animals, the forest really isn’t too out of the ordinary.",
+	"long_desc": "As the Boy moves along to the northern side, he reaches an opening among the trees.  It feels like he can hear a faint sound of moving water to the north, through another <forest opening>. As soon as he realizes that it could be a river, he hears grunting. Startled, he realizes that a fairly large and strange-looking <boar> has noticed his presence.  The Boy takes a few steps back, and it doesn't seem like the <boar> will attack. However, it is certainly nervous with the Boy’s presence, and stares him down.\n\nOn a tree opposite the <boar> is an object with a faint glimmer, hanging from a branch by a worn piece of string. Upon closer inspection, the Boy makes out the shape of a key. While the tree is not that tall, the branch is abnormally long and flimsy. “I’d probably fall if I tried to climb up there”, he mutters to himself.",
+	"short_desc": "The northern end of the quiet forest. Further north is the sound of rushing water. Nearby, a four-tusked <boar> loiters around. All around are large trees; ignoring the incredible differences among the animals, the forest really isn’t too out of the ordinary.",
 	"prior_visit": "false",
 	"connections": ["Achelous Falls", "Serene Forest - South", null, null],
 	"items": ["Rusted Key"],
@@ -15,7 +15,7 @@
 		},
 		{
 			"name": "forest opening",
-			"desc": "test feature description",
+			"desc": "The opening to the north seems to lead out of the forest. Beyond that opening, the Boy feels he can hear the sounds of water.",
 			"is_interactive": "false",
 			"interactions": null
 		}
