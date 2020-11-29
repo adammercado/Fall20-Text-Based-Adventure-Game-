@@ -1,7 +1,7 @@
 {
 	"name": "Solaris Highway",
-	"long_desc": "temp long description",
-	"short_desc": "temp short description",
+	"long_desc": "Heading out from Astraia, the Boy wanders along the road, locally referred to as the “Solaris Highway”, named after a renowned merchant family whose business was key in Astraia’s economic development. The road leads to various other areas, notably the Ebon Mountains to the north. While not barren, it is nowhere near as populated with natural life as the other areas of Astraia, and is clearly a well-traveled road.  \n\nThe highway isn’t extremely heavy with traffic but does have quite a number of people traveling on it.  The Boy notices that automobiles do not exist, and rather, carriages of the old days are the main transportation method, other than traveling on foot.  A <wooden carriage> passes by, heading toward Astraia, as he heads on in the direction of the mountains.  In the distance, he can see a <river> flowing under a bridge.  Though he enjoyed his short stay in Astraia, the Boy would rather continue investigating the nearby areas.\n",
+	"short_desc": "Solaris Highway is long and daunting, but the prospect of reaching the beautiful town of Astraia at one end, or the gargantuan Ebon Mountains at the other, is motivation enough for travelers.  A <wooden carriage> drives on by, approaching a bridge over the <river> flowing from the nearby lake. There isn’t much here, except the expectations of one’s arrival, or the anticipation of one’s new journey.",
 	"prior_visit": "false",
 	"connections": ["Ebon Mountains", "Astraia - Market Plaza", null, null],
 	"items": [null],
@@ -9,19 +9,13 @@
 	[
 		{
 			"name": "wooden carriage",
-			"desc": "test feature description",
+			"desc": "As the Boy walks along the highway, he takes a closer look at one of the carriages passing by. Impressively constructed from wood, the carriage reminds him of pictures in textbooks from older times, before the invention of automobiles.  The carriage is pulled along by a horse, with a gentleman taking the reins from the front of the carriage. ",
 			"is_interactive": "false",
 			"interactions": null
 		},
 		{
 			"name": "river",
-			"desc": "test feature description",
-			"is_interactive": "false",
-			"interactions": null
-		},
-		{
-			"name": "mountains",
-			"desc": "test feature description",
+			"desc": "Along the highway is a short bridge that crosses over a river flowing from the west. \"It must be the river coming from Lake Astraia,\" the Boy mutters. It seems to carry on quite a distance towards the east, where Achelous Falls begins. The river flows steadily, and is seemingly the only instance of water on this long stretch of road. ",
 			"is_interactive": "false",
 			"interactions": null
 		}

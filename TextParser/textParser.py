@@ -31,7 +31,7 @@ class TextParser:
                              "abandoned home", "dog", "campfire", "tents",
                              "middle-aged woman", "stalagmites", "bats",
                              "mountain path", "astraia", "fisherman",
-                             "birds", "wooden carriage", "river", "mountains"]
+                             "birds", "wooden carriage", "river"]
 
     def parse_interaction(self, args, command, prepositions):
         package = ""
