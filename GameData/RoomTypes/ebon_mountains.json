@@ -1,7 +1,7 @@
 {
 	"name": "Ebon Mountains",
-	"long_desc": "temp long description",
-	"short_desc": "temp short description",
+	"long_desc": "Off to the north of Astraia are the renowned Ebon Mountains, named after it’s shade of color.  Composed of mountains of varying sizes, merchants and civilians alike travel through the passes and trails frequently.  As such, there are established paths and campgrounds to rest.  One such campground lies a short distance to the east.  \nThe Boy is taken aback at the size of the mountains. Of course, nothing like this exists near his own home, and though he could see them as he approached from Solaris Highway, the sight was still breathtaking up close.  As he walked along an elevated path, he could see trails along the sides, and one such <mountain path> seemed to lead towards a cave to the east.  Before he knew it, the Boy reached a view of the land that included the town of <Astraia>, which started to seem miniscule from this distance. \n\nSeeing this view, the Boy couldn’t help but wonder: what else is there to see in the world? To this point, he had seen new, strange things in this land along with things that were familiar. He began to realize that his hometown, while having much to offer, might not encompass even a fraction of what might exist in the world.\n",
+	"short_desc": "The Ebon Mountains, vast and wide, remain surprisingly safe.  The Boy imagined a fantasy-like land such as this would have some sort of dangers about, but all he can see are trails and people, with the occasional wildlife.  To the south is Solaris Highway, leading into Astraia.  To the east is one of apparently many campsites in the mountain region.",
 	"prior_visit": "false",
 	"connections": [null, "Solaris Highway", "Campsite", null],
 	"items": [null],
@@ -9,13 +9,13 @@
 	[
 		{
 			"name": "mountain path",
-			"desc": "test feature description",
+			"desc": "A mountain path along the side seems to lead up to even higher ground, before dipping downwards and breaking off into a cave of sorts. It seems the road is not as often travelled, but the folks of Astraia talked about a \"magical\" place that lie beyond it.",
 			"is_interactive": "false",
 			"interactions": null
 		},
 		{
 			"name": "astraia",
-			"desc": "test feature description",
+			"desc": "From the cliff-side, the Boy peers out over the land.  He spots Astraia out in the distance, so small from this view that it looks like a town formed from toy blocks. Inside that small, toy town are real people, just like him, going about their lives. The thought that he is a stranger to this land on some mysterious journey, surrounded by humans who have no idea of his situation and continue about their business, is rather surreal. Still, he begins to feel grateful for the experience of seeing Astraia and what it has to offer.",
 			"is_interactive": "false",
 			"interactions": null
 		}

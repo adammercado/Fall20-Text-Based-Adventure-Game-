@@ -29,7 +29,7 @@ class TextParser:
                              "waterfall", "town entrance",
                              "fountain", "market stand",
                              "abandoned home", "dog", "campfire", "tents",
-                             "middle-aged woman", "stalagmites", "bats",
+                             "woman", "stalagmites", "bats",
                              "mountain path", "astraia", "fisherman",
                              "birds", "wooden carriage", "river"]
 

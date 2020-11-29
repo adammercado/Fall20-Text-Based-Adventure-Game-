@@ -1,7 +1,7 @@
 {
 	"name": "Dark Tunnel",
-	"long_desc": "temp long description",
-	"short_desc": "temp short description",
+	"long_desc": "The tunnel is full of <bats> and <stalagmites>, which doesn’t really come as a surprise.  The dim light from the lantern is sufficient enough to make it through.  The exit is apparently towards the east, although the tunnel seems to be a rather short and straightforward path from west to east.  On the other side is supposedly an area that somehow leads people to “understand”. Though the Boy does not really get it, he figures he may as well head there to look for a way home. He does not feel too anxious, as he was assured that the passage is safe. In any other work of fiction, this would be a good place for some major danger to exist.",
+	"short_desc": "Walking through the tunnel, <bats> hang from the ceiling. Also on the ceiling, and along the ground, are different-sized <stalagmites> - pretty much forming a stereotypical cave setting.  To the west leads back to the old campsite, while the tunnel also opens up on the east side.",
 	"prior_visit": "false",
 	"connections": [null, null, "Crossroads", "Campsite"],
 	"items": [null],
@@ -9,13 +9,13 @@
 	[
 		{
 			"name": "stalagmites",
-			"desc": "test feature description",
+			"desc": "Stalagmites forming over centuries fill the caves.  Some hang from the ceiling, and others form on the ground.  The Boy tries to recall how they are made, as he walks through the tunnel - something about water dripping from the condensation of the ceiling. He remembers a question about it on a school exam a while ago, but can't recall.  The memory makes him a little regretful as it was one of the questions that contributed to his poor score, and an example of his lackluster efforts that affected is future education.",
 			"is_interactive": "false",
 			"interactions": null
 		},
 		{
 			"name": "bats",
-			"desc": "test feature description",
+			"desc": "Bats hang from the ceiling, as it seems they are inactive at this time. Though they are tiny and apparently not dangerous, the Boy would rather not disturb them, knowing it would scare him anyways.  He does observe that the bats are not all uniform color: some are black, but a few are brightly colored blue or orange, and a handful are a faded red. A few more colors and it could almost represent a rainbow, which makes the Boy chuckle softly.",
 			"is_interactive": "false",
 			"interactions": null
 		}

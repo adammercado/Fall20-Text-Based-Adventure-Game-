@@ -1,27 +1,21 @@
 {
 	"name": "Crossroads",
-	"long_desc": "temp long description",
-	"short_desc": "temp short description",
+	"long_desc": "Emerging from the cave, the Boy stretches and enjoys the fresh air and sunlight. The tunnel wasn’t so bad, but in his mind, nothing beats the daylight.  The area on this side of the mountains doesn’t seem much different than outside of Astraia.  Wondering what is so magical about this area, the Boy takes a short walk that leads to an impasse.  \n\nThe split path leads in two different directions, and at the intersection sits a <signpost>.  The Boy notices that the area is densely filled with flowers. Each <white flower> supposedly has some sort of story behind them, based on what the old man at the campgrounds told him.  \n",
+	"short_desc": "The crossroads, naturally, has a <signpost> to guide those travelling the area.  All around the path are flowers, each <white flower> bloomed and soaking in sunlight.  It is quite a strange sight, as no other type of flower or even plant exists in this area besides the grass, but it is a beautiful sight nonetheless.",
 	"prior_visit": "false",
 	"connections": ["Old Shrine", "Trail of Dreams", null, "Dark Tunnel"],
 	"items": ["White Flower"],
 	"features": 
 	[
 		{
-			"name": "temp feature 1",
-			"desc": "test feature description",
+			"name": "White Flower",
+			"desc": "Surrounding the roads are numerous patches of white flowers, so many that area may as well be considered one giant field of flowers. As the stories go, within each flower rests someone's hopes and dreams. When a new flower blooms, it marks the beginning of one's struggles as they, knowingly or not, embark on some kind of journey to resolve their struggles and find themselves. Some travelers offer the flowers at shrines for good luck.\n\n\"Perhaps I should take a flower to the shrine up nearby and do the same?\"",
 			"is_interactive": "false",
 			"interactions": null
 		},
 		{
-			"name": "temp feature 2",
-			"desc": "test feature description",
-			"is_interactive": "false",
-			"interactions": null
-		},
-		{
-			"name": "temp feature 3",
-			"desc": "test feature description",
+			"name": "Signpost",
+			"desc": "A signpost at the crossroads points out where each path leads. To the north is apparently a shrine where travelers offer their prayers. To the south: the fabled Trail of Dreams.",
 			"is_interactive": "false",
 			"interactions": null
 		}
