@@ -153,8 +153,11 @@ class Game:
             print("Exiting gameplay")
             sys.exit()
         elif parsed_text[0] == "look":
-            feature = parsed_text[1]
-            self.player_look(feature)
+            self.location.get_long_desc()
+        elif parsed_text[0] == "look at":
+            name = parsed_text[1]
+            obj_type = parsed_text[2]
+            self.player_look(name, obj_type)
         elif parsed_text[0] == "move":
             if len(parsed_text) == 2:
                 direction = parsed_text[1]
@@ -194,12 +197,22 @@ class Game:
         elif parsed_text[0] == "help":
             self.display_help_menu()
 
-    def player_look(self, name):
-        if len(name) == 0:
-            self.location.get_long_desc()
-        else:
-            print("Command: Look " + name)
+    def player_look(self, name, obj_type):
+        if obj_type == "item" and self.player.inventory.check_inventory(name):
+            for item in self.player.inventory.get_inventory_list():
+                if item.name.lower() == name:
+                    item.get_description()
+                    break
+        elif obj_type == "feature":
             self.location.examine(name)
+        else:
+            print("Can't look at {} because it isn't here.".format(name))
+
+        # if len(name) == 0:
+        #     self.location.get_long_desc()
+        # else:
+        #     print("Command: Look " + name)
+        #     self.location.examine(name)
 
     def player_move(self, direction):
         print("Command: Move " + direction)

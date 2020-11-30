@@ -37,8 +37,7 @@ class TextParser:
 
     def parse_interaction(self, args, command, prepositions):
         package = ""
-        res = []
-        res.append(command)
+        res = [command]
 
         # Ignore prepositions
         for i, word in enumerate(args):
@@ -53,14 +52,53 @@ class TextParser:
                     del package
                     package = ""
 
-        if (package in self.item_list and command not in self.look_actions)\
-                or (package in self.feature_list and command in self.look_actions):
+        if package in self.item_list:
             res.append(package)
 
         if len(res) == 1:
             res.clear()
 
         print("parse_item_action package: {}".format(res))
+        return res
+
+    def parse_look(self, args, command, prepositions):
+        res = []
+
+        if args[0] == "look" and len(args) == 1:
+            res.append(command)
+            return res
+        else:
+            res.append(command + " at")
+            idx = 0
+
+            if args[1] == "at":
+                idx += 1
+
+            package = ""
+
+            for i, word in enumerate(args):
+                if i > idx:
+                    if word not in prepositions:
+                        package += word
+
+                        if i < (len(args) - 1) and args[i + 1] not in prepositions:
+                            package += " "
+                    elif word in prepositions:
+                        res.append(package)
+                        del package
+                        package = ""
+
+            if package in self.item_list:
+                res.append(package)
+                res.append("item")
+            elif package in self.feature_list:
+                res.append(package)
+                res.append("feature")
+
+        if len(res) == 1:
+            res.clear()
+
+        print("parse_look_action package: {}".format(res))
         return res
 
     def parse_movement(self, args, command):
@@ -85,7 +123,7 @@ class TextParser:
         elif word in self.use_actions:
             res = self.parse_interaction(args, "use", self.use_prepositions)
         elif word in self.look_actions:
-            res = self.parse_interaction(args, "look", self.look_prepositions)
+            res = self.parse_look(args, "look", self.look_prepositions)
         elif word in self.move_actions:
             res = self.parse_movement(args, "move")
         elif word in self.game_actions:
