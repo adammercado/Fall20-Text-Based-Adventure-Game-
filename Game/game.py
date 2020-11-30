@@ -40,7 +40,6 @@ class Game:
             data = json.load(infile)
 
             self.intro = data['intro']
-            self.ending = data['ending']
 
         print(self.intro)
         directory = "./GameData/RoomTypes"
@@ -131,6 +130,11 @@ class Game:
     def play_game(self):
         while 1:
             if self.check_victory():
+                with open("./GameData/Text/story.json", encoding="utf-8") as infile:
+                    data = json.load(infile)
+
+                    self.ending = data['ending']
+
                 print(self.ending)
                 sys.exit()
 
