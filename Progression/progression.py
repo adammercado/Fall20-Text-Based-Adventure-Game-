@@ -39,9 +39,12 @@ class Progression:
 
     def combine_items(self, item_1, item_2, player_inventory):
         pair = (item_1, item_2)
+
         if pair in self.item_combo \
                 or pair[::-1] in self.item_combo:
             new_item = Item.create_item_from_file(
                 "./GameData/Items/shining_pendant.json")
             new_item.get_item_data()
             player_inventory.add_item(new_item)
+            player_inventory.remove_item_by_name(item_1)
+            player_inventory.remove_item_by_name(item_2)
