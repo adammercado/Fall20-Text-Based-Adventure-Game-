@@ -36,6 +36,13 @@ class Game:
 
     # Initializes game state before calling playGame()
     def start_game(self):
+        with open("./GameData/Text/story.json", encoding="utf-8") as infile:
+            data = json.load(infile)
+
+            self.intro = data['intro']
+            self.ending = data['ending']
+
+        print(self.intro)
         directory = "./GameData/RoomTypes"
 
         # Iterate through room JSON files in directory and
@@ -47,6 +54,8 @@ class Game:
 
                 # Set starting location
                 if cur_room.name == "Serene Forest - South":
+                    cur_room.get_desc()
+                    cur_room.toggle_visit()
                     self.location = cur_room
 
                 self.rooms.append(cur_room)
@@ -54,16 +63,6 @@ class Game:
                 continue
 
         self.player = Player(None)
-
-        with open("./GameData/Text/story.json", encoding="utf-8") as infile:
-            data = json.load(infile)
-
-            self.intro = data['intro']
-            self.ending = data['ending']
-
-
-        print(self.intro)
-
         self.play_game()
 
     # Calls class methods to convert data into JSON format and write to save
@@ -171,7 +170,7 @@ class Game:
             else:
                 print("{} is not in the inventory.".format(parsed_text[1]))
         elif parsed_text[0] == "use" and len(parsed_text) == 3:
-            if self.player.inventory.check_inventory(parsed_text[1])\
+            if self.player.inventory.check_inventory(parsed_text[1]) \
                     and self.player.inventory.check_inventory(parsed_text[2]):
                 self.player_use(parsed_text[1], parsed_text[2])
         elif parsed_text[0] == "take":
@@ -222,8 +221,12 @@ class Game:
         else:
             for i, room in enumerate(self.rooms):
                 if room.name == new_room:
+                    room.get_desc()
+
+                    if room.prior_visit is False:
+                        room.toggle_visit()
+
                     self.location = room
-                    self.location.get_short_desc()
 
     def player_use(self, item_1, item_2):
         self.progression.get_progression(item_1, item_2, self.player.inventory, self.location)
@@ -273,7 +276,7 @@ class Game:
                                           | Forest |
                                           | South  |
                                           ----------
-""") 
+""")
 
     def display_help_menu(self):
         print("\n")

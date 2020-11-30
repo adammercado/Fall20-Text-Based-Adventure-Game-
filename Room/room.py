@@ -84,14 +84,18 @@ class Room:
                 obj.get_desc()
                 break
 
+    def get_desc(self):
+        if self.prior_visit:
+            print(self.short_desc)
+        else:
+            print(self.long_desc)
+
     # Test method called when saving room data to json
     def get_long_desc(self):
-        print(self.name)
         print(self.long_desc)
 
     # Test method called when loading room data from json
     def get_short_desc(self):
-        print(self.name)
         print(self.short_desc)
 
     def room_add_item(self, item):
@@ -103,3 +107,7 @@ class Room:
                 if obj.is_obtainable():
                     player_inventory.add_item(obj)
                     self.inventory.remove_item(obj)
+
+    def toggle_visit(self):
+        if not self.prior_visit:
+            self.prior_visit = True
