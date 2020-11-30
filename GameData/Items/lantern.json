@@ -1,5 +1,5 @@
 {
 	"name": "Lantern",
 	"description": "A standard-grade lantern. A traveler's best friend for making it through a dark place.",
-	"obtainable": true
+	"obtainable": false
 }

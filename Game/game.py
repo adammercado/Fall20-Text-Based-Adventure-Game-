@@ -31,9 +31,17 @@ class Game:
     player = None
     location = None
     rooms = []
+    intro = None
+    ending = None
 
     # Initializes game state before calling playGame()
     def start_game(self):
+        with open("./GameData/Text/story.json", encoding="utf-8") as infile:
+            data = json.load(infile)
+
+            self.intro = data['intro']
+
+        print(self.intro)
         directory = "./GameData/RoomTypes"
 
         # Iterate through room JSON files in directory and
@@ -45,6 +53,8 @@ class Game:
 
                 # Set starting location
                 if cur_room.name == "Serene Forest - South":
+                    cur_room.get_desc()
+                    cur_room.toggle_visit()
                     self.location = cur_room
 
                 self.rooms.append(cur_room)
@@ -120,7 +130,12 @@ class Game:
     def play_game(self):
         while 1:
             if self.check_victory():
-                self.progression.get_victory_text()
+                with open("./GameData/Text/story.json", encoding="utf-8") as infile:
+                    data = json.load(infile)
+
+                    self.ending = data['ending']
+
+                print(self.ending)
                 sys.exit()
 
             print("Current location: " + self.location.name)
@@ -142,8 +157,11 @@ class Game:
             print("Exiting gameplay")
             sys.exit()
         elif parsed_text[0] == "look":
-            feature = parsed_text[1]
-            self.player_look(feature)
+            self.location.get_long_desc()
+        elif parsed_text[0] == "look at":
+            name = parsed_text[1]
+            obj_type = parsed_text[2]
+            self.player_look(name, obj_type)
         elif parsed_text[0] == "move":
             if len(parsed_text) == 2:
                 direction = parsed_text[1]
@@ -159,7 +177,7 @@ class Game:
             else:
                 print("{} is not in the inventory.".format(parsed_text[1]))
         elif parsed_text[0] == "use" and len(parsed_text) == 3:
-            if self.player.inventory.check_inventory(parsed_text[1])\
+            if self.player.inventory.check_inventory(parsed_text[1]) \
                     and self.player.inventory.check_inventory(parsed_text[2]):
                 self.player_use(parsed_text[1], parsed_text[2])
         elif parsed_text[0] == "take":
@@ -183,12 +201,22 @@ class Game:
         elif parsed_text[0] == "help":
             self.display_help_menu()
 
-    def player_look(self, name):
-        if len(name) == 0:
-            self.location.get_long_desc()
-        else:
-            print("Command: Look " + name)
+    def player_look(self, name, obj_type):
+        if obj_type == "item" and self.player.inventory.check_inventory(name):
+            for item in self.player.inventory.get_inventory_list():
+                if item.name.lower() == name:
+                    item.get_description()
+                    break
+        elif obj_type == "feature":
             self.location.examine(name)
+        else:
+            print("Can't look at {} because it isn't here.".format(name))
+
+        # if len(name) == 0:
+        #     self.location.get_long_desc()
+        # else:
+        #     print("Command: Look " + name)
+        #     self.location.examine(name)
 
     def player_move(self, direction):
         print("Command: Move " + direction)
@@ -207,11 +235,17 @@ class Game:
 
         if new_room is None:
             print("There is no exit in that direction.")
+        elif new_room == "Dark Tunnel" and not self.player.inventory.check_inventory("lantern"):
+            print("Cannot enter the Dark Tunnel without a lantern.")
         else:
             for i, room in enumerate(self.rooms):
                 if room.name == new_room:
+                    room.get_desc()
+
+                    if room.prior_visit is False:
+                        room.toggle_visit()
+
                     self.location = room
-                    self.location.get_short_desc()
 
     def player_use(self, item_1, item_2):
         self.progression.get_progression(item_1, item_2, self.player.inventory, self.location)
@@ -261,7 +295,7 @@ class Game:
                                           | Forest |
                                           | South  |
                                           ----------
-""") 
+""")
 
     def display_help_menu(self):
         print("\n")

@@ -75,3 +75,9 @@ class Inventory:
             if obj == item:
                 del self.inventory[i]
                 break
+
+    def remove_item_by_name(self, item):
+        for i, obj in enumerate(self.inventory):
+            if obj.name.lower() == item.lower():
+                del self.inventory[i]
+                break
