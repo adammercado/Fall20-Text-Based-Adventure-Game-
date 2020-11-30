@@ -124,6 +124,8 @@ class TextParser:
             res = self.parse_interaction(args, "use", self.use_prepositions)
         elif word in self.look_actions:
             res = self.parse_look(args, "look", self.look_prepositions)
+        elif word in self.move_directions and len(args) == 1:
+            res = self.parse_movement(["move"] + args, "move")
         elif word in self.move_actions:
             res = self.parse_movement(args, "move")
         elif word in self.game_actions:
