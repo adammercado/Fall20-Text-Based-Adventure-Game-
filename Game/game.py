@@ -235,6 +235,8 @@ class Game:
 
         if new_room is None:
             print("There is no exit in that direction.")
+        elif new_room == "Dark Tunnel" and not self.player.inventory.check_inventory("lantern"):
+            print("Cannot enter the Dark Tunnel without a lantern.")
         else:
             for i, room in enumerate(self.rooms):
                 if room.name == new_room:
