@@ -6,6 +6,54 @@ from Feature.feature import Feature
 
 
 class Room:
+    """Represents an object in the game
+
+    Attributes
+    ----------
+        name : str
+            name of room
+        long_desc : str
+            long description displayed on first visit
+        short_desc : str
+            short description displayed upon repeat visit
+        prior_visit : boolean
+            status if room has been visited before
+        connections : list(str)
+            list of names of adjacent rooms
+        inventory : Inventory
+            contains item objects in room
+        feature_list : list(Feature)
+            list of features in room
+        parser : TextParser
+            used to parse item name inputs
+    Methods
+    -------
+        __init__(name, long_desc, short_desc, prior_visit,
+                 connections, items, features, load)
+            default constructor creates instances using parameters
+        from_file_name(file_name)
+            method calls constructor using parameters from JSON file
+        convert_room_to_json
+            returns list of strings representing room attributes
+        get_connection(num):
+            returns name of adjjacent room at index
+        get_feature():
+            returns list of features in room
+        examine(feature):
+            searches for feature in room and displays description
+        get_desc():
+            print descriptions based on status of prior_visit
+        get_long_desc():
+            print long_desc
+        get_short_desc():
+            print short_desc
+        room_add_item(item):
+            add item to room inventory
+        room_drop_item(item):
+            drop item from room inventory
+        toggle_visit():
+            toggle prior_visit from False to True
+    """
     parser = TextParser()
 
     def __init__(self, name, long_desc, short_desc, prior_visit,
@@ -35,7 +83,6 @@ class Room:
                               obj["is_interactive"], obj["interactions"])
                 self.feature_list.append(cur)
 
-    # Constructor using file name
     def from_file_name(file_name):
         with open(file_name, encoding="utf-8") as infile:
             data = json.load(infile)
