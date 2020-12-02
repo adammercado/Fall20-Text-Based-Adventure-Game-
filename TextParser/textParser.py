@@ -2,13 +2,11 @@ class TextParser:
     def __init__(self):
         self.look_actions = ["look", "look at", "check", "examine", "observe"]
 
-        self.move_actions = ["move", "go", "jump", "swim", "climb"]
+        self.move_actions = ["move", "go", "head"]
 
         self.move_directions = ["north", "south", "east", "west"]
 
-        self.use_actions = ["use", "combine", "hit", "strike", "pull",
-                            "push", "eat", "drink", "sit", "pour",
-                            "consume", "spill", "pry", "whip", "shine"]
+        self.use_actions = ["use", "combine"]
 
         self.take_actions = ["take", "grab"]
 
