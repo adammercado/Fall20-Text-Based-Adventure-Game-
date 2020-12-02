@@ -1,5 +1,28 @@
 
 class Feature:
+    """Represents features that can be viewed in game
+
+    Attributes
+    ----------
+        name : str
+            name of feature
+        desc : str
+            description of feature
+        is_interactive : boolean (UNUSED)
+            if object is interactive
+        interactions : list (UNUSED)
+            list of objects that can interact with feature
+    Methods
+    -------
+        __init__(name, desc, is_interactive, interactions)
+            default constructor creates instances using parameters
+        get_feature_info()
+            prints all information related to feature
+        convert_feature_to_json()
+            returns object containing feature data to write to JSON
+        get_desc()
+            prints description of feature
+    """
 
     def __init__(self, name, desc, is_interactive, interactions):
         self.name = name

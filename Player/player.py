@@ -5,6 +5,26 @@ from Item.item import Item
 
 
 class Player:
+    """Represents the user character in the game
+
+    Attributes
+    ----------
+        name : str
+            name of character, defaults to "Boy", not changeable
+        inventory: Inventory
+            contains item objects in player's possession
+    Methods
+    -------
+        __init__(items)
+            default constructor creates instances using parameters
+        convert_player_to_json()
+            returns object containing player data to write to JSON
+        player_add_item(item)
+            adds item instance to player inventory
+        player_drop_item(item)
+            removes item instance if found in player inventory
+    """
+
     parser = TextParser()
 
     def __init__(self, items):

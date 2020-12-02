@@ -35,23 +35,23 @@ class Room:
             method calls constructor using parameters from JSON file
         convert_room_to_json
             returns list of strings representing room attributes
-        get_connection(num):
+        get_connection(num)
             returns name of adjjacent room at index
-        get_feature():
+        get_feature()
             returns list of features in room
-        examine(feature):
+        examine(feature)
             searches for feature in room and displays description
-        get_desc():
+        get_desc()
             print descriptions based on status of prior_visit
-        get_long_desc():
+        get_long_desc()
             print long_desc
-        get_short_desc():
+        get_short_desc()
             print short_desc
-        room_add_item(item):
+        room_add_item(item)
             add item to room inventory
-        room_drop_item(item):
+        room_drop_item(item)
             drop item from room inventory
-        toggle_visit():
+        toggle_visit()
             toggle prior_visit from False to True
     """
     parser = TextParser()

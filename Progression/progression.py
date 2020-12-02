@@ -8,15 +8,15 @@ class Progression:
     ----------
         interactions : list( {str, str str} )
             list of tuples of valid interactions
-        item_combo: list( {str, str} )
+        item_combo : list( {str, str} )
             list of tuples of valid item use combinations
     Methods
     -------
-        get_progression(item_1, item_2, player_inventory, room):
+        get_progression(item_1, item_2, player_inventory, room)
             call appropriate method based on parameters
-        perform_interaction(item, player_inventory, room):
+        perform_interaction(item, player_inventory, room)
             performs item exchange if interaction is valid
-        combine_items(self, item_1, item_2, player_inventory):
+        combine_items(self, item_1, item_2, player_inventory)
             creates combined item and removes recipe items
     """
     def __init__(self):
