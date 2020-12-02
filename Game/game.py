@@ -138,7 +138,7 @@ class Game:
                 print(self.ending)
                 sys.exit()
 
-            print("Current location: " + self.location.name)
+            print("\nCurrent location: " + self.location.name)
             args = []
 
             while len(args) == 0 or args[0] == '\n':
@@ -152,9 +152,9 @@ class Game:
         parsed_text = self.parser.parse(args)
 
         if len(parsed_text) == 0 or parsed_text is None:
-            print("Not a valid action.")
+            print("\nNot a valid action.")
         elif parsed_text[0] == "quit":
-            print("Exiting gameplay")
+            print("\nExiting game.")
             sys.exit()
         elif parsed_text[0] == "look":
             self.location.get_long_desc()
@@ -167,7 +167,7 @@ class Game:
                 direction = parsed_text[1]
                 self.player_move(direction)
             else:
-                print("You must enter a cardinal direction to move in.")
+                print("\nYou must enter a cardinal direction to move in.")
         elif parsed_text[0] == "use" and parsed_text[1] == "map":
             if self.player.inventory.check_inventory("map"):
                 self.display_map()
@@ -175,7 +175,7 @@ class Game:
             if self.player.inventory.check_inventory(parsed_text[1]):
                 self.player_use(parsed_text[1], None)
             else:
-                print("{} is not in the inventory.".format(parsed_text[1]))
+                print("\n{} is not in the inventory.".format(parsed_text[1]))
         elif parsed_text[0] == "use" and len(parsed_text) == 3:
             if self.player.inventory.check_inventory(parsed_text[1]) \
                     and self.player.inventory.check_inventory(parsed_text[2]):
@@ -184,13 +184,13 @@ class Game:
             if self.location.inventory.check_inventory(parsed_text[1]):
                 self.location.room_drop_item(parsed_text[1], self.player.inventory)
             else:
-                print("There is no {} in this location."
+                print("\nThere is no {} in this location."
                       .format(parsed_text[1]))
         elif parsed_text[0] == "place":
             if self.player.inventory.check_inventory(parsed_text[1]):
                 self.player.player_drop_item(parsed_text[1], self.location.inventory)
             else:
-                print("Cannot drop {} because it is not in the inventory."
+                print("\nCannot drop {} because it is not in the inventory."
                       .format(parsed_text[1]))
         elif parsed_text[0] == "savegame":
             self.save_game()
@@ -202,24 +202,21 @@ class Game:
             self.display_help_menu()
 
     def player_look(self, name, obj_type):
-        if obj_type == "item" and self.player.inventory.check_inventory(name):
-            for item in self.player.inventory.get_inventory_list():
-                if item.name.lower() == name:
-                    item.get_description()
-                    break
+        if obj_type == "item":
+            if self.player.inventory.check_inventory(name):
+                for item in self.player.inventory.get_inventory_list():
+                    if item.name.lower() == name:
+                        item.get_description()
+                        break
+            else:
+                print("\nThere is no {} in the inventory.".format(name))
         elif obj_type == "feature":
-            self.location.examine(name)
-        else:
-            print("Can't look at {} because it isn't here.".format(name))
-
-        # if len(name) == 0:
-        #     self.location.get_long_desc()
-        # else:
-        #     print("Command: Look " + name)
-        #     self.location.examine(name)
+            if name in self.location.feature_list:
+                self.location.examine(name)
+            else:
+                print("\nThere is no {} here.".format(name))
 
     def player_move(self, direction):
-        print("Command: Move " + direction)
         num = -1
 
         if direction == "north":
@@ -234,9 +231,9 @@ class Game:
         new_room = self.location.get_connection(num)
 
         if new_room is None:
-            print("There is no exit in that direction.")
+            print("\nThere is no exit in that direction.")
         elif new_room == "Dark Tunnel" and not self.player.inventory.check_inventory("lantern"):
-            print("Cannot enter the Dark Tunnel without a lantern.")
+            print("\nCannot enter the Dark Tunnel without a lantern.")
         else:
             for i, room in enumerate(self.rooms):
                 if room.name == new_room:
@@ -333,5 +330,4 @@ class Game:
             for game_action in self.parser.game_actions:
                 print(game_action)
         else:
-            print("Invalid menu choice. Please enter a valid number")
-        print("\n")
+            print("Invalid menu choice. Please enter a valid number\n")

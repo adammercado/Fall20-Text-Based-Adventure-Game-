@@ -48,12 +48,15 @@ class Inventory:
     # Iterate through list and print name and description of each item object
     def display_inventory(self):
         if not self.inventory:
-            print("THE INVENTORY IS EMPTY")
+            print("The inventory is empty.")
         else:
-            print("\nITEMS IN INVENTORY")
-            for item in self.inventory:
+            print("\n----- Inventory -----")
+            for i, item in enumerate(self.inventory):
+                if i != len(self.inventory) - 1:
+                    print("\n")
+
                 item.get_item_data()
-                print('\n')
+            print('---------------------')
 
     def get_inventory_list(self):
         return self.inventory

@@ -78,7 +78,6 @@ class Room:
             obj.get_feature_info()
 
     def examine(self, feature):
-        print("feature is: " + feature)
         for obj in self.feature_list:
             if feature == obj.name:
                 obj.get_desc()
@@ -90,11 +89,9 @@ class Room:
         else:
             print(self.long_desc)
 
-    # Test method called when saving room data to json
     def get_long_desc(self):
         print(self.long_desc)
 
-    # Test method called when loading room data from json
     def get_short_desc(self):
         print(self.short_desc)
 

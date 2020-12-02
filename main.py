@@ -29,7 +29,7 @@ def quit_game():
 # The playNewGame() initializes a new game from the beginning
 def play_new_game():
     print()
-    print("a new game is initialized...")
+    print("---- Starting New Game ----")
     game = Game()
     game.start_game()
 
@@ -37,7 +37,7 @@ def play_new_game():
 # The loadCurrentGame() opens a file to the players current level
 def load_current_game():
     print()
-    print("the game is loaded...")
+    print("---- Loading Save File ----")
     game = Game()
     game.load_game()
 
@@ -83,8 +83,7 @@ def menu():
     elif choice == "2":
         quit_game()
     else:
-        print("You must only select 1 to play or 2 to quit.")
-        print("Please try again")
+        print("You must only select 1 to play or 2 to quit. Please try again.")
         menu()
 
 

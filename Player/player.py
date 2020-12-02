@@ -10,16 +10,6 @@ class Player:
     def __init__(self, items):
         self.name = "Boy"
         self.inventory = Inventory(None)
-        # directory = "./GameData/Items"
-        """
-        for item in items:
-            if item != None:
-                itemName = self.parser.convertSpaces(item.lower())
-                itemPath = "{0}/{1}.json".format(directory, itemName)
-                cur_item = Item.createItemFromFile(itemPath)
-
-                self.inventory.addItem(cur_item)
-        """
 
         if items is not None:
             for data in items:

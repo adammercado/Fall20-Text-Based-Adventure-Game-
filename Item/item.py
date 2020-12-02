@@ -68,5 +68,4 @@ class Item:
         print(self.description)
 
     def get_item_data(self):
-        print(self.name)
-        print(self.obtainable)
+        print("{}".format(self.name))
