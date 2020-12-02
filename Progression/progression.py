@@ -48,8 +48,6 @@ class Progression:
                         room.room_drop_item(group[2], player_inventory)
                         break
                 break
-            else:
-                print("Not a valid interaction.")
 
     def combine_items(self, item_1, item_2, player_inventory):
         pair = (item_1, item_2)
