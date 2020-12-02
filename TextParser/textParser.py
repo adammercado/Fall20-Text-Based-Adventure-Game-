@@ -2,13 +2,11 @@ class TextParser:
     def __init__(self):
         self.look_actions = ["look", "look at", "check", "examine", "observe"]
 
-        self.move_actions = ["move", "go", "jump", "swim", "climb"]
+        self.move_actions = ["move", "go", "head"]
 
         self.move_directions = ["north", "south", "east", "west"]
 
-        self.use_actions = ["use", "combine", "hit", "strike", "pull",
-                            "push", "eat", "drink", "sit", "pour",
-                            "consume", "spill", "pry", "whip", "shine"]
+        self.use_actions = ["use", "combine"]
 
         self.take_actions = ["take", "grab"]
 
@@ -58,7 +56,6 @@ class TextParser:
         if len(res) == 1:
             res.clear()
 
-        print("parse_item_action package: {}".format(res))
         return res
 
     def parse_look(self, args, command, prepositions):
@@ -98,7 +95,6 @@ class TextParser:
         if len(res) == 1:
             res.clear()
 
-        print("parse_look_action package: {}".format(res))
         return res
 
     def parse_movement(self, args, command):
@@ -108,7 +104,6 @@ class TextParser:
             res.append(command)
             res.append(args[1])
 
-        print("parse_move_action package: {}".format(res))
         return res
 
     # Receive list of arguments and determine action received
@@ -124,6 +119,8 @@ class TextParser:
             res = self.parse_interaction(args, "use", self.use_prepositions)
         elif word in self.look_actions:
             res = self.parse_look(args, "look", self.look_prepositions)
+        elif word in self.move_directions and len(args) == 1:
+            res = self.parse_movement(["move"] + args, "move")
         elif word in self.move_actions:
             res = self.parse_movement(args, "move")
         elif word in self.game_actions:
