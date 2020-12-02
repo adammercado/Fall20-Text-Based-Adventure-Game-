@@ -45,4 +45,4 @@ class Feature:
         return feature_data
 
     def get_desc(self):
-        print(self.desc)
+        print("\n{}".format(self.desc))

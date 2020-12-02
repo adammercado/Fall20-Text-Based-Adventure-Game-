@@ -222,10 +222,9 @@ class Game:
             else:
                 print("\nThere is no {} in the inventory.".format(name))
         elif obj_type == "feature":
-            if name in self.location.feature_list:
-                self.location.examine(name)
-            else:
-                print("\nThere is no {} here.".format(name))
+            self.location.examine(name)
+        else:
+            print("\nThere is no {} here.".format(name))
 
     def player_move(self, direction):
         num = -1

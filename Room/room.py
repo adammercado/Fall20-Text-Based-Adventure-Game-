@@ -36,7 +36,7 @@ class Room:
         convert_room_to_json
             returns list of strings representing room attributes
         get_connection(num)
-            returns name of adjjacent room at index
+            returns name of adjacent room at index
         get_feature()
             returns list of features in room
         examine(feature)
