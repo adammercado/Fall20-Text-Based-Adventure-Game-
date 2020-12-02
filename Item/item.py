@@ -65,7 +65,7 @@ class Item:
         return self.obtainable
 
     def get_description(self):
-        print(self.description)
+        print("\n{}".format(self.description))
 
     def get_item_data(self):
         print("{}".format(self.name))
