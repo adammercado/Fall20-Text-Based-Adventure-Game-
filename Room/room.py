@@ -150,6 +150,8 @@ class Room:
             if obj.name.lower() == item:
                 if obj.is_obtainable():
                     player_inventory.add_item(obj)
+                    print("\nThe Boy grabbed the {} and placed it in his inventory."
+                          .format(item))
                     self.inventory.remove_item(obj)
 
     def toggle_visit(self):

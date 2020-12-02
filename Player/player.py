@@ -1,4 +1,3 @@
-import json
 from TextParser.textParser import TextParser
 from Inventory.inventory import Inventory
 from Item.item import Item
@@ -50,7 +49,7 @@ class Player:
 
     def player_add_item(self, item):
         self.inventory.add_item(item)
-        print("{} grabbed the {} and placed it in his inventory."
+        print("\n{} grabbed the {} and placed it in his inventory."
               .format(self.name, item.name))
 
     def player_drop_item(self, item, room_inventory):
