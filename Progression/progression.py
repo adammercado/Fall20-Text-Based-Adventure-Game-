@@ -56,7 +56,7 @@ class Progression:
                 or pair[::-1] in self.item_combo:
             new_item = Item.create_item_from_file(
                 "./GameData/Items/shining_pendant.json")
-            new_item.get_item_data()
             player_inventory.add_item(new_item)
+            print("\nThe Boy created the Shining Pendant and placed it in his inventory.")
             player_inventory.remove_item_by_name(item_1)
             player_inventory.remove_item_by_name(item_2)
