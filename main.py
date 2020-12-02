@@ -1,4 +1,3 @@
-# Using import sys to exit the program if user decides to quit the game
 import sys
 from Game.game import Game
 

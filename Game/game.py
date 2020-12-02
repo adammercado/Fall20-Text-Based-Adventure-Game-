@@ -4,10 +4,8 @@ import os
 from pathlib import Path
 from TextParser.textParser import TextParser
 from Room.room import Room
-from Item.item import Item
 from Player.player import Player
 from Progression.progression import Progression
-from Feature.feature import Feature
 
 """
 Attributes:
