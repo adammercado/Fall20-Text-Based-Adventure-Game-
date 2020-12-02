@@ -6,7 +6,7 @@ from Feature.feature import Feature
 
 
 class Room:
-    """Represents an object in the game
+    """Represents a room in the game
 
     Attributes
     ----------
