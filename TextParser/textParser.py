@@ -58,7 +58,6 @@ class TextParser:
         if len(res) == 1:
             res.clear()
 
-        print("parse_item_action package: {}".format(res))
         return res
 
     def parse_look(self, args, command, prepositions):
@@ -98,7 +97,6 @@ class TextParser:
         if len(res) == 1:
             res.clear()
 
-        print("parse_look_action package: {}".format(res))
         return res
 
     def parse_movement(self, args, command):
@@ -108,7 +106,6 @@ class TextParser:
             res.append(command)
             res.append(args[1])
 
-        print("parse_move_action package: {}".format(res))
         return res
 
     # Receive list of arguments and determine action received
