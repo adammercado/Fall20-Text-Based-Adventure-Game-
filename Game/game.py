@@ -7,23 +7,36 @@ from Room.room import Room
 from Player.player import Player
 from Progression.progression import Progression
 
-"""
-Attributes:
-    parser
-    player
-    location
-    rooms
-
-Methods:
-    startGame()
-    saveGame()
-    loadGame()
-    playGame()
-    getInput()
-"""
-
 
 class Game:
+    """Represents main controller for gameplay state
+
+    Methods
+    -------
+        start_game()
+            initializes starting game state and objects
+        save_game()
+            writes all object data within game to JSON file
+        load_game()
+            re-creates game using data in JSON file
+        play_game()
+            main gameplay loop requiring user input
+        get_input(args)
+            receives commands from parser via user input and calls appropriate methods
+        player_look(name, obj_type)
+            prints description of item or feature if available
+        player_move(direction)
+            updates current location using direction input to determine new room
+        player_use(item_1, item_2)
+            calls progression check using parameters to perform use interaction
+        check_victory()
+            determines whether or not victory conditions have been met
+        display_map()
+            prints a text map of all rooms in game
+        display_help_menu()
+            prints a help menu and receives input for which option to display
+    """
+
     parser = TextParser()
     progression = Progression()
     player = None

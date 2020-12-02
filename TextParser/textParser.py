@@ -1,4 +1,46 @@
 class TextParser:
+    """Determines action by parsing user input
+
+    Attributes
+    ----------
+        look_actions : list(str)
+            list of valid verbs related to looking
+        move_actions : list(str)
+            list of valid verbs related to movement
+        move_directions : list(str)
+            list of valid nouns related to movement directions
+        use_actions : list(str)
+            list of valid verbs related to item use
+        take_actions : list(str)
+            list of valid verbs related to picking up items
+        place_actions : list(str)
+            list of valid verbs related to dropping items
+        game_actions : list(str)
+            list of valid commands related to game state
+        look_prepositions : list(str)
+            list of valid prepositions used with look actions
+        use_prepositions : list(str)
+            list of valid prepositions used with item use actions
+        item_list : list(str)
+            list of item names in the game
+        feature_list : list(str)
+            list of feature names in the game
+    Methods
+    -------
+        __init__()
+            default constructor creates instances using parameters
+        parse_interaction(args, command, prepositions)
+            return parameters for actions related to items
+        parse_look(args, command, prepositions)
+            return parameters for actions related to looking
+        parse_move(args, command)
+            return parameters for actions related to movement
+        parse(args)
+            call method based on user input received
+        convert_spaces(string)
+            return string with spaces replaced by underscore for
+            file name use
+    """
     def __init__(self):
         self.look_actions = ["look", "look at", "check", "examine", "observe"]
 
