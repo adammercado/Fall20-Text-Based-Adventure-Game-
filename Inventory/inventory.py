@@ -51,10 +51,7 @@ class Inventory:
             print("The inventory is empty.")
         else:
             print("\n----- Inventory -----")
-            for i, item in enumerate(self.inventory):
-                if i != len(self.inventory) - 1:
-                    print("\n")
-
+            for item in self.inventory:
                 item.get_item_data()
             print('---------------------')
 
